@@ -5,6 +5,7 @@ export const NavbarContainer = styled.div`
   width: 100%;
   background-color: #44a72c;
   justify-content: space-around;
+  font-family: "Roboto", sans-serif;
   align-items: center;
   padding: 0 20px;
   position: fixed;
@@ -130,3 +131,67 @@ export const HamburgerMenuIcon = styled.img`
   width: 70px;
   height: 20px;
 `;
+
+// -----------------Sidebar on Medium Device-----------------//
+
+export const MdSidebar = styled.div`
+
+display: none;
+
+@media (max-width: 768px){
+  display: ${({ sidebarOpen }) => (sidebarOpen ? "block" : "none")};
+  position: fixed;
+  height: 75vh;
+  width: 30vh;
+  background: #44A72C;
+  z-index: 40;
+  position:absolute;
+  top: 90px;
+  right: 8px;
+  padding-top: 5%;
+  padding-left: 3%;
+`;
+
+export const MdSidebarItems = styled.h6`
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 5%;
+`;
+
+// -----------------CategoryBar on Medium Device-----------------//
+
+export const MdCategoryBar = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: ${({ openCatergory }) => (openCatergory ? "block" : "none")};
+    position: fixed;
+    height: 60vh;
+    width: 30vh;
+    background: #44a72c;
+    z-index: 40;
+    position: absolute;
+    top: 90%;
+    left: 13px;
+    padding: 2% 3%;
+
+  }
+`;
+
+export const MdCategoryIcon = styled.img`
+  
+  width: 80px;
+  position: fixed;
+  left: 1%;
+  bottom: 20px;
+  z-index: 100;
+  
+`;
+
+export const MdCategoryItems = styled.h6`
+color: #fff;
+font-size: 12px;
+font-weight: 500;
+padding: 5%;
+`
