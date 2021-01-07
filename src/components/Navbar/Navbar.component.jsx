@@ -33,6 +33,8 @@ const Navbar = () => {
         </ShoppingCart>
       </NavbarContainer>
 
+      {/* --------------------------Mobileview-------------------------- */}
+      
       <MdNavbarContainer>
         <MdTopHeaderContainer>
           <MdShoppingCart>

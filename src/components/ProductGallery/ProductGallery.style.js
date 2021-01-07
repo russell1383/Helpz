@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProductGalleryContainer = styled.div`
-  width: 66.5vw;
+  width: 63vw;
   margin: 0 auto;
   font-family: "Roboto", sans-serif;
   @media (max-width: 560px) {

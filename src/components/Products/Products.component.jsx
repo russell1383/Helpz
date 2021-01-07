@@ -10,14 +10,19 @@ import {
 } from "./Products.style";
 import { productData } from "../../productData/productData";
 import { Col, Row } from "react-grid-system";
+import LeftArrow from "../../assets/icons/left-arrow.png";
+import RightArrow from "../../assets/icons/right-arrow.png";
 
 const Products = () => {
   return (
     <>
       <ProductContainerWrap>
+       
         <h2>Best DeaL Today</h2>
         <p>Best Selling Products</p>
         <ProductsContainer>
+        <div className="left-arrow"><img src={LeftArrow} alt=""/></div>
+        <div className="right-arrow"><img src={RightArrow} alt=""/></div>
           {productData.map((product, idx) => (
             <ProductBox key={idx}>
               {console.log(product.display)}

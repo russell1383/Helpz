@@ -1,43 +1,36 @@
 import styled from "styled-components";
 
 export const NavbarContainer = styled.div`
-  height: 10vh;
+  height: 75px;
   width: 100%;
   background-color: #44a72c;
-  display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 0 20px;
   position: fixed;
-  z-index: 10;
+  overflow: hidden;
+  top: 0;
+  z-index: 60;
+  display: flex;
 
   @media (max-width: 768px) {
     display: none;
   }
 
   img {
-    width: 80px;
+    width: 100px;
+    @media (max-width: 1024px){
+      width:90px
+    }
   }
 `;
 
 export const SearchBox = styled.div`
-  width: 100%;
+  width: 80%;
   text-align: center;
-  padding: 0 100px;
-  input {
-    width: 80%;
-    height: 30px;
-    border: none;
-    outline: none;
-    padding: 5px;
-    font-size: 11px;
-  }
-  button {
-    width: 5%;
-    height: 30px;
-    width: 60px;
-    border: none;
-  }
+  box-sizing: border-box;
+ 
+ 
 `;
 
 export const ShoppingCart = styled.div`
@@ -47,6 +40,9 @@ export const ShoppingCart = styled.div`
   align-items: center;
   color: #fff;
 `;
+
+{/* --------------------------Mobileview-------------------------- */}
+
 
 export const MdNavbarContainer = styled.div`
   display: none;
@@ -83,8 +79,6 @@ export const MdSearchBox = styled.div`
     height: 30px;
     border: none;
     outline: none;
-    padding: 5px;
-    font-size: 15px;
   }
   button {
     width: 10%;

@@ -6,6 +6,8 @@ height: 100%;
 background: #44A72C;
 color: #fff;
 padding:10%;
+postion: relative;
+
 
 @media (max-width: 752px){
     display: none;

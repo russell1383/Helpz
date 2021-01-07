@@ -5,7 +5,7 @@ import TestimonialImg1 from "../../assets/images/test.png";
 const Testimonials = () => {
     return (
         <>
-            <TestimonialsContainer>
+            <TestimonialsContainer id="footer">
                 <img src={TestimonialImg1} alt=""/>
            </TestimonialsContainer>
         </>

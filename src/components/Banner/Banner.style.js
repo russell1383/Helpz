@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const BannerContainer = styled.div`
-padding-top: 50px;
-
-@media (max-width: 768px){
-  padding-top: 150px;
+position: relative;
+width: 96vw;
+margin: 0 auto;
+box-sizing: border-box !important;
+@media (max-width: 560px){
+width: 100vw;
 }
 `;
 

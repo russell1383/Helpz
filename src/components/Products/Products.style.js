@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const ProductContainerWrap = styled.div`
-  width: 66.5vw;
+  width: 63vw;
   margin: 0 auto;
   font-family: "Roboto", sans-serif;
+  position: relative;
   @media (max-width: 560px) {
     width: 95vw;
   }
@@ -24,6 +25,39 @@ export const ProductsContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  position: relative;
+
+  .left-arrow {
+    height: 45px;
+    width: 35px;
+    background: #eeeeee;
+    position: absolute;
+    top: 150px;
+    left: -4px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 920px){
+      display: none;
+    }
+  }
+
+  .right-arrow {
+    height: 45px;
+    width: 35px;
+    background: #eeeeee;
+    position: absolute;
+    top: 150px;
+    right: -4px;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 920px){
+      display: none;
+    }
+  }
 `;
 
 export const ProductBox = styled.div`
