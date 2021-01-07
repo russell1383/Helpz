@@ -7,6 +7,10 @@ background: #44A72C;
 color: #fff;
 padding:10%;
 
+@media (max-width: 752px){
+    display: none;
+}
+
 p{
     font-size: 1rem;
     border-bottom: 1px solid #fff;

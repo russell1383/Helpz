@@ -1,0 +1,12 @@
+.custom-d-none{
+    display: none !important; 
+}
+@media (max-width: 752px){
+    .d-none{
+        display: none !important;
+    }
+    .custom-d-none{
+        display: flex !important; 
+        padding-top: 5px;
+    }
+}
