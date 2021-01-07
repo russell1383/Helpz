@@ -5,6 +5,13 @@ position: relative;
 width: 96vw;
 margin: 0 auto;
 box-sizing: border-box !important;
+padding-top: 80px;
+
+@media (max-width: 768px){
+  padding-top: 140px;
+
+}
+
 @media (max-width: 560px){
 width: 100vw;
 }

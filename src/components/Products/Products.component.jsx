@@ -6,7 +6,9 @@ import {
   ProductContainerWrap,
   ProductImg,
   ProductInfo,
+  LeftArrowButton,
   ProductsContainer,
+  RightArrowButton,
 } from "./Products.style";
 import { productData } from "../../productData/productData";
 import { Col, Row } from "react-grid-system";
@@ -21,8 +23,8 @@ const Products = () => {
         <h2>Best DeaL Today</h2>
         <p>Best Selling Products</p>
         <ProductsContainer>
-        <div className="left-arrow"><img src={LeftArrow} alt=""/></div>
-        <div className="right-arrow"><img src={RightArrow} alt=""/></div>
+        <LeftArrowButton><img src={LeftArrow} alt=""/></LeftArrowButton>
+        <RightArrowButton><img src={RightArrow} alt=""/></RightArrowButton>
           {productData.map((product, idx) => (
             <ProductBox key={idx}>
               {console.log(product.display)}

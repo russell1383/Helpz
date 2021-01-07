@@ -13,7 +13,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
   faInstagram,
-  faGooglePlus,
   faTwitter,
   faYoutube,
   faLinkedin,

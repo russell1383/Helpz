@@ -81,7 +81,7 @@ export const MdTopHeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding-top: 35px;
+  padding-top: 25px;
   padding-bottom: 20px;
 `;
 
@@ -114,6 +114,10 @@ export const MdSearchBox = styled.div`
 export const MdLogoImg = styled.img`
   width: 85px;
   margin-left: -15px;
+
+  @media (max-width: 400px){
+    width: 70px;
+  }
 `;
 
 export const MdShoppingCart = styled.div`
@@ -180,16 +184,22 @@ export const MdCategoryBar = styled.div`
 `;
 
 export const MdCategoryIcon = styled.img`
-  
+display: none;
+
+@media (max-width: 768px){
+  display: block;
   width: 80px;
   position: fixed;
   left: 1%;
   bottom: 20px;
   z-index: 100;
+}
+  
   
 `;
 
 export const MdCategoryItems = styled.h6`
+
 color: #fff;
 font-size: 12px;
 font-weight: 500;

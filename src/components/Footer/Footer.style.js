@@ -30,11 +30,15 @@ export const FooterLeftSide = styled.div`
     font-weight: 900;
     color: #44a72c;
     @media (max-width: 560px) {
-      font-size: 35px;
+      font-size: 30px;
     }
   }
   small {
     color: black;
+    @media (max-width: 560px) {
+      font-size: 10px;
+      margin-left: 7px;
+    }
   }
 `;
 
@@ -62,6 +66,8 @@ export const FooterRightSide = styled.div`
       width: 45%;
       padding-top: 5%;
     }
+
+  
   }
 `;
 
@@ -81,6 +87,10 @@ export const CallInfo = styled.div`
 
     @media (max-width: 890px) {
       font-size: 0.8rem;
+    }
+    @media (max-width: 560px) {
+      font-size: 10px;
+      
     }
   }
 `;

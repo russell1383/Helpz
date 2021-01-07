@@ -10,7 +10,7 @@ import {
   CustomBannerImgThree,
   CustomBannerImgTwo,
 } from "./Banner.style";
-import { Row, Col } from "react-grid-system";
+import { Container, Row, Col } from "react-grid-system";
 import bannerImg1 from "../../assets/images/banner-images/banner-img-1.png";
 import bannerImg2 from "../../assets/images/banner-images/banner-img-2.png";
 import bannerImg3 from "../../assets/images/banner-images/banner-img-3.png";
@@ -22,6 +22,8 @@ import bannerImg8 from "../../assets/images/banner-images/banner-img-8.png";
 import bannerImg9 from "../../assets/images/banner-images/banner-img-9.png";
 import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 import MenuItems from "../MenuItems/MenuItems.component";
+import FooterSection from "../FooterSection/FooterSection.component";
+import Testimonials from "../Testimonials/Testimonials.component";
 
 const Banner = () => {
   return (
@@ -52,11 +54,9 @@ const Banner = () => {
             </Col>
           </Row>
 
-          <Row className="custom-d-none">
-            <Col xs={12}>
-              <BannerImg src={bannerImg3} alt="" />
-            </Col>
-          </Row>
+         
+              <BannerImg src={bannerImg3} alt="" className="custom-d-none"/>
+           
           <Row gutterWidth={6} className="custom-d-none">
             <Col xs={6}>
               <BannerImg src={bannerImg4} />
@@ -70,7 +70,7 @@ const Banner = () => {
         <BannerBottomPart>
           <Row gutterWidth={6}>
             <Col md={2} className="d-none">
-              <Sticky enabled={true} top={95} bottomBoundary="#footer">
+              <Sticky enabled={true} top={90} bottomBoundary="#footer">
                 <CategoriesCard />
               </Sticky>
             </Col>
@@ -90,7 +90,7 @@ const Banner = () => {
               />
             </Col>
             <Col md={2} className="d-none">
-              <Sticky enabled={true} top={95} bottomBoundary="#footer">
+              <Sticky enabled={true} top={90} bottomBoundary="#footer">
                 <MenuItems />{" "}
               </Sticky>
             </Col>

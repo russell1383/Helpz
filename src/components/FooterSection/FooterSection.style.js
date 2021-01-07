@@ -23,11 +23,17 @@ export const FooterSectionContainer = styled.div`
       @media (max-width: 950px) {
         font-size: 0.8rem;
       }
+      @media (max-width: 500px){
+        font-size: 10px;
+      }
     }
     p {
       padding: 0 0 4% 0;
       @media (max-width: 950px) {
         font-size: 0.7rem;
+      }
+      @media (max-width: 500px){
+        font-size: 8px;
       }
     }
   }
@@ -45,6 +51,9 @@ export const NewsletterSection = styled.div`
     @media (max-width: 800px) {
         font-size: 15px;
         padding-bottom: 8px;
+      }
+      @media (max-width: 500px){
+        font-size: 5px;
       }
   }
 
