@@ -21,35 +21,42 @@ const Navbar = () => {
         <img src={logo} alt="" />
 
         <SearchBox>
-          <input type="text" placeholder="Search Product"/>
-          <button>
+          <input type="text" placeholder="Search Product" />
+          <div>
             <FontAwesomeIcon icon={faSearch} size="lg" />
-          </button>
+          </div>
         </SearchBox>
 
         <ShoppingCart>
-          <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+          <div>
+            <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+          </div>
           <h4>৳ 00.00</h4>
         </ShoppingCart>
       </NavbarContainer>
 
       {/* --------------------------Mobileview-------------------------- */}
-      
+
       <MdNavbarContainer>
         <MdTopHeaderContainer>
           <MdShoppingCart>
-            <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+            <FontAwesomeIcon icon={faShoppingCart} size="lg" />
             <h4>৳ 00.00</h4>
           </MdShoppingCart>
-          <MdLogoImg src={logo} alt="" />
-          <HamburgerMenuIcon src={HamburgerIcon} alt="" />
 
+          <div>
+
+          <MdLogoImg src={logo} alt="" />
+          </div>
+
+          <HamburgerMenuIcon src={HamburgerIcon} alt="" />
         </MdTopHeaderContainer>
+
         <MdSearchBox>
-          <input type="text" placeholder="Search Product"/>
-          <button>
-            <FontAwesomeIcon icon={faSearch} size="lg" />
-          </button>
+          <input type="text" placeholder="Search Product" />
+          <div>
+            <FontAwesomeIcon icon={faSearch}  />
+          </div>
         </MdSearchBox>
       </MdNavbarContainer>
     </>
