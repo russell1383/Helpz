@@ -26,6 +26,7 @@ export const ProductsContainer = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   position: relative;
+  overflow-x: auto;
 `;
 
 export const LeftArrowButton = styled.div`
@@ -64,8 +65,9 @@ export const ProductBox = styled.div`
   width: 24%;
   height: 100%;
   position: relative;
-  padding: 3% 1%;
+  padding: 3% 2%;
   border: 1px solid lightgrey;
+  overflow: hidden;
 
   @media (max-width: 920px) {
     width: 49%;
@@ -94,39 +96,52 @@ export const OffLabel = styled.div`
   background: #44a72c;
   right: 10px;
   color: #fff;
+  z-index: 10;
 
   @media (max-width: 400px) {
     font-size: 10px;
     width: 30px;
+    height: 40px;
   }
 `;
 
 export const ProductImg = styled.img`
-  width: 100%;
-  padding-top: 15%;
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  padding-top: 10%;
+  overflow: hidden;
+  transition: transform 0.5s ease;
+  &:hover {
+    transform: scale(1.3);
+  }
 `;
 
 export const ProductInfo = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 13px;
 
   div {
     p {
-      font-size: 1.3em;
-      font-weight: 100;
+      font-family: "UniNeueRegular";
+      font-size: 15px;
+      text-align: left;
+      font-weight: 700;
       @media (max-width: 560px) {
         font-size: 13px;
       }
     }
     h3 {
-      font-size: 1em;
+      font-size: 18px;
+      text-align: left;
+      font-family: "UniNeueRegular";
       @media (max-width: 560px) {
         font-size: 13px;
       }
     }
     h6 {
+      font-family: "UniNeueRegular";
       font-size: 12px;
       text-align: right;
       @media (max-width: 560px) {
@@ -134,6 +149,7 @@ export const ProductInfo = styled.div`
       }
     }
     h5 {
+      font-family: "UniNeueRegular";
       color: #44a72c;
       font-size: 15px;
       text-align: right;
@@ -143,16 +159,54 @@ export const ProductInfo = styled.div`
   }
 `;
 
+export const PickupTimigBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 12px 0;
+  p {
+    font-size: 10px;
+    margin-top: 2%;
+
+    @media (max-width: 400px) {
+      font-size: 9px;
+    }
+  }
+
+  div {
+    display: flex;
+    position: relative;
+  }
+`;
+export const TimeBox = styled.div`
+  width: 20x;
+  height: 20px;
+  font-size: 8px;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+
+  &::before {
+    content: "";
+    position: absolute;
+    border: 1px solid #bcbcbc;
+    width: 16px;
+    height: 16px;
+  }
+`;
+
 export const ProductButtonContainer = styled.div`
-  text-align: center;
-  width: 100%;
+  display: flex;
   .add_to_cart_button {
-    width: 70%;
+    width: 80%;
     background: #44a72c;
     color: #fff;
     border: 0;
     padding: 4% 1%;
     margin-right: 1px;
+    cursor: pointer;
   }
 
   .plus_button {
@@ -162,5 +216,6 @@ export const ProductButtonContainer = styled.div`
     border: 0;
     padding: 4% 1%;
     margin-left: 1px;
+    cursor: pointer;
   }
 `;

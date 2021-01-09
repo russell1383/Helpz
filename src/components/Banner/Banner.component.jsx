@@ -6,9 +6,11 @@ import {
   BannerContainer,
   BannerImg,
   BannerTopPart,
+  CustomBannerImgFive,
   CustomBannerImgFour,
   CustomBannerImgThree,
   CustomBannerImgTwo,
+  TextAboveBannerImg,
 } from "./Banner.style";
 import { Container, Row, Col } from "react-grid-system";
 import bannerImg1 from "../../assets/images/banner-images/banner-img-1.png";
@@ -22,8 +24,6 @@ import bannerImg8 from "../../assets/images/banner-images/banner-img-8.png";
 import bannerImg9 from "../../assets/images/banner-images/banner-img-9.png";
 import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 import MenuItems from "../MenuItems/MenuItems.component";
-import FooterSection from "../FooterSection/FooterSection.component";
-import Testimonials from "../Testimonials/Testimonials.component";
 
 const Banner = () => {
   return (
@@ -31,20 +31,24 @@ const Banner = () => {
       <BannerContainer>
         <BannerTopPart>
           <Row gutterWidth={6}>
-            <Col xs={3} md={2}>
+            <Col xs={3} md={2} className="p-relative">
               <BannerImg src={bannerImg1} alt="" />
             </Col>
             <Col xs={6} md={4}>
               <BannerImg src={bannerImg2} alt="" />
+              <TextAboveBannerImg>
+                <h3>100% NATURAL</h3>
+                <h1>Fresh Vegetables <br/> And Fruits</h1>
+              </TextAboveBannerImg>
             </Col>
             <Col md={4} className="d-none">
               <CustomBannerImgThree src={bannerImg3} alt="" />
-              <Row gutterWidth={6}>
+              <Row nogutter>
                 <Col md={6}>
                   <CustomBannerImgFour src={bannerImg4} />
                 </Col>
                 <Col md={6}>
-                  <CustomBannerImgFour src={bannerImg5} />
+                  <CustomBannerImgFour src={bannerImg5} className="left-space"/>
                 </Col>
               </Row>
             </Col>
@@ -55,8 +59,10 @@ const Banner = () => {
           </Row>
 
          
-              <BannerImg src={bannerImg3} alt="" className="custom-d-none"/>
+
+          <CustomBannerImgFive src={bannerImg3} alt="" className="custom-d-none" />
            
+
           <Row gutterWidth={6} className="custom-d-none">
             <Col xs={6}>
               <BannerImg src={bannerImg4} />
@@ -76,6 +82,10 @@ const Banner = () => {
             </Col>
             <Col xs={6} md={4}>
               <BannerImg src={bannerImg7} className="bannerImg1" alt="" />
+               <TextAboveBannerImg>
+                <h3>100% NATURAL</h3>
+                <h1>Fresh Vegetables <br/> And Fruits</h1>
+              </TextAboveBannerImg>
             </Col>
             <Col xs={6} md={4}>
               <CustomBannerImgTwo

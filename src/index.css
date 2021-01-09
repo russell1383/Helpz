@@ -1,13 +1,31 @@
+@font-face {
+  font-family: "UniNeueRegular";
+  src: local("UniNeueRegular"),
+    url("./fonts/UniNeueRegular.woff") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "UniNeueLight";
+  src: local("UniNeueLight"),
+    url("./fonts/UniNeueLight.woff") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "UniNeueBold";
+  src: local("UniNeueBold"), url("./fonts/UniNeueBold.woff") format("truetype");
+  font-weight: bold;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

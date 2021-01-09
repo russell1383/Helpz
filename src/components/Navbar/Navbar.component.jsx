@@ -20,6 +20,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import HamburgerIcon from "../../assets/icons/hamburger-icon.png";
 import CatergoryBarIcon from "../../assets/icons/category-icon.png";
+import CartIcon from "../../assets/icons/Cart.png";
 
 const menuItems = [
   "Login / Signup",
@@ -45,7 +46,6 @@ const catagories = [
   "Personal Care",
 ];
 
-
 const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [openCatergory, setOpenCatergory] = useState(false);
@@ -53,11 +53,11 @@ const Navbar = () => {
   const handleMenubarClick = () => {
     setSidebarOpen(!sidebarOpen);
     setOpenCatergory(false);
-}
+  };
   const handleCategorybarClick = () => {
     setOpenCatergory(!openCatergory);
     setSidebarOpen(false);
-}
+  };
 
   console.log(openCatergory);
   return (
@@ -74,7 +74,7 @@ const Navbar = () => {
 
         <ShoppingCart>
           <div>
-            <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+            <img src={CartIcon} alt="" />
           </div>
           <h4>৳ 00.00</h4>
         </ShoppingCart>
@@ -85,7 +85,7 @@ const Navbar = () => {
       <MdNavbarContainer>
         <MdTopHeaderContainer>
           <MdShoppingCart>
-            <FontAwesomeIcon icon={faShoppingCart} size="lg" />
+             <img src={CartIcon} alt="" />
             <h4>৳ 00.00</h4>
           </MdShoppingCart>
           <div>
@@ -100,19 +100,17 @@ const Navbar = () => {
         </MdTopHeaderContainer>
 
         <MdSidebar sidebarOpen={sidebarOpen}>
-          {
-            menuItems.map((item, idx) => <MdSidebarItems>{item}</MdSidebarItems>)
-          }
-         
+          {menuItems.map((item, idx) => (
+            <MdSidebarItems>{item}</MdSidebarItems>
+          ))}
         </MdSidebar>
 
         <MdCategoryBar openCatergory={openCatergory}>
-          {
-            catagories.map((category, idx) => <MdCategoryItems>{category}</MdCategoryItems>)
-          }
-          
-      </MdCategoryBar>
-        
+          {catagories.map((category, idx) => (
+            <MdCategoryItems>{category}</MdCategoryItems>
+          ))}
+        </MdCategoryBar>
+
         <MdSearchBox>
           <input type="text" placeholder="Search Product" />
           <div>
@@ -120,8 +118,7 @@ const Navbar = () => {
           </div>
         </MdSearchBox>
       </MdNavbarContainer>
-      <MdCategoryIcon src={CatergoryBarIcon} onClick={handleCategorybarClick}/>
-
+      <MdCategoryIcon src={CatergoryBarIcon} onClick={handleCategorybarClick} />
     </>
   );
 };

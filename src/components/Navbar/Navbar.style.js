@@ -57,11 +57,18 @@ export const ShoppingCart = styled.div`
   width: 120px;
   align-items: center;
   color: #fff;
+
+  div{
+    img{
+      width: 35px;
+      padding-top: 3px;
+    }
+  }
 `;
 
-{
+
   /* --------------------------Mobileview-------------------------- */
-}
+  // 
 
 export const MdNavbarContainer = styled.div`
   display: none;
@@ -125,9 +132,17 @@ export const MdShoppingCart = styled.div`
   color: #fff;
   align-items: center;
 
+  img{
+    width: 25px;
+  }
+
   h4 {
     font-size: 16px;
     padding-left: 5px;
+
+    @media (max-width: 400px){
+      font-size: 13px;
+    }
   }
 `;
 
