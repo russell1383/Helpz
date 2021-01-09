@@ -61,6 +61,7 @@ export const TextAboveBannerImg = styled.div`
     font-size: 30px;
     font-weight: 300;
     text-shadow: 2px 4px 0 rgba(0, 0, 0, 0.3);
+    font-family: "UniNeueRegular";
 
     @media (max-width: 1160px) {
       font-size: 25px;
@@ -83,6 +84,7 @@ export const TextAboveBannerImg = styled.div`
     font-size: 40px;
     font-weight: 800;
     text-shadow: 2px 4px 0 rgba(0, 0, 0, 0.3);
+    font-family: "UniNeueRegular";
 
     @media (max-width: 1160px) {
       font-size: 35px;

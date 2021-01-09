@@ -32,6 +32,7 @@ export const SearchBox = styled.div`
   box-sizing: border-box;
   display: flex;
   align-items: center;
+    
 
   input {
     width: 100%;
@@ -40,6 +41,7 @@ export const SearchBox = styled.div`
     outline: none;
     padding: 10px;
     font-size: 15px;
+    font-family: "UniNeueRegular";
   }
   div {
     width: 45px;
@@ -57,6 +59,7 @@ export const ShoppingCart = styled.div`
   width: 120px;
   align-items: center;
   color: #fff;
+  
 
   div{
     img{
@@ -101,6 +104,7 @@ export const MdSearchBox = styled.div`
   align-items: center;
 
   input {
+    font-family: "UniNeueRegular";
     width: 100%;
     height: 30px;
     border: none;

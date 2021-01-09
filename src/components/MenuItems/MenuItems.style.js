@@ -6,7 +6,6 @@ export const MenuItemsContainer = styled.div`
   background: #44a72c;
   color: #fff;
   padding: 10%;
-  font-family: "Roboto", sans-serif;
   cursor: pointer;
 
   @media (max-width: 752px) {
@@ -16,6 +15,7 @@ export const MenuItemsContainer = styled.div`
   p {
     padding: 8%;
     font-size: 16px;
+    font-family: "UniNeueRegular";
 
     @media (max-width: 1280px) {
       font-size: 12px;

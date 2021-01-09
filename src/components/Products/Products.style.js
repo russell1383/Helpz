@@ -3,21 +3,22 @@ import styled from "styled-components";
 export const ProductContainerWrap = styled.div`
   width: 63vw;
   margin: 0 auto;
-  font-family: "Roboto", sans-serif;
   position: relative;
   @media (max-width: 560px) {
     width: 95vw;
   }
 
   h2 {
-    font-weight: 500;
+    font-weight: 700;
     margin-top: 4%;
+    font-family: "UniNeueRegular";
   }
 
   p {
     font-size: 20px;
     font-weight: 300;
     margin-bottom: 4%;
+    font-family: "UniNeueRegular";
   }
 `;
 
@@ -26,7 +27,6 @@ export const ProductsContainer = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   position: relative;
-  overflow-x: auto;
 `;
 
 export const LeftArrowButton = styled.div`
@@ -90,6 +90,7 @@ export const OffLabel = styled.div`
   width: 40px;
   height: 65px;
   padding-left: 8px;
+  font-family: "UniNeueRegular";
   padding-top: 5px;
   font-size: 13px;
   top: 0;
@@ -164,6 +165,7 @@ export const PickupTimigBox = styled.div`
   align-items: center;
   margin: 12px 0;
   p {
+    font-family: "UniNeueRegular";
     font-size: 10px;
     margin-top: 2%;
 
@@ -184,6 +186,7 @@ export const TimeBox = styled.div`
   font-weight: 300;
   display: flex;
   align-items: center;
+  font-family: "UniNeueRegular";
   justify-content: center;
   margin-left: 5px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
@@ -204,6 +207,7 @@ export const ProductButtonContainer = styled.div`
     background: #44a72c;
     color: #fff;
     border: 0;
+    font-family: "UniNeueRegular";
     padding: 4% 1%;
     margin-right: 1px;
     cursor: pointer;

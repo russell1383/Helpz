@@ -8,9 +8,10 @@ export const CategoriesCardContainer = styled.div`
   padding: 10%;
   postion: relative;
   cursor: pointer;
-  font-family: "Roboto", sans-serif;
+  
 
   h3 {
+    font-family: "UniNeueRegular";
     @media (max-width: 1280px) {
       font-size: 16px;
     }
@@ -28,6 +29,7 @@ export const CategoriesCardContainer = styled.div`
     border-bottom: 1px solid #fff;
     padding: 5% 0%;
     margin-top: 5%;
+    font-family: "UniNeueRegular";
 
     @media (max-width: 1280px) {
       font-size: 12px;

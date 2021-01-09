@@ -37,6 +37,7 @@ const FooterSection = () => {
             <p>Advice & inspiration</p>
             <p>Product reviews</p>
             <div></div>
+
             {/* <h3>About Argos</h3>
             <p>About us</p>
             <p>Helpz for Business</p>
@@ -49,8 +50,8 @@ const FooterSection = () => {
                 <br /> find our contact info in the legal notice.
               </small>
               <div>
-                <input type="text" />
-                <button>Signup</button>
+                <input type="text" /> 
+                <div>Signup</div>
               </div>
             </NewsletterSection>
           </div>
