@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   OffLabel,
   ProductBox,
@@ -15,8 +15,27 @@ import {
 import { productData } from "../../productData/productData";
 import LeftArrow from "../../assets/icons/left-arrow.png";
 import RightArrow from "../../assets/icons/right-arrow.png";
+import { UserContext } from "../../App";
 
 const Products = () => {
+  const { value, value2 } = useContext(UserContext);
+  const [addToCart, setAddToCart] = value2;
+  const [quantity, setQuantity] = useState(1);
+
+  const handleAddToCart = (item) => {
+    let newItem = [...addToCart, item];
+    setAddToCart(newItem);
+  };
+  
+  const handleQuantity = (name) => {
+    if (addToCart.length) {
+      const product = addToCart.find(product => product.name === name);
+      product.quantity = 1;
+  }
+  }
+
+  
+
   return (
     <>
       <ProductContainerWrap>
@@ -31,7 +50,6 @@ const Products = () => {
           </RightArrowButton>
           {productData.map((product, idx) => (
             <ProductBox key={idx}>
-              {console.log(product.display)}
               <OffLabel>{product.offer}</OffLabel>
               <ProductImg src={product.img}></ProductImg>
               <ProductInfo>
@@ -60,8 +78,18 @@ const Products = () => {
               </PickupTimigBox>
 
               <ProductButtonContainer>
-                <button className="add_to_cart_button">Add To Cart</button>
-                <button className="plus_button">+</button>
+                <button
+                  className="add_to_cart_button"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  Add To Cart
+                </button>
+                <button
+                  className="plus_button"
+                  onClick={()=>handleQuantity(product.name)}
+                >
+                  +
+                </button>
               </ProductButtonContainer>
             </ProductBox>
           ))}

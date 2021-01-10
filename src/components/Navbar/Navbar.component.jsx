@@ -58,8 +58,7 @@ const Navbar = () => {
     setOpenCatergory(!openCatergory);
     setSidebarOpen(false);
   };
-
-  console.log(openCatergory);
+  
   return (
     <>
       <NavbarContainer>
@@ -101,13 +100,13 @@ const Navbar = () => {
 
         <MdSidebar sidebarOpen={sidebarOpen}>
           {menuItems.map((item, idx) => (
-            <MdSidebarItems>{item}</MdSidebarItems>
+            <MdSidebarItems key={idx}>{item}</MdSidebarItems>
           ))}
         </MdSidebar>
 
         <MdCategoryBar openCatergory={openCatergory}>
           {catagories.map((category, idx) => (
-            <MdCategoryItems>{category}</MdCategoryItems>
+            <MdCategoryItems key={idx}>{category}</MdCategoryItems>
           ))}
         </MdCategoryBar>
 
