@@ -5,7 +5,7 @@ export const FooterContainer = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  font-family: "Roboto", sans-serif;
+  font-family: "UniNeueRegular";
   padding-top: 2%;
 
   @media (max-width: 560px) {
@@ -27,14 +27,21 @@ export const FooterLeftSide = styled.div`
 
   h1 {
     font-size: 45px;
-    font-weight: 900;
+    font-weight: 600;
+    font-family: "UniNeueRegular";
     color: #44a72c;
     @media (max-width: 560px) {
-      font-size: 35px;
+      font-size: 30px;
     }
   }
   small {
+    font-family: "UniNeueRegular";
     color: black;
+    @media (max-width: 560px) {
+      font-size: 10px;
+      margin-left: 7px;
+      
+    }
   }
 `;
 
@@ -49,6 +56,7 @@ export const FooterRightSide = styled.div`
   }
 
   small {
+    font-family: "UniNeueRegular";
     @media (max-width: 890px) {
       font-size: 0.7rem;
     }
@@ -62,6 +70,8 @@ export const FooterRightSide = styled.div`
       width: 45%;
       padding-top: 5%;
     }
+
+  
   }
 `;
 
@@ -70,11 +80,16 @@ export const CallInfo = styled.div`
   align-items: center;
   margin-top: 2%;
 
+  @media (max-width: 560px){
+    
+  }
+
   img {
     width: 10%;
   }
 
   p {
+    font-family: "UniNeueRegular";
     font-size: 1.2rem;
     font-weight: 300;
     margin-left: 10px;
@@ -82,11 +97,15 @@ export const CallInfo = styled.div`
     @media (max-width: 890px) {
       font-size: 0.8rem;
     }
+    @media (max-width: 560px) {
+      font-size: 10px;  
+    }
   }
 `;
 
 export const FooterText = styled.div`
   text-align: center;
+  font-family: "UniNeueRegular";
   font-weight: 200;
 
   @media (max-width: 560px) {

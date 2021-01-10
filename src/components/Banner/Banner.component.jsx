@@ -1,17 +1,22 @@
 import React from "react";
+import Sticky from "react-stickynode";
+import "./Banner.css";
 import {
   BannerBottomPart,
   BannerContainer,
   BannerImg,
   BannerTopPart,
-  CustomBannerImgOne,
+  CustomBannerImgFive,
+  CustomBannerImgFour,
+  CustomBannerImgThree,
   CustomBannerImgTwo,
+  TextAboveBannerImg,
 } from "./Banner.style";
 import { Container, Row, Col } from "react-grid-system";
 import bannerImg1 from "../../assets/images/banner-images/banner-img-1.png";
 import bannerImg2 from "../../assets/images/banner-images/banner-img-2.png";
 import bannerImg3 from "../../assets/images/banner-images/banner-img-3.png";
-import bannerImg4 from "../../assets/images/banner-images/customImg.png";
+import bannerImg4 from "../../assets/images/banner-images/banner-img-4.png";
 import bannerImg5 from "../../assets/images/banner-images/banner-img-5.png";
 import bannerImg6 from "../../assets/images/banner-images/banner-img-6.png";
 import bannerImg7 from "../../assets/images/banner-images/banner-img-7.png";
@@ -26,33 +31,63 @@ const Banner = () => {
       <BannerContainer>
         <BannerTopPart>
           <Row gutterWidth={6}>
-            <Col md={2}>
-              <BannerImg src={bannerImg1} className="bannerImg1" alt="" />
+            <Col xs={3} md={2} className="p-relative">
+              <BannerImg src={bannerImg1} alt="" />
             </Col>
-            <Col md={4}>
-              <BannerImg src={bannerImg2} className="bannerImg1" alt="" />
+            <Col xs={6} md={4}>
+              <BannerImg src={bannerImg2} alt="" />
+              <TextAboveBannerImg>
+                <h3>100% NATURAL</h3>
+                <h1>Fresh Vegetables <br/> And Fruits</h1>
+              </TextAboveBannerImg>
             </Col>
-            <Col md={4}>
-              <BannerImg
-                src={bannerImg4}
-                className="bannerImg1"
-                alt=""
-              />
+            <Col md={4} className="d-none">
+              <CustomBannerImgThree src={bannerImg3} alt="" />
+              <Row nogutter>
+                <Col md={6}>
+                  <CustomBannerImgFour src={bannerImg4} />
+                </Col>
+                <Col md={6}>
+                  <CustomBannerImgFour src={bannerImg5} className="left-space"/>
+                </Col>
+              </Row>
             </Col>
-            <Col md={2}>
-              <BannerImg src={bannerImg6} className="bannerImg1" alt="" />
+
+            <Col xs={3} md={2}>
+              <BannerImg src={bannerImg6} alt="" />
+            </Col>
+          </Row>
+
+         
+
+          <CustomBannerImgFive src={bannerImg3} alt="" className="custom-d-none" />
+           
+
+          <Row gutterWidth={6} className="custom-d-none">
+            <Col xs={6}>
+              <BannerImg src={bannerImg4} />
+            </Col>
+            <Col xs={6}>
+              <BannerImg src={bannerImg5} />
             </Col>
           </Row>
         </BannerTopPart>
+
         <BannerBottomPart>
           <Row gutterWidth={6}>
-            <Col md={2}>
-              <CategoriesCard/>
+            <Col md={2} className="d-none">
+              <Sticky enabled={true} top={90} bottomBoundary="#footer">
+                <CategoriesCard />
+              </Sticky>
             </Col>
-            <Col md={4}>
+            <Col xs={6} md={4}>
               <BannerImg src={bannerImg7} className="bannerImg1" alt="" />
+               <TextAboveBannerImg>
+                <h3>100% NATURAL</h3>
+                <h1>Fresh Vegetables <br/> And Fruits</h1>
+              </TextAboveBannerImg>
             </Col>
-            <Col md={4}>
+            <Col xs={6} md={4}>
               <CustomBannerImgTwo
                 src={bannerImg8}
                 className="bannerImg1"
@@ -64,13 +99,13 @@ const Banner = () => {
                 alt=""
               />
             </Col>
-            <Col md={2}>
-              <MenuItems/>
+            <Col md={2} className="d-none">
+              <Sticky enabled={true} top={90} bottomBoundary="#footer">
+                <MenuItems />{" "}
+              </Sticky>
             </Col>
           </Row>
         </BannerBottomPart>
-
-        <Container></Container>
       </BannerContainer>
     </>
   );

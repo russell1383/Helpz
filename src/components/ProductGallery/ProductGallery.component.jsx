@@ -2,10 +2,7 @@ import React from "react";
 import {
     CustomGalleryImg,
   GalleryImg,
-  InnerGalleryBox,
-  LeftGalleryBox,
   ProductGalleryContainer,
-  RightGalleryBox,
 } from "./ProductGallery.style";
 import Img1 from "../../assets/images/img-1.png";
 import Img2 from "../../assets/images/img-2.png";
@@ -23,7 +20,7 @@ const ProductGallery = () => {
           </Col>
           <Col md={6}>
             <CustomGalleryImg src={Img2} alt="" />
-            <Row gutterWidth={10}>
+            <Row gutterWidth={0}>
               <Col xs={6}> <GalleryImg src={Img4} alt="" /></Col>
               <Col xs={6}> <GalleryImg src={Img4} alt="" /></Col>
             </Row>

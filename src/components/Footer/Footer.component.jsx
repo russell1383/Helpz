@@ -13,7 +13,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
   faInstagram,
-  faGooglePlus,
   faTwitter,
   faYoutube,
   faLinkedin,
@@ -23,6 +22,7 @@ const Footer = () => {
   return (
     <>
       <FooterContainer>
+
         <FooterLeftSide>
           <h1>HelpZ</h1>
           <div>
@@ -34,6 +34,7 @@ const Footer = () => {
           </div>
         </FooterLeftSide>
 
+      
         <FooterRightSide>
           <div>
             <FontAwesomeIcon icon={faFacebook} size="2x" />
@@ -48,7 +49,9 @@ const Footer = () => {
             <img src={AppleAppStoreImg} alt="" />
           </div>
         </FooterRightSide>
+
       </FooterContainer>
+      
       <FooterText>Copyright © Helpz.bd.com. All Rights Reserved</FooterText>
     </>
   );

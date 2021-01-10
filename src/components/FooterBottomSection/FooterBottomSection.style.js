@@ -19,10 +19,12 @@ export const FooterBottomNewsletterSection = styled.div`
   width: 45%;
   line-height: 0.7 !important;
   h2 {
+    font-family: "UniNeueRegular";
     font-size: 15px;
   }
 
   small {
+    font-family: "UniNeueRegular";
     font-size: 7px;
     box-sizing: border-box;
     padding: 0;
@@ -31,21 +33,29 @@ export const FooterBottomNewsletterSection = styled.div`
   }
 
   div {
-    
+    display: flex;
     input {
+      font-family: "UniNeueRegular";
       width: 75%;
       height: 30px;
       border: none;
+      margin-top: 5px;
       outline: none;
       @media (max-width: 410px) {
           height: 20px;
       }
     }
-    button {
+    div {
+      font-family: "UniNeueRegular";
       width: 25%;
       height: 30px;
       border: none;
+      display: flex;
+      margin-top: 5px;
+      justify-content: center;
+       align-items: center;
       outline: none;
+      font-size: 10px;
       background: #44a72c;
       color: #fff;
       @media (max-width: 410px) {
@@ -63,12 +73,10 @@ export const FooterBottomSectionRightSide = styled.div`
     width: 50%;
   }
 
-  @media (max-width: 560px) {
-  }
-
   small {
     @media (max-width: 890px) {
       font-size: 0.7rem;
+      font-family: "UniNeueRegular";
     }
   }
   div {

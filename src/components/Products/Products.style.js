@@ -1,22 +1,24 @@
 import styled from "styled-components";
 
 export const ProductContainerWrap = styled.div`
-  width: 66.5vw;
+  width: 63vw;
   margin: 0 auto;
-  font-family: "Roboto", sans-serif;
+  position: relative;
   @media (max-width: 560px) {
     width: 95vw;
   }
 
   h2 {
-    font-weight: 500;
+    font-weight: 700;
     margin-top: 4%;
+    font-family: "UniNeueRegular";
   }
 
   p {
     font-size: 20px;
     font-weight: 300;
     margin-bottom: 4%;
+    font-family: "UniNeueRegular";
   }
 `;
 
@@ -24,14 +26,48 @@ export const ProductsContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  position: relative;
+`;
+
+export const LeftArrowButton = styled.div`
+  height: 45px;
+  width: 35px;
+  background: #eeeeee;
+  position: absolute;
+  top: 150px;
+  left: -4px;
+  z-index: 20;
+  display: flex;
+  padding: 7px;
+  align-items: center;
+  @media (max-width: 920px) {
+    display: none;
+  }
+`;
+
+export const RightArrowButton = styled.div`
+  height: 45px;
+  width: 35px;
+  background: #eeeeee;
+  position: absolute;
+  top: 150px;
+  right: -4px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  padding: 7px;
+  @media (max-width: 920px) {
+    display: none;
+  }
 `;
 
 export const ProductBox = styled.div`
   width: 24%;
   height: 100%;
   position: relative;
-  padding: 3% 1%;
+  padding: 3% 2%;
   border: 1px solid lightgrey;
+  overflow: hidden;
 
   @media (max-width: 920px) {
     width: 49%;
@@ -43,22 +79,43 @@ export const ProductBox = styled.div`
     text-align: center;
     display: block;
     padding: 2% 0;
+
+    @media (max-width: 560px) {
+      font-size: 8px;
+    }
   }
 `;
 export const OffLabel = styled.div`
   position: absolute;
-  width: 50px;
+  width: 40px;
   height: 65px;
-  padding: 4%;
+  padding-left: 8px;
+  font-family: "UniNeueRegular";
+  padding-top: 5px;
+  font-size: 13px;
   top: 0;
   background: #44a72c;
   right: 10px;
   color: #fff;
+  z-index: 10;
+
+  @media (max-width: 400px) {
+    font-size: 10px;
+    width: 30px;
+    height: 40px;
+  }
 `;
 
 export const ProductImg = styled.img`
-  width: 100%;
-  padding-top: 15%;
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  padding-top: 10%;
+  overflow: hidden;
+  transition: transform 0.5s ease;
+  &:hover {
+    transform: scale(1.3);
+  }
 `;
 
 export const ProductInfo = styled.div`
@@ -68,31 +125,92 @@ export const ProductInfo = styled.div`
 
   div {
     p {
-      font-size: 1.3em;
-      font-weight: 100;
+      font-family: "UniNeueRegular";
+      font-size: 15px;
+      text-align: left;
+      font-weight: 700;
+      @media (max-width: 560px) {
+        font-size: 13px;
+      }
     }
     h3 {
-      font-size: 1em;
+      font-size: 18px;
+      text-align: left;
+      font-family: "UniNeueRegular";
+      @media (max-width: 560px) {
+        font-size: 13px;
+      }
     }
     h6 {
+      font-family: "UniNeueRegular";
       font-size: 12px;
+      text-align: right;
+      @media (max-width: 560px) {
+        font-size: 10px;
+      }
     }
     h5 {
+      font-family: "UniNeueRegular";
       color: #44a72c;
       font-size: 15px;
+      text-align: right;
+      @media (max-width: 560px) {
+      }
     }
   }
 `;
 
+export const PickupTimigBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 12px 0;
+  p {
+    font-family: "UniNeueRegular";
+    font-size: 10px;
+    margin-top: 2%;
+
+    @media (max-width: 400px) {
+      font-size: 9px;
+    }
+  }
+
+  div {
+    display: flex;
+    position: relative;
+  }
+`;
+export const TimeBox = styled.div`
+  width: 20x;
+  height: 20px;
+  font-size: 8px;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  font-family: "UniNeueRegular";
+  justify-content: center;
+  margin-left: 5px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+
+  &::before {
+    content: "";
+    position: absolute;
+    border: 1px solid #bcbcbc;
+    width: 16px;
+    height: 16px;
+  }
+`;
+
 export const ProductButtonContainer = styled.div`
-  text-align: center;
+  display: flex;
   .add_to_cart_button {
-    width: 60%;
+    width: 80%;
     background: #44a72c;
     color: #fff;
     border: 0;
+    font-family: "UniNeueRegular";
     padding: 4% 1%;
     margin-right: 1px;
+    cursor: pointer;
   }
 
   .plus_button {
@@ -102,5 +220,6 @@ export const ProductButtonContainer = styled.div`
     border: 0;
     padding: 4% 1%;
     margin-left: 1px;
+    cursor: pointer;
   }
 `;

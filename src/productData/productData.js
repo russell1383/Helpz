@@ -14,7 +14,7 @@ export const productData = [
     img: "https://i.ibb.co/2gKHjcG/product-2.png",
   },
   {
-    name: "Carrot-Local",
+    name: "Carrot",
     offer: "10% OFF",
     quantity: "1kg",
     price: "35 tk",

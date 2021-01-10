@@ -2,7 +2,6 @@ import React from "react";
 import { FooterRightSide } from "../Footer/Footer.style";
 import {
   FooterSectionContainerWrap,
-  NewsletterSection,
 } from "../FooterSection/FooterSection.style";
 import { FooterBottomNewsletterSection, FooterBottomSectionContainer, FooterBottomSectionRightSide } from "./FooterBottomSection.style";
 import AppleAppStoreImg from "../../assets/icons/apple-app-store.png";
@@ -11,7 +10,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
   faInstagram,
-  faGooglePlus,
   faTwitter,
   faYoutube,
   faLinkedin,
@@ -29,7 +27,7 @@ const FooterBottomSection = () => {
             </small>
             <div>
               <input type="text" />
-              <button>Signup</button>
+              <div>Signup</div>
             </div>
           </FooterBottomNewsletterSection>
 
