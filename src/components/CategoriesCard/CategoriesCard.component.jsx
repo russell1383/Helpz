@@ -35,7 +35,6 @@ const CategoriesCard = () => {
       setOpen(true);
     }
   }, [productId]);
-  console.log(open);
 
   return (
     <>

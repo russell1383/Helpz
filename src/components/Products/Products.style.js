@@ -39,6 +39,7 @@ export const LeftArrowButton = styled.div`
   display: flex;
   padding: 7px;
   align-items: center;
+  z-index: 1;
   @media (max-width: 920px) {
     display: none;
   }
@@ -54,6 +55,7 @@ export const RightArrowButton = styled.div`
   display: flex;
   align-items: center;
   padding: 7px;
+  z-index: 1;
   @media (max-width: 920px) {
     display: none;
   }
@@ -91,6 +93,7 @@ export const OffLabel = styled.div`
   font-family: "UniNeueRegular";
   padding-top: 5px;
   font-size: 13px;
+  z-index: 1;
   top: 0;
   background: #44a72c;
   right: 10px;

@@ -14,6 +14,11 @@ import {
   NavbarContainer,
   SearchBox,
   ShoppingCart,
+  SearchSuggestionsContainer,
+  NavbarContainerWrap,
+  SearchBoxWrap,
+  MdNavbarContainerWrap,
+  MdSearchSuggestionsContainer,
 } from "./Navbar.style";
 import logo from "../../assets/logos/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,6 +26,7 @@ import { faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import HamburgerIcon from "../../assets/icons/hamburger-icon.png";
 import CatergoryBarIcon from "../../assets/icons/category-icon.png";
 import CartIcon from "../../assets/icons/Cart.png";
+import SearchSuggestions from "../SearchSuggestions/SearchSuggestions.component";
 
 const menuItems = [
   "Login / Signup",
@@ -38,7 +44,8 @@ const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [openCatergory, setOpenCatergory] = useState(false);
   const [categories, setCategories] = useState([]);
-
+  const [showSearchSuggest, setShowSearchSuggest] = useState(false);
+  console.log(showSearchSuggest);
   useEffect(() => {
     fetch("https://mudee.shop/eCommerce/api/allcategories")
       .then((res) => res.json())
@@ -48,71 +55,100 @@ const Navbar = () => {
   const handleMenubarClick = () => {
     setSidebarOpen(!sidebarOpen);
     setOpenCatergory(false);
+    setShowSearchSuggest(false);
   };
   const handleCategorybarClick = () => {
     setOpenCatergory(!openCatergory);
     setSidebarOpen(false);
+    setShowSearchSuggest(false);
   };
-  
+
+  const handleShowSearchSuggestions = () => {
+    setOpenCatergory(false);
+    setSidebarOpen(false);
+    setShowSearchSuggest(!showSearchSuggest);
+  }
+
   return (
     <>
-      <NavbarContainer>
-        <img src={logo} alt="" />
+      <NavbarContainerWrap>
+        <NavbarContainer>
+          <img src={logo} alt="" />
+          <SearchBoxWrap>
+            <SearchBox>
+              <input
+                type="text"
+                placeholder="Search Product"
+                onClick={handleShowSearchSuggestions}
+              />
+              <div>
+                <FontAwesomeIcon icon={faSearch} size="lg" />
+              </div>
+            </SearchBox>
+          </SearchBoxWrap>
 
-        <SearchBox>
-          <input type="text" placeholder="Search Product" />
-          <div>
-            <FontAwesomeIcon icon={faSearch} size="lg" />
-          </div>
-        </SearchBox>
-
-        <ShoppingCart>
-          <div>
-            <img src={CartIcon} alt="" />
-          </div>
-          <h4>৳ 00.00</h4>
-        </ShoppingCart>
-      </NavbarContainer>
-
-      {/* --------------------------Mobileview-------------------------- */}
-
-      <MdNavbarContainer>
-        <MdTopHeaderContainer>
-          <MdShoppingCart>
-             <img src={CartIcon} alt="" />
+          <ShoppingCart>
+            <div>
+              <img src={CartIcon} alt="" />
+            </div>
             <h4>৳ 00.00</h4>
-          </MdShoppingCart>
-          <div>
-            <MdLogoImg src={logo} alt="" />
-          </div>
+          </ShoppingCart>
+        </NavbarContainer>
+        <SearchSuggestionsContainer open={showSearchSuggest}>
+          <SearchSuggestions />
+          <SearchSuggestions />
+        </SearchSuggestionsContainer>
+      </NavbarContainerWrap>
+      {/* --------------------------Mobileview-------------------------- */}
+      <MdNavbarContainerWrap>
+        <MdNavbarContainer>
+          <MdTopHeaderContainer>
+            <MdShoppingCart>
+              <img src={CartIcon} alt="" />
+              <h4>৳ 00.00</h4>
+            </MdShoppingCart>
+            <div>
+              <MdLogoImg src={logo} alt="" />
+            </div>
 
-          <HamburgerMenuIcon
-            src={HamburgerIcon}
-            alt=""
-            onClick={handleMenubarClick}
-          />
-        </MdTopHeaderContainer>
+            <HamburgerMenuIcon
+              src={HamburgerIcon}
+              alt=""
+              onClick={handleMenubarClick}
+            />
+          </MdTopHeaderContainer>
 
-        <MdSidebar sidebarOpen={sidebarOpen}>
-          {menuItems.map((item, idx) => (
-            <MdSidebarItems key={idx}>{item}</MdSidebarItems>
-          ))}
-        </MdSidebar>
+          <MdSidebar sidebarOpen={sidebarOpen}>
+            {menuItems.map((item, idx) => (
+              <MdSidebarItems key={idx}>{item}</MdSidebarItems>
+            ))}
+          </MdSidebar>
 
-        <MdCategoryBar openCatergory={openCatergory}>
-          {categories.map((category, idx) => (
-            <MdCategoryItems key={idx}>{category.name}</MdCategoryItems>
-          ))}
-        </MdCategoryBar>
+          <MdCategoryBar openCatergory={openCatergory}>
+            {categories.map((category, idx) => (
+              <MdCategoryItems key={idx}>{category.name}</MdCategoryItems>
+            ))}
+          </MdCategoryBar>
 
-        <MdSearchBox>
-          <input type="text" placeholder="Search Product" />
-          <div>
-            <FontAwesomeIcon icon={faSearch} />
-          </div>
-        </MdSearchBox>
-      </MdNavbarContainer>
-      <MdCategoryIcon src={CatergoryBarIcon} onClick={handleCategorybarClick} />
+          <MdSearchBox>
+            <input
+              type="text"
+              placeholder="Search Product"
+              onClick={handleShowSearchSuggestions}
+            />
+            <div>
+              <FontAwesomeIcon icon={faSearch} />
+            </div>
+          </MdSearchBox>
+        </MdNavbarContainer>
+        <MdSearchSuggestionsContainer open={showSearchSuggest}>
+          <SearchSuggestions />
+        </MdSearchSuggestionsContainer>
+        <MdCategoryIcon
+          src={CatergoryBarIcon}
+          onClick={handleCategorybarClick}
+        />
+      </MdNavbarContainerWrap>
     </>
   );
 };

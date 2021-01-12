@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const NavbarContainerWrap = styled.div`
+position: relative;
+`
+
 export const NavbarContainer = styled.div`
   height: 75px;
   width: 100%;
@@ -25,9 +29,14 @@ export const NavbarContainer = styled.div`
     }
   }
 `;
+export const SearchBoxWrap = styled.div`
+display: flex;
+flex-direction: column;
+width: 60%;
+position: relative;
+`
 
 export const SearchBox = styled.div`
-  width: 60%;
   text-align: center;
   box-sizing: border-box;
   display: flex;
@@ -53,6 +62,22 @@ export const SearchBox = styled.div`
   }
 `;
 
+export const SearchSuggestionsContainer = styled.div`
+display: ${({ open }) => open ? 'block' : 'none'};
+width: 55.4%;
+background: #fff;
+position: fixed;
+top: 56px;
+margin-left:20.1%;
+z-index: 150;
+border-top: 1px solid lightgrey;
+
+@media (max-width: 768px){
+  display: none;
+}
+
+`
+
 export const ShoppingCart = styled.div`
   display: flex;
   justify-content: space-between;
@@ -72,6 +97,9 @@ export const ShoppingCart = styled.div`
 
   /* --------------------------Mobileview-------------------------- */
   // 
+export const MdNavbarContainerWrap = styled.div`
+position: relative;
+`
 
 export const MdNavbarContainer = styled.div`
   display: none;
@@ -154,6 +182,25 @@ export const HamburgerMenuIcon = styled.img`
   width: 70px;
   height: 20px;
 `;
+
+export const MdSearchSuggestionsContainer = styled.div`
+display: none;
+
+@media (max-width: 768px){
+display: ${({ open }) => open ? 'block' : 'none'};
+width: 83.5%;
+background: #fff;
+position: fixed;
+top: 25.2%;
+margin-left: 5%;;
+z-index: 40;
+border-top: 1px solid lightgrey;
+
+@media (max-width: 401px){
+  top: 23.8%;
+}
+}
+`
 
 // -----------------Sidebar on Medium Device-----------------//
 
