@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   OffLabel,
   ProductBox,
@@ -21,20 +21,25 @@ const Products = () => {
   const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
   const [quantity, setQuantity] = useState(1);
+  const [products, setProducts] = useState([]);
 
   const handleAddToCart = (item) => {
     let newItem = [...addToCart, item];
     setAddToCart(newItem);
   };
-  
+
+  useEffect(() => {
+    fetch("https://mudee.shop/eCommerce/api/categoryapi/electric")
+      .then((res) => res.json())
+      .then((data) => setProducts(data[2].data));
+  }, []);
+
   const handleQuantity = (name) => {
     if (addToCart.length) {
-      const product = addToCart.find(product => product.name === name);
+      const product = addToCart.find((product) => product.name === name);
       product.quantity = 1;
-  }
-  }
-
-  
+    }
+  };
 
   return (
     <>
@@ -48,10 +53,10 @@ const Products = () => {
           <RightArrowButton>
             <img src={RightArrow} alt="" />
           </RightArrowButton>
-          {productData.map((product, idx) => (
+          {products.map((product, idx) => (
             <ProductBox key={idx}>
               <OffLabel>{product.offer}</OffLabel>
-              <ProductImg src={product.img}></ProductImg>
+              <ProductImg src={`https://mudee.shop/eCommerce/assets/images/thumbnails/${product.thumbnail}`}></ProductImg>
               <ProductInfo>
                 <div>
                   <p>Fresh</p>
@@ -63,7 +68,7 @@ const Products = () => {
                   <h6>
                     <del>30 tk</del>
                   </h6>
-                  <h5>{product.price}</h5>
+                  <h5>{product.price} $</h5>
                 </div>
               </ProductInfo>
 
@@ -86,7 +91,7 @@ const Products = () => {
                 </button>
                 <button
                   className="plus_button"
-                  onClick={()=>handleQuantity(product.name)}
+                  onClick={() => handleQuantity(product.name)}
                 >
                   +
                 </button>

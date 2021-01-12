@@ -1,7 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Home from "./pages/Home/Home";
+import Home from "./pages/Home/Home.page";
 import { createContext, useState } from "react";
+import Login from "./pages/Home/Login.page";
 
 export const UserContext = createContext();
 
@@ -19,12 +20,22 @@ function App() {
       <div className="App">
         <Router>
           <Switch>
-            <Route exact to="/">
+            <Route path="/home">
               <Home />
             </Route>
-            <Route to="/home">
+
+            <Route path="/login">
+              <Login />
+            </Route>
+
+            <Route exact path="/">
               <Home />
             </Route>
+
+            <Route exact path="*">
+              {/* NOT FOUND */}
+            </Route>
+
           </Switch>
         </Router>
       </div>

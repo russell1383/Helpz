@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   HamburgerMenuIcon,
   MdCategoryBar,
@@ -34,21 +34,16 @@ const menuItems = [
   "Logout",
 ];
 
-const catagories = [
-  "Grocery & Staples",
-  "Vegetables & Fruits",
-  "Household Items",
-  "Biacuits, Snacks & Chocolates",
-  "Beverages",
-  "Dairy",
-  " Fresh & Frozen Food",
-  "Baby Care",
-  "Personal Care",
-];
-
 const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [openCatergory, setOpenCatergory] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch("https://mudee.shop/eCommerce/api/allcategories")
+      .then((res) => res.json())
+      .then((data) => setCategories(data[0]));
+  }, []);
 
   const handleMenubarClick = () => {
     setSidebarOpen(!sidebarOpen);
@@ -105,8 +100,8 @@ const Navbar = () => {
         </MdSidebar>
 
         <MdCategoryBar openCatergory={openCatergory}>
-          {catagories.map((category, idx) => (
-            <MdCategoryItems key={idx}>{category}</MdCategoryItems>
+          {categories.map((category, idx) => (
+            <MdCategoryItems key={idx}>{category.name}</MdCategoryItems>
           ))}
         </MdCategoryBar>
 

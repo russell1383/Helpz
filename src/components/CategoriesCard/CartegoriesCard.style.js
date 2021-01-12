@@ -5,10 +5,9 @@ export const CategoriesCardContainer = styled.div`
   height: 100%;
   background: #44a72c;
   color: #fff;
-  padding: 10%;
+  padding: 8%;
   postion: relative;
   cursor: pointer;
-  
 
   h3 {
     font-family: "UniNeueRegular";
@@ -27,7 +26,7 @@ export const CategoriesCardContainer = styled.div`
   p {
     font-size: 16px;
     border-bottom: 1px solid #fff;
-    padding: 5% 0%;
+    padding: 4% 0%;
     margin-top: 5%;
     font-family: "UniNeueRegular";
 
@@ -39,3 +38,24 @@ export const CategoriesCardContainer = styled.div`
     }
   }
 `;
+
+export const Dropdown = styled.div`
+
+background: #44A72C;
+position: absolute;
+z-index: 0;
+top: 0;
+left: 101%;
+padding: 0 15%;
+display: ${({ open }) => (open ? "block" : "none")};;
+
+h6{
+  font-size: 14px;
+  font-weight: 200;
+  border-bottom: 1px solid #fff;
+  padding-top: 8%;
+  padding-bottom: 5%;
+  margin: 12% 0;
+  font-family: "UniNeueRegular";
+}
+`

@@ -27,6 +27,7 @@ export const BannerBottomPart = styled.div`
 export const BannerImg = styled.img`
   height: 100%;
   width: 100%;
+
 `;
 
 export const CustomBannerImgOne = styled.img`

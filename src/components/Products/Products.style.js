@@ -36,7 +36,6 @@ export const LeftArrowButton = styled.div`
   position: absolute;
   top: 150px;
   left: -4px;
-  z-index: 20;
   display: flex;
   padding: 7px;
   align-items: center;
@@ -52,7 +51,6 @@ export const RightArrowButton = styled.div`
   position: absolute;
   top: 150px;
   right: -4px;
-  z-index: 30;
   display: flex;
   align-items: center;
   padding: 7px;
@@ -97,7 +95,6 @@ export const OffLabel = styled.div`
   background: #44a72c;
   right: 10px;
   color: #fff;
-  z-index: 10;
 
   @media (max-width: 400px) {
     font-size: 10px;
@@ -112,6 +109,7 @@ export const ProductImg = styled.img`
   margin: 0 auto;
   padding-top: 10%;
   overflow: hidden;
+
   transition: transform 0.5s ease;
   &:hover {
     transform: scale(1.3);
