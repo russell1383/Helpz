@@ -64,7 +64,6 @@ export const ProductBox = styled.div`
   position: relative;
   padding: 3% 3%;
   border: 1px solid lightgrey;
-
   small {
     font-size: 10px;
     text-align: center;
@@ -194,6 +193,7 @@ export const TimeBox = styled.div`
 
 export const ProductButtonContainer = styled.div`
   display: flex;
+ 
   .add_to_cart_button {
     width: 80%;
     background: #44a72c;

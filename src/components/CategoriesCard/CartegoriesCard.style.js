@@ -6,7 +6,6 @@ export const CategoriesCardContainer = styled.div`
   background: #44a72c;
   color: #fff;
   padding: 8%;
-  postion: relative;
   cursor: pointer;
 
   h3 {
@@ -43,12 +42,10 @@ export const Dropdown = styled.div`
 
 background: #44A72C;
 position: absolute;
-z-index: 0;
 top: 0;
 left: 101%;
 padding: 0 15%;
-display: ${({ open }) => (open ? "block" : "none")};;
-
+display: ${({ open }) => (open ? "block" : "none")};
 h6{
   font-size: 14px;
   font-weight: 200;

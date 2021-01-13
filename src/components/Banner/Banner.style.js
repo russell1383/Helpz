@@ -8,6 +8,7 @@ export const BannerContainer = styled.div`
   box-sizing: border-box !important;
   padding-top: 80px;
 
+
   @media (max-width: 768px) {
     padding-top: 133px;
   }
@@ -27,7 +28,7 @@ export const BannerBottomPart = styled.div`
 export const BannerImg = styled.img`
   height: 100%;
   width: 100%;
-
+  z-index: 2;
 `;
 
 export const CustomBannerImgOne = styled.img`
@@ -57,6 +58,7 @@ export const TextAboveBannerImg = styled.div`
   bottom: 5%;
   left: 5%;
   color: #fff;
+  z-index: 3;
 
   h3 {
     font-size: 30px;

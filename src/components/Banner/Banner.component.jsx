@@ -12,7 +12,7 @@ import {
   CustomBannerImgTwo,
   TextAboveBannerImg,
 } from "./Banner.style";
-import { Container, Row, Col } from "react-grid-system";
+import { Row, Col } from "react-grid-system";
 import bannerImg1 from "../../assets/images/banner-images/banner-img-1.png";
 import bannerImg2 from "../../assets/images/banner-images/banner-img-2.png";
 import bannerImg3 from "../../assets/images/banner-images/banner-img-3.png";
