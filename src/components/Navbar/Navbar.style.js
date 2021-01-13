@@ -41,7 +41,6 @@ export const SearchBox = styled.div`
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  
 
   input {
     width: 100%;
@@ -67,7 +66,7 @@ export const SearchSuggestionsContainer = styled.div`
   width: 58.4%;
   background: #fff;
   position: fixed;
-  top: 56px;
+  top: 57.5px;
 
   z-index: 150;
   border-top: 1px solid lightgrey;
@@ -97,12 +96,25 @@ export const ShoppingCart = styled.div`
   width: 120px;
   align-items: center;
   color: #fff;
+  cursor: pointer;
 
   div {
     img {
       width: 35px;
       padding-top: 3px;
     }
+  }
+`;
+
+export const ShoppingCartContainer = styled.div`
+  width: 60%;
+  position: fixed;
+  top: 75px;
+  right: 1.8%;
+  z-index: 50;
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -207,6 +219,18 @@ export const MdSearchSuggestionsContainer = styled.div`
     position: fixed;
     z-index: 40;
     border-top: 1px solid lightgrey;
+  }
+`;
+
+export const MdShoppingCartContainer = styled.div`
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+    width: 75%;
+    position: fixed;
+    top: 75px;
+    left: 3%;
+    z-index: 50;
   }
 `;
 

@@ -21,8 +21,7 @@ export const ProductContainerWrap = styled.div`
     font-family: "UniNeueRegular";
   }
 
-  div{
-  
+  div {
   }
 `;
 
@@ -57,8 +56,6 @@ export const RightArrowButton = styled.div`
     display: none;
   }
 `;
-
-
 
 export const ProductBox = styled.div`
   position: relative;
@@ -194,7 +191,7 @@ export const TimeBox = styled.div`
 
 export const ProductButtonContainer = styled.div`
   display: flex;
- 
+
   .add_to_cart_button {
     width: 80%;
     background: #44a72c;

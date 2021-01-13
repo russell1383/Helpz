@@ -23,8 +23,8 @@ export const SearchSuggestionsContentContainer = styled.div`
 `;
 
 export const SearchSuggestImg = styled.img`
-  width: 10%;
-  padding: 1.2%;
+  width: 9%;
+  padding: 1.2% 2.4%;
 `;
 export const SearchSuggestQuantityBox = styled.div`
   display: flex;

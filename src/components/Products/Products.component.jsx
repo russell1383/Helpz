@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import {
@@ -17,7 +17,7 @@ import {
   TimeBox,
 } from "./Products.style";
 import { productData } from "../../productData/productData";
-import LeftArrow from "../../assets/icons/left-arrow.png"; 
+import LeftArrow from "../../assets/icons/left-arrow.png";
 import RightArrow from "../../assets/icons/right-arrow.png";
 import { UserContext } from "../../App";
 
@@ -30,6 +30,7 @@ const Products = () => {
   const handleAddToCart = (item) => {
     let newItem = [...addToCart, item];
     setAddToCart(newItem);
+    console.log(addToCart)
   };
 
   useEffect(() => {
@@ -57,25 +58,24 @@ const Products = () => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-          
-        }
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
-        }
+          initialSlide: 2,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2
-        }
-      }
-    ]
+          slidesToScroll: 2,
+        },
+      },
+    ],
   };
 
   return (
@@ -84,59 +84,62 @@ const Products = () => {
         <h2>Best DeaL Today</h2>
         <p>Best Selling Products</p>
 
-          <LeftArrowButton>
-            <img src={LeftArrow} alt="" />
-          </LeftArrowButton>
-          <RightArrowButton>
-            <img src={RightArrow} alt="" />
-          </RightArrowButton>
-      
+        <LeftArrowButton>
+          <img src={LeftArrow} alt="" />
+        </LeftArrowButton>
+        <RightArrowButton>
+          <img src={RightArrow} alt="" />
+        </RightArrowButton>
+
         <Slider {...settings}>
           {products.map((product, idx) => (
             <div>
-            <ProductBox key={idx}>
-              <OffLabel>{product.offer}</OffLabel>
-              <ProductImg src={`https://mudee.shop/eCommerce/assets/images/thumbnails/${product.thumbnail}`}></ProductImg>
-              <ProductInfo>
-                <div>
-                  <p>Fresh</p>
-                  <h3 >{(product.name).substring(0, 17)}</h3>
-                  <p>1kg</p>
-                </div>
-                <div>
-                  <h6>Price</h6>
-                  <h6>
-                    <del>30 tk</del>
-                  </h6>
-                  <h5>{product.price} $</h5>
-                </div>
-              </ProductInfo>
+              <ProductBox key={idx}>
+                <OffLabel>25% Off</OffLabel>
+                <ProductImg
+                  src={`https://mudee.shop/eCommerce/assets/images/thumbnails/${product.thumbnail}`}
+                ></ProductImg>
+                <ProductInfo>
+                  <div>
+                    <p>Fresh</p>
+                    <h3>{product.name.substring(0, 17)}</h3>
+                    <p>1kg</p>
+                  </div>
+                  <div>
+                    <h6>Price</h6>
+                    <h6>
+                      <del>30 tk</del>
+                    </h6>
+                    <h5>{product.price} $</h5>
+                  </div>
+                </ProductInfo>
 
-              <PickupTimigBox>
-                <p>Pickup: timing</p>
-                <div>
-                  <TimeBox>2h</TimeBox>
-                  <TimeBox>4h</TimeBox>
-                  <TimeBox>8h</TimeBox>
-                  <TimeBox>12h</TimeBox>
-                </div>
-              </PickupTimigBox>
+                <PickupTimigBox>
+                  <p>Pickup: timing</p>
+                  <div>
+                    <TimeBox>2h</TimeBox>
+                    <TimeBox>4h</TimeBox>
+                    <TimeBox>8h</TimeBox>
+                    <TimeBox>12h</TimeBox>
+                  </div>
+                </PickupTimigBox>
 
-              <ProductButtonContainer>
-                <button
-                  className="add_to_cart_button"
-                  onClick={() => handleAddToCart(product)}
-                >
-                  Add To Cart
-                </button>
-                <button
-                  className="plus_button"
-                  onClick={() => handleQuantity(product.name)}
-                >
-                  +
-                </button>
-              </ProductButtonContainer>
-            </ProductBox></div>
+                <ProductButtonContainer>
+                  <button
+                    className="add_to_cart_button"
+                    onClick={() => handleAddToCart(product)}
+                  >
+                    Add To Cart
+                  </button>
+                  <button
+                    className="plus_button"
+                    onClick={() => handleQuantity(product.name)}
+                  >
+                    +
+                  </button>
+                </ProductButtonContainer>
+              </ProductBox>
+            </div>
           ))}
         </Slider>
       </ProductContainerWrap>

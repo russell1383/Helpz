@@ -22,6 +22,8 @@ import {
   MdSearchBoxWrap,
   MdSubCategoryBar,
   MdcategoryWrap,
+  ShoppingCartContainer,
+  MdShoppingCartContainer,
 } from "./Navbar.style";
 import logo from "../../assets/logos/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,6 +32,7 @@ import HamburgerIcon from "../../assets/icons/hamburger-icon.png";
 import CatergoryBarIcon from "../../assets/icons/category-icon.png";
 import CartIcon from "../../assets/icons/Cart.png";
 import SearchSuggestions from "../SearchSuggestions/SearchSuggestions.component";
+import CartItems from "../CartItems/CartItems.component";
 
 const menuItems = [
   "Login / Signup",
@@ -52,8 +55,8 @@ const Navbar = () => {
   const [productId, setProductId] = useState({});
   const [subCategoryOpen, setSubCategoryOpen] = useState(false);
   const [items, setItems] = useState([]);
+  const [showCartItems, setShowCartItems] = useState(false);
 
-  console.log(items);
   useEffect(() => {
     fetch("https://mudee.shop/eCommerce/api/allcategories")
       .then((res) => res.json())
@@ -82,16 +85,16 @@ const Navbar = () => {
     setSidebarOpen(!sidebarOpen);
     setOpenCatergory(false);
     setShowSearchSuggest(false);
-    setSubCategoryOpen(false)
-
-  
+    setSubCategoryOpen(false);
+     setShowCartItems(false);
   };
   const handleCategorybarClick = () => {
     setOpenCatergory(!openCatergory);
     setSidebarOpen(false);
     setShowSearchSuggest(false);
     if (!sidebarOpen) {
-      setSubCategoryOpen(false)
+      setSubCategoryOpen(false);
+       setShowCartItems(false);
     }
   };
 
@@ -100,10 +103,16 @@ const Navbar = () => {
     setSidebarOpen(false);
     setShowSearchSuggest(!showSearchSuggest);
     setSubCategoryOpen(false);
+     setShowCartItems(false);
   };
 
-
-  
+  const handleShowCartItems = () => {
+    setOpenCatergory(false);
+    setSidebarOpen(false);
+    setShowSearchSuggest(false);
+    setSubCategoryOpen(false);
+    setShowCartItems(!showCartItems);
+  };
 
   return (
     <>
@@ -130,18 +139,23 @@ const Navbar = () => {
           </SearchBoxWrap>
 
           <ShoppingCart>
-            <div>
+            <div onClick={handleShowCartItems}>
               <img src={CartIcon} alt="" />
             </div>
             <h4>৳ 00.00</h4>
           </ShoppingCart>
         </NavbarContainer>
+        {showCartItems && (
+          <ShoppingCartContainer>
+            <CartItems />
+          </ShoppingCartContainer>
+        )}
       </NavbarContainerWrap>
       {/* --------------------------Mobileview-------------------------- */}
       <MdNavbarContainerWrap>
         <MdNavbarContainer>
           <MdTopHeaderContainer>
-            <MdShoppingCart>
+            <MdShoppingCart onClick={handleShowCartItems}>
               <img src={CartIcon} alt="" />
               <h4>৳ 00.00</h4>
             </MdShoppingCart>
@@ -163,16 +177,26 @@ const Navbar = () => {
           </MdSidebar>
 
           <MdcategoryWrap>
-          
-          <MdCategoryBar openCatergory={openCatergory}>
-            {categories.map((category, idx) => (
-              <MdCategoryItems key={idx} onMouseOver={() => setProductId(category.id)}>{category.name}</MdCategoryItems>
-            ))}
-          </MdCategoryBar>
+            <MdCategoryBar openCatergory={openCatergory}>
+              {categories.map((category, idx) => (
+                <MdCategoryItems
+                  key={idx}
+                  onMouseOver={() => setProductId(category.id)}
+                >
+                  {category.name}
+                </MdCategoryItems>
+              ))}
+            </MdCategoryBar>
 
-          <MdSubCategoryBar open={subCategoryOpen} onMouseLeave={() => setOpenCatergory(false)}>
-          {items && items.map((item) => <MdCategoryItems>{item.name}</MdCategoryItems>)}
-          </MdSubCategoryBar>
+            <MdSubCategoryBar
+              open={subCategoryOpen}
+              onMouseLeave={() => setOpenCatergory(false)}
+            >
+              {items &&
+                items.map((item) => (
+                  <MdCategoryItems>{item.name}</MdCategoryItems>
+                ))}
+            </MdSubCategoryBar>
           </MdcategoryWrap>
 
           <MdSearchBoxWrap>
@@ -193,7 +217,13 @@ const Navbar = () => {
             </MdSearchSuggestionsContainer>
           </MdSearchBoxWrap>
         </MdNavbarContainer>
-
+        {
+          showCartItems && <MdShoppingCartContainer>
+<CartItems/>
+          </MdShoppingCartContainer>
+}
+       
+        
         <MdCategoryIcon
           src={CatergoryBarIcon}
           onClick={handleCategorybarClick}
