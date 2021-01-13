@@ -119,15 +119,16 @@ export const ProductInfo = styled.div`
       font-family: "UniNeueRegular";
       font-size: 15px;
       text-align: left;
-      font-weight: 700;
+      font-weight: 500;
       @media (max-width: 560px) {
         font-size: 13px;
       }
     }
     h3 {
-      font-size: 13px;
+      font-size: 16px;
       text-align: left;
       font-family: "UniNeueRegular";
+      font-weight: 800;
       @media (max-width: 560px) {
         font-size: 13px;
       }
@@ -136,7 +137,7 @@ export const ProductInfo = styled.div`
       font-family: "UniNeueRegular";
       font-size: 12px;
       text-align: right;
-      @media (max-width: 560px) {
+      @media (max-width: 768px) {
         font-size: 10px;
       }
     }

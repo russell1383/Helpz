@@ -125,6 +125,7 @@ const Navbar = () => {
             <SearchSuggestionsContainer open={showSearchSuggest}>
               <SearchSuggestions />
               <SearchSuggestions />
+              <SearchSuggestions />
             </SearchSuggestionsContainer>
           </SearchBoxWrap>
 

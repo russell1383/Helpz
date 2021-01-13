@@ -100,7 +100,7 @@ const Products = () => {
               <ProductInfo>
                 <div>
                   <p>Fresh</p>
-                  <h3>{product.name}</h3>
+                  <h3 >{(product.name).substring(0, 17)}</h3>
                   <p>1kg</p>
                 </div>
                 <div>

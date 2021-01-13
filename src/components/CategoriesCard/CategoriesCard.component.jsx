@@ -38,18 +38,7 @@ const CategoriesCard = () => {
 
   return (
     <>
-      <CategoriesCardContainer>
-        <h3>Categories</h3>
-        {categories.map((category) => (
-          <p key={category.id} onMouseOver={() => setProductId(category.id)}>
-            {category.name}
-          </p>
-        ))}
-
-        <Dropdown open={open} onMouseLeave={() => setProductId(" ")}>
-          {items && items.map((item) => <h6>{item.name}</h6>)}
-        </Dropdown>
-      </CategoriesCardContainer>
+      
     </>
   );
 };

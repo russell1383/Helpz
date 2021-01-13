@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sticky from "react-stickynode";
 import "./Banner.css";
 import {
@@ -24,8 +24,48 @@ import bannerImg8 from "../../assets/images/banner-images/banner-img-8.png";
 import bannerImg9 from "../../assets/images/banner-images/banner-img-9.png";
 import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 import MenuItems from "../MenuItems/MenuItems.component";
+import {
+  CategoriesCardContainer,
+  CategoriesCardContainerWrap,
+  Dropdown,
+  DropdownWrap,
+} from "../CategoriesCard/CartegoriesCard.style";
 
 const Banner = () => {
+  const [categories, setCategories] = useState([]);
+  const [categoryItems, setCategoryItems] = useState([]);
+  const [items, setItems] = useState([]);
+  const [productId, setProductId] = useState({});
+  const [open, setOpen] = useState(false);
+
+  // console.log(productId);
+
+  useEffect(() => {
+    fetch("https://mudee.shop/eCommerce/api/allcategories")
+      .then((res) => res.json())
+      .then((data) => {
+        setCategories(data[0]);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("https://mudee.shop/eCommerce/api/allcategories")
+      .then((res) => res.json())
+      .then((data) => {
+        setCategoryItems(data[1]);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (productId) {
+      const items = categoryItems.filter(
+        (item) => item.category_id == productId
+      );
+      setItems(items);
+      setOpen(true);
+    }
+  }, [productId]);
+
   return (
     <>
       <BannerContainer>
@@ -38,7 +78,9 @@ const Banner = () => {
               <BannerImg src={bannerImg2} alt="" />
               <TextAboveBannerImg>
                 <h3>100% NATURAL</h3>
-                <h1>Fresh Vegetables <br/> And Fruits</h1>
+                <h1>
+                  Fresh Vegetables <br /> And Fruits
+                </h1>
               </TextAboveBannerImg>
             </Col>
             <Col md={4} className="d-none">
@@ -48,7 +90,10 @@ const Banner = () => {
                   <CustomBannerImgFour src={bannerImg4} />
                 </Col>
                 <Col md={6}>
-                  <CustomBannerImgFour src={bannerImg5} className="left-space"/>
+                  <CustomBannerImgFour
+                    src={bannerImg5}
+                    className="left-space"
+                  />
                 </Col>
               </Row>
             </Col>
@@ -58,10 +103,11 @@ const Banner = () => {
             </Col>
           </Row>
 
-         
-
-          <CustomBannerImgFive src={bannerImg3} alt="" className="custom-d-none" />
-           
+          <CustomBannerImgFive
+            src={bannerImg3}
+            alt=""
+            className="custom-d-none"
+          />
 
           <Row gutterWidth={6} className="custom-d-none">
             <Col xs={6}>
@@ -76,15 +122,34 @@ const Banner = () => {
         <BannerBottomPart>
           <Row gutterWidth={6}>
             <Col md={2} className="d-none">
-              <Sticky enabled={true} top={90} bottomBoundary="#footer">
-                <CategoriesCard />
-              </Sticky>
+              <CategoriesCardContainerWrap onMouseLeave={() => setOpen(false)}>
+                <Sticky enabled={true} top={90} bottomBoundary="#footer">
+                  <CategoriesCardContainer>
+                    <h3>Categories</h3>
+                    {categories.map((category) => (
+                      <p
+                        key={category.id}
+                        onMouseOver={() => setProductId(category.id)}
+                      >
+                        {category.name}
+                      </p>
+                    ))}
+                  </CategoriesCardContainer>
+                </Sticky>
+                <DropdownWrap open={open} onMouseLeave={() => setOpen(false)}>
+                  <Dropdown>
+                    {items && items.map((item) => <h6>{item.name}</h6>)}
+                  </Dropdown>
+                </DropdownWrap>
+              </CategoriesCardContainerWrap>
             </Col>
             <Col xs={6} md={4}>
               <BannerImg src={bannerImg7} className="bannerImg1" alt="" />
-               <TextAboveBannerImg>
+              <TextAboveBannerImg>
                 <h3>100% NATURAL</h3>
-                <h1>Fresh Vegetables <br/> And Fruits</h1>
+                <h1>
+                  Fresh Vegetables <br /> And Fruits
+                </h1>
               </TextAboveBannerImg>
             </Col>
             <Col xs={6} md={4}>
@@ -106,6 +171,8 @@ const Banner = () => {
             </Col>
           </Row>
         </BannerBottomPart>
+
+        {/*  */}
       </BannerContainer>
     </>
   );

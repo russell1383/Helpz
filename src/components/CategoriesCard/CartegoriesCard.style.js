@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const CategoriesCardContainerWrap = styled.div`
+position: relative;
+`
+
 export const CategoriesCardContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -38,21 +42,28 @@ export const CategoriesCardContainer = styled.div`
   }
 `;
 
-export const Dropdown = styled.div`
-
-background: #44A72C;
+export const DropdownWrap = styled.div`
+display: ${({ open }) => (open ? "block" : "none")};
 position: absolute;
 top: 0;
-left: 101%;
-padding: 0 15%;
-display: ${({ open }) => (open ? "block" : "none")};
+left: 100%;
+z-index: 10000;
+`
+
+export const Dropdown = styled.div`
+background: #44a72c;
+color: #fff;
+position: fixed;
+top: 12.8%;
+width: 200px;
+cursor: pointer;
+
 h6{
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 200;
   border-bottom: 1px solid #fff;
-  padding-top: 8%;
-  padding-bottom: 5%;
-  margin: 12% 0;
+  padding: 5% 15%;
+ 
   font-family: "UniNeueRegular";
 }
 `
