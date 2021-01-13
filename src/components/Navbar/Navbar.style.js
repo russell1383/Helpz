@@ -64,13 +64,30 @@ export const SearchBox = styled.div`
 
 export const SearchSuggestionsContainer = styled.div`
 display: ${({ open }) => open ? 'block' : 'none'};
-width: 55.4%;
+width: 55.5%;
 background: #fff;
 position: fixed;
 top: 56px;
-margin-left:20.1%;
+
 z-index: 150;
 border-top: 1px solid lightgrey;
+
+@media (max-width: 1360px){
+  width: 55%;
+}
+
+@media (max-width: 1360px){
+  width: 54.5%;
+}
+@media (max-width: 1160px){
+  width: 54%;
+}
+@media (max-width: 960px){
+  width: 53%;
+}
+@media (max-width: 830px){
+  width: 52%;
+}
 
 @media (max-width: 768px){
   display: none;
@@ -123,10 +140,14 @@ export const MdTopHeaderContainer = styled.div`
   padding-bottom: 20px;
 `;
 
-export const MdSearchBox = styled.div`
-  text-align: center;
+export const MdSearchBoxWrap = styled.div`
+text-align: center;
   width: 100%;
   padding-bottom: 20px;
+`
+
+export const MdSearchBox = styled.div`
+  
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -191,13 +212,24 @@ display: ${({ open }) => open ? 'block' : 'none'};
 width: 83.5%;
 background: #fff;
 position: fixed;
-top: 25.2%;
-margin-left: 5%;;
 z-index: 40;
 border-top: 1px solid lightgrey;
 
-@media (max-width: 401px){
-  top: 23.8%;
+@media (max-width: 560px){
+  width: 82.5%;
+}
+
+@media (max-width: 470px){
+  width: 81.2%;
+}
+
+
+@media (max-width: 420px){
+  width: 80.5%;
+}
+
+@media (max-width: 375px){
+  width: 79%;
 }
 }
 `
@@ -216,7 +248,7 @@ display: none;
   background: #44A72C;
   z-index: 40;
   position:absolute;
-  top: 90px;
+  top: 60%;
   right: 8px;
   padding-top: 5%;
   padding-left: 3%;
@@ -224,12 +256,21 @@ display: none;
 
 export const MdSidebarItems = styled.h6`
   color: #fff;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
   padding: 5%;
+  font-family: "UniNeueRegular";
+
+  @media (max-width: 420px){
+    font-size: 10px;
+  }
 `;
 
 // -----------------CategoryBar on Medium Device-----------------//
+
+export const MdcategoryWrap = styled.div`
+position: relative;
+`
 
 export const MdCategoryBar = styled.div`
   display: none;
@@ -238,16 +279,68 @@ export const MdCategoryBar = styled.div`
     display: ${({ openCatergory }) => (openCatergory ? "block" : "none")};
     position: fixed;
     height: 60vh;
-    width: 30vh;
+    width: 26vh;
     background: #44a72c;
     z-index: 40;
     position: absolute;
-    top: 90%;
-    left: 13px;
     padding: 2% 3%;
+    top: 50px;
 
   }
 `;
+
+export const MdSubCategoryBar = styled.div`
+display: none;
+@media (max-width: 768px){
+display: ${({open})=>open ? "block" : "none"};
+width: 30vh;
+background: #44a72c;
+    position: absolute;
+    top: 50px;
+    left: 21%;
+    z-index: 41;
+  }
+  
+  @media (max-width: 740px){
+    left: 21.5%;
+  }
+  @media (max-width: 680px){
+    left: 24%;
+  }
+  @media (max-width: 600px){
+    left: 26%;
+  }
+  @media (max-width: 570px){
+    left: 28%;
+  }
+  @media (max-width: 520px){
+    left: 31.2%;
+  }
+  @media (max-width: 470px){
+    left: 34.2%;
+  }
+  @media (max-width: 430px){
+    left: 38%;
+  }
+  @media (max-width: 400px){
+    left: 40%;
+  }
+  @media (max-width: 400px){
+    left: 40.5%;
+  }
+  @media (max-width: 370px){
+    left: 43.5%;
+  }
+  @media (max-width: 350px){
+    left: 46%;
+  }
+  @media (max-width: 320px){
+    left: 50%;
+  }
+  @media (max-width: 300px){
+    left: 54%;
+  }
+` 
 
 export const MdCategoryIcon = styled.img`
 display: none;
@@ -260,14 +353,18 @@ display: none;
   bottom: 20px;
   z-index: 100;
 }
-  
-  
-`;
+`
+
 
 export const MdCategoryItems = styled.h6`
-
+font-family: "UniNeueRegular";
 color: #fff;
 font-size: 12px;
 font-weight: 500;
 padding: 5%;
+
+@media (max-width: 420px){
+  font-size: 10px;
+}
+
 `

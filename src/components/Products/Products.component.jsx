@@ -1,4 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 import {
   OffLabel,
   ProductBox,
@@ -13,7 +17,7 @@ import {
   TimeBox,
 } from "./Products.style";
 import { productData } from "../../productData/productData";
-import LeftArrow from "../../assets/icons/left-arrow.png";
+import LeftArrow from "../../assets/icons/left-arrow.png"; 
 import RightArrow from "../../assets/icons/right-arrow.png";
 import { UserContext } from "../../App";
 
@@ -41,19 +45,55 @@ const Products = () => {
     }
   };
 
+  var settings = {
+    focusOnSelect: false,
+    dots: false,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      }
+    ]
+  };
+
   return (
     <>
       <ProductContainerWrap>
         <h2>Best DeaL Today</h2>
         <p>Best Selling Products</p>
-        <ProductsContainer>
+
           <LeftArrowButton>
             <img src={LeftArrow} alt="" />
           </LeftArrowButton>
           <RightArrowButton>
             <img src={RightArrow} alt="" />
           </RightArrowButton>
+      
+        <Slider {...settings}>
           {products.map((product, idx) => (
+            <div>
             <ProductBox key={idx}>
               <OffLabel>{product.offer}</OffLabel>
               <ProductImg src={`https://mudee.shop/eCommerce/assets/images/thumbnails/${product.thumbnail}`}></ProductImg>
@@ -96,9 +136,9 @@ const Products = () => {
                   +
                 </button>
               </ProductButtonContainer>
-            </ProductBox>
+            </ProductBox></div>
           ))}
-        </ProductsContainer>
+        </Slider>
       </ProductContainerWrap>
     </>
   );

@@ -5,7 +5,7 @@ export const ProductContainerWrap = styled.div`
   margin: 0 auto;
   position: relative;
   @media (max-width: 560px) {
-    width: 95vw;
+    width: 100%;
   }
 
   h2 {
@@ -20,13 +20,10 @@ export const ProductContainerWrap = styled.div`
     margin-bottom: 4%;
     font-family: "UniNeueRegular";
   }
-`;
 
-export const ProductsContainer = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  position: relative;
+  div{
+  
+  }
 `;
 
 export const LeftArrowButton = styled.div`
@@ -34,7 +31,7 @@ export const LeftArrowButton = styled.div`
   width: 35px;
   background: #eeeeee;
   position: absolute;
-  top: 150px;
+  top: 50%;
   left: -4px;
   display: flex;
   padding: 7px;
@@ -50,8 +47,8 @@ export const RightArrowButton = styled.div`
   width: 35px;
   background: #eeeeee;
   position: absolute;
-  top: 150px;
-  right: -4px;
+  top: 50%;
+  right: 0;
   display: flex;
   align-items: center;
   padding: 7px;
@@ -61,18 +58,12 @@ export const RightArrowButton = styled.div`
   }
 `;
 
-export const ProductBox = styled.div`
-  width: 24%;
-  height: 100%;
-  position: relative;
-  padding: 3% 2%;
-  border: 1px solid lightgrey;
-  overflow: hidden;
 
-  @media (max-width: 920px) {
-    width: 49%;
-    margin-bottom: 1%;
-  }
+
+export const ProductBox = styled.div`
+  position: relative;
+  padding: 3% 3%;
+  border: 1px solid lightgrey;
 
   small {
     font-size: 10px;
@@ -135,7 +126,7 @@ export const ProductInfo = styled.div`
       }
     }
     h3 {
-      font-size: 18px;
+      font-size: 13px;
       text-align: left;
       font-family: "UniNeueRegular";
       @media (max-width: 560px) {

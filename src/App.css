@@ -3,6 +3,10 @@
     padding: 0;
     box-sizing: border-box;
     position: relative;
-    width: 100%;
+    width: 100% ;
     font-family: "Roboto", sans-serif;
+    overflow:  ;
 }
+.slick-prev, .slick-next{
+    display: none !important;
+  }

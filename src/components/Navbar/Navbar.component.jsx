@@ -19,6 +19,9 @@ import {
   SearchBoxWrap,
   MdNavbarContainerWrap,
   MdSearchSuggestionsContainer,
+  MdSearchBoxWrap,
+  MdSubCategoryBar,
+  MdcategoryWrap,
 } from "./Navbar.style";
 import logo from "../../assets/logos/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -45,29 +48,62 @@ const Navbar = () => {
   const [openCatergory, setOpenCatergory] = useState(false);
   const [categories, setCategories] = useState([]);
   const [showSearchSuggest, setShowSearchSuggest] = useState(false);
-  console.log(showSearchSuggest);
+  const [categoryItems, setCategoryItems] = useState([]);
+  const [productId, setProductId] = useState({});
+  const [subCategoryOpen, setSubCategoryOpen] = useState(false);
+  const [items, setItems] = useState([]);
+
+  console.log(items);
   useEffect(() => {
     fetch("https://mudee.shop/eCommerce/api/allcategories")
       .then((res) => res.json())
       .then((data) => setCategories(data[0]));
   }, []);
 
+  useEffect(() => {
+    fetch("https://mudee.shop/eCommerce/api/allcategories")
+      .then((res) => res.json())
+      .then((data) => {
+        setCategoryItems(data[1]);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (productId) {
+      const items = categoryItems.filter(
+        (item) => item.category_id == productId
+      );
+      setItems(items);
+      setSubCategoryOpen(true);
+    }
+  }, [productId]);
+
   const handleMenubarClick = () => {
     setSidebarOpen(!sidebarOpen);
     setOpenCatergory(false);
     setShowSearchSuggest(false);
+    setSubCategoryOpen(false)
+
+  
   };
   const handleCategorybarClick = () => {
     setOpenCatergory(!openCatergory);
     setSidebarOpen(false);
     setShowSearchSuggest(false);
+    if (!sidebarOpen) {
+      setSubCategoryOpen(false)
+    }
   };
 
   const handleShowSearchSuggestions = () => {
     setOpenCatergory(false);
     setSidebarOpen(false);
     setShowSearchSuggest(!showSearchSuggest);
-  }
+    setSubCategoryOpen(false);
+  };
+
+
+  
 
   return (
     <>
@@ -85,6 +121,11 @@ const Navbar = () => {
                 <FontAwesomeIcon icon={faSearch} size="lg" />
               </div>
             </SearchBox>
+
+            <SearchSuggestionsContainer open={showSearchSuggest}>
+              <SearchSuggestions />
+              <SearchSuggestions />
+            </SearchSuggestionsContainer>
           </SearchBoxWrap>
 
           <ShoppingCart>
@@ -94,10 +135,6 @@ const Navbar = () => {
             <h4>৳ 00.00</h4>
           </ShoppingCart>
         </NavbarContainer>
-        <SearchSuggestionsContainer open={showSearchSuggest}>
-          <SearchSuggestions />
-          <SearchSuggestions />
-        </SearchSuggestionsContainer>
       </NavbarContainerWrap>
       {/* --------------------------Mobileview-------------------------- */}
       <MdNavbarContainerWrap>
@@ -124,26 +161,38 @@ const Navbar = () => {
             ))}
           </MdSidebar>
 
+          <MdcategoryWrap>
+          
           <MdCategoryBar openCatergory={openCatergory}>
             {categories.map((category, idx) => (
-              <MdCategoryItems key={idx}>{category.name}</MdCategoryItems>
+              <MdCategoryItems key={idx} onMouseOver={() => setProductId(category.id)}>{category.name}</MdCategoryItems>
             ))}
           </MdCategoryBar>
 
-          <MdSearchBox>
-            <input
-              type="text"
-              placeholder="Search Product"
-              onClick={handleShowSearchSuggestions}
-            />
-            <div>
-              <FontAwesomeIcon icon={faSearch} />
-            </div>
-          </MdSearchBox>
+          <MdSubCategoryBar open={subCategoryOpen} onMouseLeave={() => setOpenCatergory(false)}>
+          {items && items.map((item) => <MdCategoryItems>{item.name}</MdCategoryItems>)}
+          </MdSubCategoryBar>
+          </MdcategoryWrap>
+
+          <MdSearchBoxWrap>
+            <MdSearchBox>
+              <input
+                type="text"
+                placeholder="Search Product"
+                onClick={handleShowSearchSuggestions}
+              />
+              <div>
+                <FontAwesomeIcon icon={faSearch} />
+              </div>
+            </MdSearchBox>
+            <MdSearchSuggestionsContainer open={showSearchSuggest}>
+              <SearchSuggestions />
+              <SearchSuggestions />
+              <SearchSuggestions />
+            </MdSearchSuggestionsContainer>
+          </MdSearchBoxWrap>
         </MdNavbarContainer>
-        <MdSearchSuggestionsContainer open={showSearchSuggest}>
-          <SearchSuggestions />
-        </MdSearchSuggestionsContainer>
+
         <MdCategoryIcon
           src={CatergoryBarIcon}
           onClick={handleCategorybarClick}
