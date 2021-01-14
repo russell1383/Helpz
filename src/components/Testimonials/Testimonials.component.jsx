@@ -8,7 +8,7 @@ import "./Testimonials.style";
 const Testimonials = () => {
   return (
     <>
-      <TestimonialsContainer id="footer">
+      <TestimonialsContainer id="testimonials">
         <Carousel
           infiniteLoop
           showThumbs={false}

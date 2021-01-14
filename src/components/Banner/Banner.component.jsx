@@ -122,26 +122,14 @@ const Banner = () => {
         <BannerBottomPart>
           <Row gutterWidth={6}>
             <Col md={2} className="d-none">
-              <CategoriesCardContainerWrap onMouseLeave={() => setOpen(false)}>
-                <Sticky enabled={true} top={90} bottomBoundary="#footer">
-                  <CategoriesCardContainer>
-                    <h3>Categories</h3>
-                    {categories.map((category) => (
-                      <p
-                        key={category.id}
-                        onMouseOver={() => setProductId(category.id)}
-                      >
-                        {category.name}
-                      </p>
-                    ))}
-                  </CategoriesCardContainer>
-                </Sticky>
-                <DropdownWrap open={open} onMouseLeave={() => setOpen(false)}>
-                  <Dropdown>
-                    {items && items.map((item) => <h6>{item.name}</h6>)}
-                  </Dropdown>
-                </DropdownWrap>
-              </CategoriesCardContainerWrap>
+              <Sticky
+                enabled={true}
+                top={90}
+                bottomBoundary="#testimonials"
+                className="category_card"
+              >
+                <CategoriesCard />
+              </Sticky>
             </Col>
             <Col xs={6} md={4}>
               <BannerImg src={bannerImg7} className="bannerImg1" alt="" />
@@ -165,8 +153,8 @@ const Banner = () => {
               />
             </Col>
             <Col md={2} className="d-none">
-              <Sticky enabled={true} top={90} bottomBoundary="#footer">
-                <MenuItems />{" "}
+              <Sticky enabled={true} top={90} bottomBoundary="#testimonials">
+                <MenuItems />
               </Sticky>
             </Col>
           </Row>

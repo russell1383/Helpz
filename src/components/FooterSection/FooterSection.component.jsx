@@ -8,7 +8,7 @@ import {
 const FooterSection = () => {
   return (
     <>
-      <FooterSectionContainerWrap >
+      <FooterSectionContainerWrap id="footerSection">
         <FooterSectionContainer>
           <div>
             <h3>Customer Service</h3>

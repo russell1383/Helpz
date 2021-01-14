@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/Home/Home.page";
 import { createContext, useState } from "react";
 import Login from "./pages/Home/Login.page";
+import ViewCart from "./pages/Home/ViewCart.page";
 
 export const UserContext = createContext();
 
@@ -26,6 +27,10 @@ function App() {
 
             <Route path="/login">
               <Login />
+            </Route>
+
+            <Route path="/view-cart">
+              <ViewCart/>
             </Route>
 
             <Route exact path="/">

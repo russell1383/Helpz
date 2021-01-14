@@ -11,6 +11,8 @@ export const CategoriesCardContainer = styled.div`
   color: #fff;
   padding: 8%;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 
   h3 {
     font-family: "UniNeueRegular";
@@ -42,28 +44,46 @@ export const CategoriesCardContainer = styled.div`
   }
 `;
 
-export const DropdownWrap = styled.div`
-display: ${({ open }) => (open ? "block" : "none")};
-position: absolute;
-top: 0;
-left: 100%;
-z-index: 10000;
-`
-
 export const Dropdown = styled.div`
+position: absolute;
+display: ${({ open }) => (open ? "block" : "none")};
+top: 0;
+left: 100.5%;
+padding: 10% 5%;
 background: #44a72c;
 color: #fff;
-position: fixed;
-top: 12.8%;
 width: 200px;
 cursor: pointer;
 
 h6{
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 200;
   border-bottom: 1px solid #fff;
-  padding: 5% 15%;
- 
+  padding: 5% 0%;
+  
+  font-family: "UniNeueRegular";
+}
+`
+
+export const SubDropDown = styled.div`
+display: ${({ openSub }) => (openSub ? "block" : "none")};
+width: 200px;
+height: 20vw;
+left: 184.3%;
+position: absolute;
+top: 0;
+padding: 10% 5%;
+background: #44a72c;
+color: #fff;
+width: 200px;
+cursor: pointer;
+
+h6{
+  font-size: 15px;
+  font-weight: 200;
+  border-bottom: 1px solid #fff;
+  padding: 5% 0%;
+  
   font-family: "UniNeueRegular";
 }
 `
