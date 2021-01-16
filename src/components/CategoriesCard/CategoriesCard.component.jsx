@@ -88,7 +88,7 @@ const CategoriesCard = () => {
           </Dropdown>
    
 
-        <SubDropDown openSub={openSub} onMouseLeave={() => setOpenSub(false)}>
+        <SubDropDown openSub={openSub}>
           {subCategoryProductItems &&
             subCategoryProductItems.map((product) => (
             <h6 key={product.id}>{product.name}</h6>

@@ -49,30 +49,36 @@ position: absolute;
 display: ${({ open }) => (open ? "block" : "none")};
 top: 0;
 left: 100.5%;
-padding: 10% 5%;
 background: #44a72c;
 color: #fff;
-width: 200px;
+width: 80%;
 cursor: pointer;
+transition: all 0.5s ease;
+
+}
 
 h6{
   font-size: 15px;
   font-weight: 200;
   border-bottom: 1px solid #fff;
-  padding: 5% 0%;
-  
+  padding: 5% 5%;
   font-family: "UniNeueRegular";
+
+  @media (max-width: 1280px) {
+    font-size: 11px;
+  }
+  @media (max-width: 900px) {
+    font-size: 9px;
+  }
 }
 `
 
 export const SubDropDown = styled.div`
 display: ${({ openSub }) => (openSub ? "block" : "none")};
-width: 200px;
-height: 20vw;
-left: 184.3%;
+width: 120%;
+left: 180.8%;
 position: absolute;
 top: 0;
-padding: 10% 5%;
 background: #44a72c;
 color: #fff;
 width: 200px;
@@ -82,8 +88,15 @@ h6{
   font-size: 15px;
   font-weight: 200;
   border-bottom: 1px solid #fff;
-  padding: 5% 0%;
+  padding: 5% 5%;
   
   font-family: "UniNeueRegular";
+
+  @media (max-width: 1280px) {
+    font-size: 11px;
+  }
+  @media (max-width: 900px) {
+    font-size: 9px;
+  }
 }
 `
