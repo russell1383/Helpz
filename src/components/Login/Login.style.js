@@ -50,7 +50,7 @@ export const LoginContentContainer = styled.div`
     margin-bottom: 4%;
 
     @media (max-width: 768px) {
-      width: 85%;
+      width: 90%;
     }
   }
 `;
