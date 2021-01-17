@@ -1,7 +1,7 @@
 import React from "react";
 import { ViewCartContainer } from "../ViewCartBanner/ViewCartBanner.style";
 import nagad from "../../assets/icons/Nagad-Logo 1.png";
-import bkash from '../../assets/icons/Bkash logo.png';
+import bkash from "../../assets/icons/Bkash logo.png";
 import ipay from "../../assets/icons/Ipay.png";
 import uCash from "../../assets/icons/Ucash.png";
 import visa from "../../assets/icons/Visa card.png";
@@ -12,41 +12,61 @@ import brancBank from "../../assets/icons/brac_bank.png";
 import eblSky from "../../assets/icons/Ebl sky.png";
 import islamiBank from "../../assets/icons/Islami bank.png";
 import cityBank from "../../assets/icons/City bank.png";
-import { MobileBankingImg, OtherBankingImg, PaymentOptionsRow } from "./ViewCartPaymentOptions.style";
+import {
+  DiscountContainer,
+  MobileBankingImg,
+  OtherBankingImg,
+  PaymentOptionsRow,
+  PickupOptions,
+} from "./ViewCartPaymentOptions.style";
 
 const ViewCartPaymentOptions = () => {
   return (
     <div id="payment_option">
       <ViewCartContainer>
-              <h3>Payment Options</h3>
-              
-              <p>Mobile Banking</p>
+        <DiscountContainer>
+          <div>
+            <p>Use Reward Point</p>
+          </div>
+          <div>
+            <p>Use Reward Point</p>
+          </div>
+          <div>
+            <p>Use Reward Point</p>
+          </div>
+        </DiscountContainer>
 
-              <PaymentOptionsRow>
-                  <MobileBankingImg  src={nagad} alt=""/>
-                  <MobileBankingImg src={bkash} alt=""/>
-                <MobileBankingImg src={ipay} alt=""/>
-                  <MobileBankingImg src={uCash} alt=""/>
-              </PaymentOptionsRow>
+        <h3>Pickup Point :</h3>
+        <PickupOptions>
+          <option value="Dhanmondi Branch">Dhanmondi Branch</option>
+        </PickupOptions>
+        <h3>Payment Options :</h3>
 
-              <p>Card Payment</p>
+        <h3>Mobile Banking :</h3>
+        <PaymentOptionsRow>
+          <MobileBankingImg src={nagad} alt="" />
+          <MobileBankingImg src={bkash} alt="" />
+          <MobileBankingImg src={ipay} alt="" />
+          <MobileBankingImg src={uCash} alt="" />
+        </PaymentOptionsRow>
 
-              <PaymentOptionsRow>
-                  <OtherBankingImg src={visa} alt=""/>
-                  <OtherBankingImg src={masterCard} alt=""/>
-                  <OtherBankingImg src={dbbl} alt=""/>
-                  <OtherBankingImg src={ciyuMax} alt=""/>
-              </PaymentOptionsRow>
+        <h3>Card Payment :</h3>
 
-              <p>Net Banking</p>
+        <PaymentOptionsRow>
+          <OtherBankingImg src={visa} alt="" />
+          <OtherBankingImg src={masterCard} alt="" />
+          <OtherBankingImg src={dbbl} alt="" />
+          <OtherBankingImg src={ciyuMax} alt="" />
+        </PaymentOptionsRow>
 
-              <PaymentOptionsRow>
-                  <OtherBankingImg src={brancBank} alt=""/>
-                  <OtherBankingImg src={eblSky} alt=""/>
-                  <OtherBankingImg src={islamiBank} alt=""/>
-                  <OtherBankingImg src={cityBank} alt=""/>
-              </PaymentOptionsRow>
+        <h3>Net Banking :</h3>
 
+        <PaymentOptionsRow>
+          <OtherBankingImg src={brancBank} alt="" />
+          <OtherBankingImg src={eblSky} alt="" />
+          <OtherBankingImg src={islamiBank} alt="" />
+          <OtherBankingImg src={cityBank} alt="" />
+        </PaymentOptionsRow>
       </ViewCartContainer>
     </div>
   );

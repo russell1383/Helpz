@@ -4,9 +4,18 @@ export const ViewCartContainer = styled.div`
 width: 55vw;
 margin: 0 auto;
 
+@media (max-width: 768px){
+   width: 95%;
+   padding-top: 70px;
+}
+
 h3{
     margin: 3% 0;
     font-family: "UniNeueRegular";
+
+    @media (max-width: 768px){
+   font-size:14px;
+}
 }
 
 p{
@@ -14,6 +23,10 @@ p{
     font-size: 20px;
     margin: 2% 0;
     color: #44A72C;
+
+    @media (max-width: 768px){
+   font-size:12px;
+}
 
 }
 `
@@ -47,5 +60,9 @@ h3{
        font-weight: bold; 
        margin-left: 10%;
     }
+
+    @media (max-width: 768px){
+   font-size:12px;
+}
 }
 `

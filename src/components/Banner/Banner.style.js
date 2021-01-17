@@ -13,7 +13,7 @@ export const BannerContainer = styled.div`
 export const BannerTopPart = styled.div`
   dispaly: flex;
   flex-wrap: no-warp;
-  animation: fadeIn ease 1s;
+
 
 
 `;
