@@ -30,7 +30,7 @@ const Products = () => {
   const handleAddToCart = (item) => {
     let newItem = [...addToCart, item];
     setAddToCart(newItem);
-    console.log(addToCart)
+    console.log(addToCart);
   };
 
   useEffect(() => {
@@ -114,7 +114,9 @@ const Products = () => {
                     <h5>{product.price} $</h5>
                   </div>
                 </ProductInfo>
-
+                <p>
+                  Buy this & get <span>20 point</span>
+                </p>
                 <PickupTimigBox>
                   <p>Pickup: timing</p>
                   <div>

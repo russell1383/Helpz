@@ -22,6 +22,15 @@ export const ProductContainerWrap = styled.div`
   }
 
   div {
+    p{
+      font-family: "UniNeueRegular";
+      font-size: 13px;
+      text-align: right;
+
+      span{
+        color: #44a72c;
+      }
+    }
   }
 `;
 
