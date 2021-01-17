@@ -50,6 +50,7 @@ display: ${({ open }) => (open ? "block" : "none")};
 top: 0;
 left: 100.5%;
 background: #44a72c;
+height: 100%;
 color: #fff;
 width: 80%;
 cursor: pointer;
@@ -70,13 +71,14 @@ h6{
   @media (max-width: 900px) {
     font-size: 9px;
   }
-}
+
 `
 
 export const SubDropDown = styled.div`
 display: ${({ openSub }) => (openSub ? "block" : "none")};
 width: 120%;
 left: 180.8%;
+height: 100%;
 position: absolute;
 top: 0;
 background: #44a72c;

@@ -8,22 +8,6 @@ export const BannerContainer = styled.div`
   box-sizing: border-box !important;
   padding-top: 80px;
 
-  @keyframes fadeIn{
-    0% {
-      opacity:0;
-    }
-    100% {
-      opacity:3;
-    }
-
-
-  @media (max-width: 768px) {
-    padding-top: 133px;
-  }
-
-  @media (max-width: 560px) {
-    width: 100vw;
-  }
 `;
 
 export const BannerTopPart = styled.div`
