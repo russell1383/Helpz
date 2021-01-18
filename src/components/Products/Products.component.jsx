@@ -34,7 +34,7 @@ const Products = () => {
   };
 
   useEffect(() => {
-    fetch("https://mudee.shop/eCommerce/api/categoryapi/electric")
+    fetch("https://mudee.shop/eCommerce/api/category/electric")
       .then((res) => res.json())
       .then((data) => setProducts(data[2].data));
   }, []);

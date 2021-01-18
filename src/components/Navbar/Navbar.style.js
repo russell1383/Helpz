@@ -22,13 +22,16 @@ export const NavbarContainer = styled.div`
     display: none;
   }
 
-  img {
-    width: 100px;
+ 
+`;
+
+export const NavLogo = styled.img`
+ width: 100px;
     @media (max-width: 1024px) {
       width: 90px;
     }
-  }
-`;
+`
+
 export const SearchBoxWrap = styled.div`
   display: flex;
   flex-direction: column;

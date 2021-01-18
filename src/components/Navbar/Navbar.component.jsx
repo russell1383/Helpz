@@ -24,15 +24,17 @@ import {
   MdcategoryWrap,
   ShoppingCartContainer,
   MdShoppingCartContainer,
+  NavLogo,
 } from "./Navbar.style";
 import logo from "../../assets/logos/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import HamburgerIcon from "../../assets/icons/hamburger-icon.png";
 import CatergoryBarIcon from "../../assets/icons/category-icon.png";
 import CartIcon from "../../assets/icons/Cart.png";
 import SearchSuggestions from "../SearchSuggestions/SearchSuggestions.component";
 import CartItems from "../CartItems/CartItems.component";
+import { Link } from "react-router-dom";
 
 const menuItems = [
   "Login / Signup",
@@ -69,10 +71,9 @@ const Navbar = () => {
   const handleGetSubCategories = (items) => {
     setSubCategories(items.subs);
     setSubCategoryOpen(true);
-    
   };
 
-  console.log(subCategories)
+  console.log(subCategories);
 
   const handleChildCategories = (items) => {
     setChildCategories(items.childs);
@@ -116,7 +117,8 @@ const Navbar = () => {
     <>
       <NavbarContainerWrap>
         <NavbarContainer>
-          <img src={logo} alt="" />
+          <NavLogo src={logo} alt="" />
+
           <SearchBoxWrap>
             <SearchBox>
               <input
@@ -169,17 +171,23 @@ const Navbar = () => {
           </MdTopHeaderContainer>
 
           <MdSidebar sidebarOpen={sidebarOpen}>
-            {menuItems.map((item, idx) => (
-              <MdSidebarItems key={idx}>{item}</MdSidebarItems>
-            ))}
+            <MdSidebarItems>
+              <Link
+                to="/login"
+                style={{ textDecoration: "none", color: "#fff" }}
+              >
+                Login / Signup
+              </Link>
+            </MdSidebarItems>
+
+            <MdSidebarItems>My Account</MdSidebarItems>
+            <MdSidebarItems>My Cart</MdSidebarItems>
+            <MdSidebarItems>My List</MdSidebarItems>
+            <MdSidebarItems>History</MdSidebarItems>
+            <MdSidebarItems>My Offer</MdSidebarItems>
+            <MdSidebarItems>Notification</MdSidebarItems>
+            <MdSidebarItems>Logout</MdSidebarItems>
           </MdSidebar>
-
-          
-
-          
-
-
-
 
           <MdcategoryWrap>
             <MdCategoryBar openCatergory={openCatergory}>
@@ -194,19 +202,12 @@ const Navbar = () => {
             </MdCategoryBar>
 
             <MdSubCategoryBar open={subCategoryOpen}>
-              {subCategories.map((item,idx) => (
+              {subCategories.map((item, idx) => (
                 <MdCategoryItems key={idx}>{item.name}</MdCategoryItems>
               ))}
+              {/*  */}
             </MdSubCategoryBar>
           </MdcategoryWrap>
-
-          
-
-
-
-
-
-
 
           <MdSearchBoxWrap>
             <MdSearchBox>

@@ -1,5 +1,18 @@
 import styled from "styled-components";
 
+export const MenuItemsContainerWrap = styled.div`
+position: relative;
+
+
+h1{
+      position: absolute;
+      top: 1%;
+      left: 5%;
+      cursor: pointer;
+      display: inline;
+    }
+`
+
 export const MenuItemsContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -23,5 +36,6 @@ export const MenuItemsContainer = styled.div`
     @media (max-width: 900px) {
       font-size: 10px;
     }
+
   }
 `;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import loginImg from "../../assets/images/login-img.png";
 import helpzLogo from "../../assets/icons/logo-green.png";
 import googleIcon from "../../assets/icons/Google.png";
@@ -19,7 +19,7 @@ import {
   SingupButton,
   OTPform,
 } from "./Login.style";
-import { useState } from "react/cjs/react.development";
+
 
 const LoginComponent = () => {
   const [login, setLogin] = useState(true);

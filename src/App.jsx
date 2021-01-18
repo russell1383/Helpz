@@ -2,8 +2,9 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/Home/Home.page";
 import { createContext, useState } from "react";
-import Login from "./pages/Home/Login.page";
-import ViewCart from "./pages/Home/ViewCart.page";
+import Login from "./pages/Login/Login.page";
+import ViewCart from "./pages/ViewCart/ViewCart.page";
+import  ProductInfo  from "./pages/ProductInfo/ProductInfo.page";
 
 export const UserContext = createContext();
 
@@ -14,7 +15,7 @@ function App() {
   return (
     <UserContext.Provider
       value={{
-        value: [loggedInUser, setLoggedInUser],
+        value: [loggedInUser, setLoggedInUser], 
         value2: [addToCart, setAddToCart],
       }}
     >
@@ -23,6 +24,10 @@ function App() {
           <Switch>
             <Route path="/home">
               <Home />
+            </Route>
+
+            <Route path="/product-info">
+              <ProductInfo />
             </Route>
 
             <Route path="/login">
