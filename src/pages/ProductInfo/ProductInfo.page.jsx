@@ -7,7 +7,6 @@ import ProductDetails from "../../components/ProductDetails/ProductDetails.compo
 import ProductInfoAdImg from "../../components/ProductInfoAdImg/ProductInfoAdImg.component";
 import ProductInfoBanner from "../../components/ProductInfoBanner/ProductInfoBanner.component";
 import ProductMoreDetails from "../../components/ProductMoreDetails/ProductMoreDetails.component";
-import Products from "../../components/Products/Products.component";
 
 const ProductInfo = () => {
   return (

@@ -11,12 +11,10 @@ import {
   ProductImg,
   ProductInfo,
   LeftArrowButton,
-  ProductsContainer,
   RightArrowButton,
   PickupTimigBox,
   TimeBox,
 } from "./Products.style";
-import { productData } from "../../productData/productData";
 import LeftArrow from "../../assets/icons/left-arrow.png";
 import RightArrow from "../../assets/icons/right-arrow.png";
 import { UserContext } from "../../App";

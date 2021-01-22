@@ -186,7 +186,7 @@ export const PickupTimigBox = styled.div`
   }
 `;
 export const TimeBox = styled.div`
-  width: 20x;
+  width: 20px;
   height: 20px;
   font-size: 8px;
   font-weight: 300;

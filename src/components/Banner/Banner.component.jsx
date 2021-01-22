@@ -24,12 +24,6 @@ import bannerImg8 from "../../assets/images/banner-images/banner-img-8.png";
 import bannerImg9 from "../../assets/images/banner-images/banner-img-9.png";
 import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 import MenuItems from "../MenuItems/MenuItems.component";
-import {
-  CategoriesCardContainer,
-  CategoriesCardContainerWrap,
-  Dropdown,
-  DropdownWrap,
-} from "../CategoriesCard/CartegoriesCard.style";
 
 const Banner = () => {
   const [categories, setCategories] = useState([]);
