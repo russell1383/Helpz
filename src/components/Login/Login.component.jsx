@@ -19,12 +19,16 @@ import {
   SingupButton,
   OTPform,
 } from "./Login.style";
+import { useHistory } from "react-router-dom";
 
 
 const LoginComponent = () => {
   const [login, setLogin] = useState(true);
   const [signUp, setSignUp] = useState(false);
   const [proceedOTP, setProceedOTP] = useState(false);
+
+  
+  const history = useHistory();
 
   const handleSignInClick = () => {
     setLogin(false);
@@ -40,9 +44,9 @@ const LoginComponent = () => {
   return (
     <>
       <LoginContainer>
-        <LoginImage src={loginImg} />
+        <LoginImage src={loginImg}/>
         <LoginContentContainer>
-          <LoginLogo src={helpzLogo} alt="" />
+          <LoginLogo src={helpzLogo} alt=""  onClick={() => history.push("/")}/>
 
           {login ? <h1>Login with</h1> : <h1>User Signup</h1>}
 

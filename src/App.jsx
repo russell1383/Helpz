@@ -5,6 +5,7 @@ import { createContext, useState } from "react";
 import Login from "./pages/Login/Login.page";
 import ViewCart from "./pages/ViewCart/ViewCart.page";
 import  ProductInfo  from "./pages/ProductInfo/ProductInfo.page";
+import NotFound from "./pages/NotFound/NotFound.page";
 
 export const UserContext = createContext();
 
@@ -43,7 +44,7 @@ function App() {
             </Route>
 
             <Route exact path="*">
-              {/* NOT FOUND */}
+              <NotFound/>
             </Route>
 
           </Switch>

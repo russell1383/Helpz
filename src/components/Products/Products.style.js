@@ -12,6 +12,10 @@ export const ProductContainerWrap = styled.div`
     font-weight: 700;
     margin-top: 4%;
     font-family: "UniNeueRegular";
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
   }
 
   p {
@@ -19,15 +23,19 @@ export const ProductContainerWrap = styled.div`
     font-weight: 300;
     margin-bottom: 4%;
     font-family: "UniNeueRegular";
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
   }
 
   div {
-    p{
+    p {
       font-family: "UniNeueRegular";
       font-size: 13px;
       text-align: right;
 
-      span{
+      span {
         color: #44a72c;
       }
     }

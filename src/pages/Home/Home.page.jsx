@@ -15,15 +15,26 @@ const Home = () => {
     <>
       <Navbar />
       <Banner />
-      <Products />
-      <Products />
+
+      
+      <Products header={'Best Deal Today'} subheader={'Best Selling Products'} />
+
+      <Products header={'Most Popular'} subheader={'People Often Buy Near You'}/>
       <ProductImage />
-      <Products />
-      <Products />
+
+
+
+      <Products header={'Food Grain Oil and Massala'} subheader={'Best Food Grain Oil and Massala'}/>
+
+      <Products  header={'Drinks and Bevarage'} subheader={'Drinks and Bevarage for Refreshment'}/>
       <AdImage />
-      <Products />
+
+
+      <Products  header={'Snakes and Biscuits'} subheader={'Healthy Snakes and Biscuits'}/>
       <ProductGallery />
-      <Products />
+
+
+      <Products  header={'Cleaning and Household'} subheader={'Best Cleaning and Household for you'}/>
       <Testimonials />
       <FooterSection />
       <FooterBottomSection />

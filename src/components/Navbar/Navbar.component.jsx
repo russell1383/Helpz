@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import {
   HamburgerMenuIcon,
   MdCategoryBar,
@@ -34,19 +35,7 @@ import CatergoryBarIcon from "../../assets/icons/category-icon.png";
 import CartIcon from "../../assets/icons/Cart.png";
 import SearchSuggestions from "../SearchSuggestions/SearchSuggestions.component";
 import CartItems from "../CartItems/CartItems.component";
-import { Link } from "react-router-dom";
-
-const menuItems = [
-  "Login / Signup",
-  "My Account",
-  "My Cart",
-  "My List",
-  "History",
-  "Loyality Point",
-  "My offer",
-  "Notification",
-  "Logout",
-];
+import { Link, useHistory } from "react-router-dom";
 
 const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -59,6 +48,8 @@ const Navbar = () => {
   const [childCategories, setChildCategories] = useState([]);
   const [open, setOpen] = useState(false);
   const [openSub, setOpenSub] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
     fetch("https://mudee.shop/eCommerce/api/allcategories")
@@ -73,7 +64,7 @@ const Navbar = () => {
     setSubCategoryOpen(true);
   };
 
-  console.log(subCategories);
+
 
   const handleChildCategories = (items) => {
     setChildCategories(items.childs);
@@ -117,7 +108,7 @@ const Navbar = () => {
     <>
       <NavbarContainerWrap>
         <NavbarContainer>
-          <NavLogo src={logo} alt="" />
+          <NavLogo src={logo} alt="" onClick={() => history.push("/")} />
 
           <SearchBoxWrap>
             <SearchBox>
@@ -160,7 +151,7 @@ const Navbar = () => {
               <h4>৳ 00.00</h4>
             </MdShoppingCart>
             <div>
-              <MdLogoImg src={logo} alt="" />
+              <MdLogoImg src={logo} alt="" onClick={() => history.push("/")}/>
             </div>
 
             <HamburgerMenuIcon

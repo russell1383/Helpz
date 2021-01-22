@@ -21,7 +21,7 @@ import LeftArrow from "../../assets/icons/left-arrow.png";
 import RightArrow from "../../assets/icons/right-arrow.png";
 import { UserContext } from "../../App";
 
-const Products = () => {
+const Products = ({header,subheader}) => {
   const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
   const [quantity, setQuantity] = useState(1);
@@ -82,8 +82,8 @@ const Products = () => {
   return (
     <>
       <ProductContainerWrap>
-        <h2>Best DeaL Today</h2>
-        <p>Best Selling Products</p>
+        <h2>{header}</h2>
+        <p>{subheader}</p>
 
         <LeftArrowButton>
           <img src={LeftArrow} alt="" />
@@ -103,7 +103,7 @@ const Products = () => {
                 <ProductInfo>
                   <div>
                     <p>Fresh</p>
-                    <h3>{product.name.substring(0, 17)}</h3>
+                    <h3>{product.name.substring(0, 10)}</h3>
                     <p>1kg</p>
                   </div>
                   <div>

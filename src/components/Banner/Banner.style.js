@@ -8,10 +8,18 @@ export const BannerContainer = styled.div`
   box-sizing: border-box !important;
   padding-top: 80px;
 
+  @media (max-width: 768px) {
+    padding-top: 140px;
+    width: 100vw;
+    }
+
+    @media (max-width:400px) {
+    padding-top: 130px;
+    }
+
 `;
 
 export const BannerTopPart = styled.div`
-  dispaly: flex;
   flex-wrap: no-warp;
 
 
