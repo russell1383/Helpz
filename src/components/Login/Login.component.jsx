@@ -91,7 +91,6 @@ const LoginComponent = () => {
   };
 
   const handleOtp = (e) => {
-    if (otp.join("").length >= 4) {
       const currentOtp = { otp: otp.join("") };
       console.log(currentOtp);
       axios
@@ -107,7 +106,6 @@ const LoginComponent = () => {
             setOtp([...otp.map((v) => "")]);
           }
         });
-    }
   };
 
   const handleResendOtp = (data, e) => {
@@ -185,7 +183,7 @@ const LoginComponent = () => {
 
           {signUp && (
             <SignUpForm onSubmit={handleSubmit(handleSignup)}>
-              {/* <label htmlFor="name">Your Name</label>
+              <label htmlFor="name">Your Name</label>
               <SignUpInput
                 type="text"
                 id="name"
@@ -193,7 +191,7 @@ const LoginComponent = () => {
                 placeholder="Name"
                 required
                 ref={register}
-              /> */}
+              />
 
               <label htmlFor="email">Your Email</label>
               <SignUpInput
