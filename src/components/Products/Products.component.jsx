@@ -18,8 +18,12 @@ import {
 import LeftArrow from "../../assets/icons/left-arrow.png";
 import RightArrow from "../../assets/icons/right-arrow.png";
 import { UserContext } from "../../App";
+import { useHistory } from "react-router-dom";
 
-const Products = ({header,subheader}) => {
+const Products = ({ header, subheader }) => {
+  
+  const history = useHistory();
+
   const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
   const [quantity, setQuantity] = useState(1);
@@ -93,12 +97,13 @@ const Products = ({header,subheader}) => {
         <Slider {...settings}>
           {products.map((product, idx) => (
             <div>
-              <ProductBox key={idx}>
+              <ProductBox key={idx} >
                 <OffLabel>25% Off</OffLabel>
                 <ProductImg
-                  src={`https://mudee.shop/eCommerce/assets/images/thumbnails/${product.thumbnail}`}
+                  src={`https://mudee.shop/eCommerce/assets/images/thumbnails/${product.thumbnail}`} 
+                  onClick={() => history.push(`/category/${product.name}`)}
                 ></ProductImg>
-                <ProductInfo>
+                <ProductInfo onClick={() => history.push(`/category/${product.name}`)}>
                   <div>
                     <p>Fresh</p>
                     <h3>{product.name.substring(0, 10)}</h3>
@@ -108,7 +113,7 @@ const Products = ({header,subheader}) => {
                     <h6>Price</h6>
                     <h6>
                       <del>30 tk</del>
-                    </h6>
+                    </h6> 
                     <h5>{product.price} $</h5>
                   </div>
                 </ProductInfo>

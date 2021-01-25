@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import {
   CategoriesCardContainer,
   CategoriesCardContainerWrap,
@@ -7,6 +8,9 @@ import {
 } from "./CartegoriesCard.style";
 
 const CategoriesCard = () => {
+
+  const {productInfo} = useParams()
+
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
   const [childCategories, setChildCategories] = useState([]);
@@ -51,6 +55,7 @@ const CategoriesCard = () => {
                 onMouseLeave={()=>setOpenSub(false)}
               >
                 {category.name}
+               
               </p>
             ))}
         </CategoriesCardContainer>

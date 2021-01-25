@@ -10,4 +10,9 @@
     display: none !important;
   }
 
+a:-webkit-any-link{
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none !important;
+}
  

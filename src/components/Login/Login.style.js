@@ -220,5 +220,24 @@ export const OTPform = styled.form`
     border: 1px solid lightgray;
     font-size: 20px;
     padding: 5%;
+    text-align: center;
+    font-weight: bold;
   }
 `;
+
+export const  ResendOTPform = styled.form`
+text-align: left;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "UniNeueRegular";
+
+  @media (max-width: 1100px) {
+    width: 60%;
+  }
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
+`

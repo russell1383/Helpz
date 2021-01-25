@@ -6,7 +6,6 @@ import {
   WishlistProductContainer,
 } from "./Wishlist.style";
 import img from "../../assets/images/product-images/product-1.png";
-import { IncrementDecrementBox } from "../CartProduct/CartProduct.style";
 
 const Wishlist = ({ openWishlist }) => {
   return (
