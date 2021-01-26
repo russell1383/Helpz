@@ -19,6 +19,7 @@ import LeftArrow from "../../assets/icons/left-arrow.png";
 import RightArrow from "../../assets/icons/right-arrow.png";
 import { UserContext } from "../../App";
 import { useHistory } from "react-router-dom";
+import { productData } from "../../productData/productData";
 
 const Products = ({ header, subheader }) => {
   
@@ -26,13 +27,13 @@ const Products = ({ header, subheader }) => {
 
   const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
-  const [quantity, setQuantity] = useState(1);
   const [products, setProducts] = useState([]);
+  const [price, setPrice] = useState(null);
 
   const handleAddToCart = (item) => {
     let newItem = [...addToCart, item];
     setAddToCart(newItem);
-    console.log(addToCart);
+    setPrice(item.price);
   };
 
   useEffect(() => {
@@ -41,12 +42,18 @@ const Products = ({ header, subheader }) => {
       .then((data) => setProducts(data[2].data));
   }, []);
 
-  const handleQuantity = (name) => {
-    if (addToCart.length) {
-      const product = addToCart.find((product) => product.name === name);
-      product.quantity = 1;
+  
+  useEffect(()=>{},[])
+  var handleQuantity = (id) => {
+    if (addToCart.find((product) => product.id === id)) {
+      const product = addToCart.find((product) => product.id === id);
+      product.quantity = product.quantity + 1;
+      product.price = price *product.quantity;
+      console.log(product);
     }
   };
+
+
 
   var settings = {
     focusOnSelect: false,
@@ -81,6 +88,7 @@ const Products = ({ header, subheader }) => {
     ],
   };
 
+
   return (
     <>
       <ProductContainerWrap>
@@ -95,12 +103,12 @@ const Products = ({ header, subheader }) => {
         </RightArrowButton>
 
         <Slider {...settings}>
-          {products.map((product, idx) => (
+          {productData.map((product, idx) => (
             <div>
               <ProductBox key={idx} >
                 <OffLabel>25% Off</OffLabel>
                 <ProductImg
-                  src={`https://mudee.shop/eCommerce/assets/images/thumbnails/${product.thumbnail}`} 
+                  src={product.img} 
                   onClick={() => history.push(`/category/${product.name}`)}
                 ></ProductImg>
                 <ProductInfo onClick={() => history.push(`/category/${product.name}`)}>
@@ -114,7 +122,7 @@ const Products = ({ header, subheader }) => {
                     <h6>
                       <del>30 tk</del>
                     </h6> 
-                    <h5>{product.price} $</h5>
+                    <h5>{product.price} tk</h5>
                   </div>
                 </ProductInfo>
                 <p>
@@ -133,13 +141,16 @@ const Products = ({ header, subheader }) => {
                 <ProductButtonContainer>
                   <button
                     className="add_to_cart_button"
+                    disabled={addToCart.length && addToCart.find((p) => p.id === product.id) && true}
                     onClick={() => handleAddToCart(product)}
-                  >
-                    Add To Cart
+                  >{
+                      addToCart.length && addToCart.find((p) => p.id === product.id) ? "Product Added"  : "Add to cart"
+                  }
+                  
                   </button>
                   <button
                     className="plus_button"
-                    onClick={() => handleQuantity(product.name)}
+                    onClick={() => handleQuantity(product.id)}
                   >
                     +
                   </button>

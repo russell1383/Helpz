@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import {
   HamburgerMenuIcon,
@@ -36,8 +36,12 @@ import CartIcon from "../../assets/icons/Cart.png";
 import SearchSuggestions from "../SearchSuggestions/SearchSuggestions.component";
 import CartItems from "../CartItems/CartItems.component";
 import { Link, useHistory } from "react-router-dom";
+import { UserContext } from "../../App";
 
 const Navbar = () => {
+  const { value, value2 } = useContext(UserContext);
+  const [addToCart, setAddToCart] = value2;
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [openCatergory, setOpenCatergory] = useState(false);
   const [showSearchSuggest, setShowSearchSuggest] = useState(false);
@@ -63,8 +67,6 @@ const Navbar = () => {
     setSubCategories(items.subs);
     setSubCategoryOpen(true);
   };
-
-
 
   const handleChildCategories = (items) => {
     setChildCategories(items.childs);
@@ -104,6 +106,8 @@ const Navbar = () => {
     setShowCartItems(!showCartItems);
   };
 
+  console.log(addToCart.reduce((a, b) => a + b.price, 0));
+
   return (
     <>
       <NavbarContainerWrap>
@@ -133,7 +137,7 @@ const Navbar = () => {
             <div onClick={handleShowCartItems}>
               <img src={CartIcon} alt="" />
             </div>
-            <h4>৳ 00.00</h4>
+            <h4>৳ {addToCart.reduce((a, b) => a + b.price, 0)}.00</h4>
           </ShoppingCart>
         </NavbarContainer>
         {showCartItems && (
@@ -151,7 +155,7 @@ const Navbar = () => {
               <h4>৳ 00.00</h4>
             </MdShoppingCart>
             <div>
-              <MdLogoImg src={logo} alt="" onClick={() => history.push("/")}/>
+              <MdLogoImg src={logo} alt="" onClick={() => history.push("/")} />
             </div>
 
             <HamburgerMenuIcon
