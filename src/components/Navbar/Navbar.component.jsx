@@ -106,7 +106,7 @@ const Navbar = () => {
     setShowCartItems(!showCartItems);
   };
 
-  console.log(addToCart.reduce((a, b) => a + b.price, 0));
+  console.log(addToCart);
 
   return (
     <>

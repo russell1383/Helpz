@@ -43,6 +43,7 @@ const Products = ({ header, subheader }) => {
   }, []);
 
   
+  
   useEffect(()=>{},[])
   var handleQuantity = (id) => {
     if (addToCart.find((product) => product.id === id)) {

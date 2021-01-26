@@ -64,3 +64,8 @@ button{
 
 }
 `
+
+export const NoItemText = styled.div`
+text-align: center;
+padding: 5% 0;
+`
