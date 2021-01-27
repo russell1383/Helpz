@@ -41,8 +41,8 @@ const Products = ({ header, subheader }) => {
       .then((data) => setProducts(data[2].data));
   }, []);
 
-  useEffect(() => {}, []);
-  var handleQuantity = (id) => {
+
+const handleQuantity = (id) => {
     if (addToCart.find((product) => product.id === id)) {
       const product = addToCart.find((product) => product.id === id);
       product.quantity = product.quantity + 1;

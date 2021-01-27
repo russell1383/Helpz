@@ -13,13 +13,18 @@ const CartProduct = () => {
   const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
 
+  const removeItemFromCart = (id) => {
+    const remainingProduct = addToCart.filter(item => item.id !== id);
+    setAddToCart(remainingProduct);
+  }
+
   return (
     <div>
       {addToCart.length
         ? addToCart.map((product) => (
             <ProductRow key={product.id}>
               <CartProductImg src={product.img} alt="" />
-              <h4>Fresh Onions</h4>
+            <h4>{product.name}</h4>
               <div>
                 <h4>{product.quantity} Kg</h4>
                 <IncrementDecrementBox>
@@ -59,7 +64,7 @@ const CartProduct = () => {
                 </IncrementDecrementBox>
               </div>
               <h4>{product.price} Tk</h4>
-              <h2>✕</h2>
+              <h2 onClick={()=>removeItemFromCart(product.id)}>✕</h2>
             </ProductRow>
           ))
         : <NoItemText>There is no item in the cart.</NoItemText>}

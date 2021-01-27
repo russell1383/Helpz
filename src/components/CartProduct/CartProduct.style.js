@@ -33,6 +33,7 @@ h4{
 
 h2{
     text-align: right;
+    cursor: pointer;
     @media (max-width: 1100px){
         font-size: 15px
     }
