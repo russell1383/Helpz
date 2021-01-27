@@ -22,7 +22,6 @@ import { useHistory } from "react-router-dom";
 import { productData } from "../../productData/productData";
 
 const Products = ({ header, subheader }) => {
-  
   const history = useHistory();
 
   const { value, value2 } = useContext(UserContext);
@@ -42,19 +41,25 @@ const Products = ({ header, subheader }) => {
       .then((data) => setProducts(data[2].data));
   }, []);
 
-  
-  
-  useEffect(()=>{},[])
+  useEffect(() => {}, []);
   var handleQuantity = (id) => {
     if (addToCart.find((product) => product.id === id)) {
       const product = addToCart.find((product) => product.id === id);
       product.quantity = product.quantity + 1;
-      product.price = price *product.quantity;
+      product.price = price * product.quantity;
       console.log(product);
+
+      if (addToCart.find((item) => item.id === product.id)) {
+        var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
+        var newItems = [...addToCart];
+        newItems[objectIndex] = product;
+        setAddToCart(newItems);
+        console.log(objectIndex);
+      }
     }
   };
 
-
+  console.log(addToCart);
 
   var settings = {
     focusOnSelect: false,
@@ -89,7 +94,6 @@ const Products = ({ header, subheader }) => {
     ],
   };
 
-
   return (
     <>
       <ProductContainerWrap>
@@ -106,13 +110,15 @@ const Products = ({ header, subheader }) => {
         <Slider {...settings}>
           {productData.map((product, idx) => (
             <div>
-              <ProductBox key={idx} >
+              <ProductBox key={idx}>
                 <OffLabel>25% Off</OffLabel>
                 <ProductImg
-                  src={product.img} 
+                  src={product.img}
                   onClick={() => history.push(`/category/${product.name}`)}
                 ></ProductImg>
-                <ProductInfo onClick={() => history.push(`/category/${product.name}`)}>
+                <ProductInfo
+                  onClick={() => history.push(`/category/${product.name}`)}
+                >
                   <div>
                     <p>Fresh</p>
                     <h3>{product.name.substring(0, 10)}</h3>
@@ -122,7 +128,7 @@ const Products = ({ header, subheader }) => {
                     <h6>Price</h6>
                     <h6>
                       <del>30 tk</del>
-                    </h6> 
+                    </h6>
                     <h5>{product.price} tk</h5>
                   </div>
                 </ProductInfo>
@@ -142,12 +148,17 @@ const Products = ({ header, subheader }) => {
                 <ProductButtonContainer>
                   <button
                     className="add_to_cart_button"
-                    disabled={addToCart.length && addToCart.find((p) => p.id === product.id) && true}
+                    disabled={
+                      addToCart.length &&
+                      addToCart.find((p) => p.id === product.id) &&
+                      true
+                    }
                     onClick={() => handleAddToCart(product)}
-                  >{
-                      addToCart.length && addToCart.find((p) => p.id === product.id) ? "Product Added"  : "Add to cart"
-                  }
-                  
+                  >
+                    {addToCart.length &&
+                    addToCart.find((p) => p.id === product.id)
+                      ? "Product Added"
+                      : "Add to cart"}
                   </button>
                   <button
                     className="plus_button"
@@ -164,5 +175,4 @@ const Products = ({ header, subheader }) => {
     </>
   );
 };
-
 export default Products;

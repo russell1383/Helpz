@@ -106,7 +106,7 @@ const Navbar = () => {
     setShowCartItems(!showCartItems);
   };
 
-  console.log(addToCart);
+
 
   return (
     <>
