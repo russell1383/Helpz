@@ -47,14 +47,14 @@ const Products = ({ header, subheader }) => {
       const product = addToCart.find((product) => product.id === id);
       product.quantity = product.quantity + 1;
       product.price = price * product.quantity;
-      console.log(product);
+      // console.log(product);
 
       if (addToCart.find((item) => item.id === product.id)) {
         var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
         var newItems = [...addToCart];
         newItems[objectIndex] = product;
         setAddToCart(newItems);
-        console.log(objectIndex);
+        // console.log(objectIndex);
       }
     }
   };
@@ -122,7 +122,7 @@ const Products = ({ header, subheader }) => {
                   <div>
                     <p>Fresh</p>
                     <h3>{product.name.substring(0, 10)}</h3>
-                    <p>1kg</p>
+                    <p>{product.quantity}kg</p>
                   </div>
                   <div>
                     <h6>Price</h6>
