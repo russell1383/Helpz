@@ -97,6 +97,7 @@ export const SearchSuggestionsContainer = styled.div`
 export const ShoppingCart = styled.div`
   display: flex;
   justify-content: space-between;
+  position: relative;
   width: 120px;
   align-items: center;
   color: #fff;
@@ -109,6 +110,27 @@ export const ShoppingCart = styled.div`
     }
   }
 `;
+
+export const ItemsOnCart = styled.div`
+position: absolute;
+width: 15px;
+height: 15px;
+background-color: #44A72C;
+font-size: 10px;
+font-weight: bold;
+display: flex;
+align-items: center;
+justify-content: center;
+top:0;
+left: 10%;
+border-radius: 50%;
+border: 1px solid lightgray;
+
+@media (max-width: 768px) {
+  left: 6px;
+  top:-5px;
+  }
+`
 
 export const ShoppingCartContainer = styled.div`
   width: 60%;
@@ -193,6 +215,7 @@ export const MdShoppingCart = styled.div`
   display: flex;
   color: #fff;
   align-items: center;
+  position: relative;
 
   img {
     width: 25px;

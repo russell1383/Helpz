@@ -26,6 +26,7 @@ import {
   ShoppingCartContainer,
   MdShoppingCartContainer,
   NavLogo,
+  ItemsOnCart,
 } from "./Navbar.style";
 import logo from "../../assets/logos/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -138,6 +139,10 @@ const Navbar = () => {
               <img src={CartIcon} alt="" />
             </div>
             <h4>৳ {addToCart.reduce((a, b) => a + b.totalPrice, 0)}.0</h4>
+            {
+              addToCart.length ?  <ItemsOnCart>{addToCart.length}</ItemsOnCart> : ""
+            }
+           
           </ShoppingCart>
         </NavbarContainer>
         {showCartItems && (
@@ -153,6 +158,9 @@ const Navbar = () => {
             <MdShoppingCart onClick={handleShowCartItems}>
               <img src={CartIcon} alt="" />
               <h4>৳ {addToCart.reduce((a, b) => a + b.totalPrice, 0)}.0</h4>
+              {
+              addToCart.length ?  <ItemsOnCart>{addToCart.length}</ItemsOnCart> : ""
+            }
             </MdShoppingCart>
             <div>
               <MdLogoImg src={logo} alt="" onClick={() => history.push("/")} />

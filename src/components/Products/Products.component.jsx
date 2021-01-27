@@ -48,7 +48,6 @@ const handleQuantity = (id) => {
     if (addToCart.find((product) => product.id === id)) {
       const product = addToCart.find((product) => product.id === id);
       product.totalQuantity = product.totalQuantity + 1;
-      // product.price = price * product.quantity;
       product.totalPrice = price * product.totalQuantity;
 
       if (addToCart.find((item) => item.id === product.id)) {
