@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   ProductRowWrap,
   ProductRow,
@@ -18,6 +18,32 @@ const CartProduct = () => {
     setAddToCart(remainingProduct);
   }
 
+  const quantityIncrement = (id) => {
+    if (addToCart.find((item) => item.id === id)) {
+      const product = addToCart.find((product) => product.id === id);
+      product.totalQuantity = product.totalQuantity + 1;
+      product.totalPrice = product.price * product.totalQuantity;
+      var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
+        var newItems = [...addToCart];
+        newItems[objectIndex] = product;
+        setAddToCart(newItems);
+    }
+  }
+
+  const quantityDecrement = (id) => {
+    if (addToCart.find((item) => item.id === id)) { 
+      const product = addToCart.find((product) => product.id === id);
+      if (product.totalQuantity > 1) {
+        product.totalQuantity = product.totalQuantity - 1;
+        product.totalPrice = product.price * product.totalQuantity;
+        var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
+        var newItems = [...addToCart];
+        newItems[objectIndex] = product;
+        setAddToCart(newItems);
+      }
+    }
+  }
+
   return (
     <div>
       {addToCart.length
@@ -26,9 +52,9 @@ const CartProduct = () => {
               <CartProductImg src={product.img} alt="" />
             <h4>{product.name}</h4>
               <div>
-                <h4>{product.quantity} Kg</h4>
+                <h4>{product.totalQuantity} Kg</h4>
                 <IncrementDecrementBox>
-                  <button>
+                  <button onClick={()=>quantityIncrement(product.id)}>
                     <svg
                       width="18"
                       height="8"
@@ -45,7 +71,7 @@ const CartProduct = () => {
                     </svg>
                   </button>
 
-                  <button>
+                  <button onClick={()=>quantityDecrement(product.id)}>
                     <svg
                       width="18"
                       height="8"
@@ -63,7 +89,7 @@ const CartProduct = () => {
                   </button>
                 </IncrementDecrementBox>
               </div>
-              <h4>{product.price} Tk</h4>
+              <h4>{product.totalPrice} Tk</h4>
               <h2 onClick={()=>removeItemFromCart(product.id)}>✕</h2>
             </ProductRow>
           ))

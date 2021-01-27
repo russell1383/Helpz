@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Col, Row } from "react-grid-system";
 import Sticky from "react-stickynode";
+import { UserContext } from "../../App";
 import CartProduct from "../CartProduct/CartProduct.component";
 import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 import MenuItems from "../MenuItems/MenuItems.component";
@@ -12,6 +13,8 @@ import {
 } from "./ViewCartBanner.style";
 
 const ViewCartBanner = () => {
+  const { value, value2 } = useContext(UserContext);
+  const [addToCart, setAddToCart] = value2;
 
   return (
     <>
@@ -37,7 +40,7 @@ const ViewCartBanner = () => {
 
               <TotalBox>
                 <h3>
-                  Total Payable : <span> 130 TK</span>
+                  Total Payable : <span> {addToCart.reduce((a, b) => a + b.totalPrice, 0)} TK</span>
                 </h3>
               </TotalBox>
 

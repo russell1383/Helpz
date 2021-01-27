@@ -31,6 +31,8 @@ const Products = ({ header, subheader }) => {
 
   const handleAddToCart = (item) => {
     let newItem = [...addToCart, item];
+    item.totalPrice = item.price;
+    item.totalQuantity = item.quantity;
     setAddToCart(newItem);
     setPrice(item.price);
   };
@@ -45,16 +47,15 @@ const Products = ({ header, subheader }) => {
 const handleQuantity = (id) => {
     if (addToCart.find((product) => product.id === id)) {
       const product = addToCart.find((product) => product.id === id);
-      product.quantity = product.quantity + 1;
-      product.price = price * product.quantity;
-      // console.log(product);
+      product.totalQuantity = product.totalQuantity + 1;
+      // product.price = price * product.quantity;
+      product.totalPrice = price * product.totalQuantity;
 
       if (addToCart.find((item) => item.id === product.id)) {
         var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
         var newItems = [...addToCart];
         newItems[objectIndex] = product;
         setAddToCart(newItems);
-        // console.log(objectIndex);
       }
     }
   };

@@ -137,7 +137,7 @@ const Navbar = () => {
             <div onClick={handleShowCartItems}>
               <img src={CartIcon} alt="" />
             </div>
-            <h4>৳ {addToCart.reduce((a, b) => a + b.price, 0)}.0</h4>
+            <h4>৳ {addToCart.reduce((a, b) => a + b.totalPrice, 0)}.0</h4>
           </ShoppingCart>
         </NavbarContainer>
         {showCartItems && (
@@ -152,7 +152,7 @@ const Navbar = () => {
           <MdTopHeaderContainer>
             <MdShoppingCart onClick={handleShowCartItems}>
               <img src={CartIcon} alt="" />
-              <h4>৳ {addToCart.reduce((a, b) => a + b.price, 0)}.0</h4>
+              <h4>৳ {addToCart.reduce((a, b) => a + b.totalPrice, 0)}.0</h4>
             </MdShoppingCart>
             <div>
               <MdLogoImg src={logo} alt="" onClick={() => history.push("/")} />

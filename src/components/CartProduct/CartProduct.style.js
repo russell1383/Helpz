@@ -57,6 +57,7 @@ button{
     border-radius: 2px;
     margin-bottom: 2px;
     width: 25px;
+    cursor: pointer;
 
     @media (max-width: 630px){
         width: 15px;
