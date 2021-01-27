@@ -27,28 +27,26 @@ const Products = ({ header, subheader }) => {
   const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
   const [products, setProducts] = useState([]);
-  const [price, setPrice] = useState(null);
 
   const handleAddToCart = (item) => {
     let newItem = [...addToCart, item];
     item.totalPrice = item.price;
     item.totalQuantity = item.quantity;
     setAddToCart(newItem);
-    setPrice(item.price);
   };
 
-  useEffect(() => {
-    fetch("https://mudee.shop/eCommerce/api/category/electric")
-      .then((res) => res.json())
-      .then((data) => setProducts(data[2].data));
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://mudee.shop/eCommerce/api/category/electric")
+  //     .then((res) => res.json())
+  //     .then((data) => setProducts(data[2].data));
+  // }, []);
 
 
 const handleQuantity = (id) => {
     if (addToCart.find((product) => product.id === id)) {
       const product = addToCart.find((product) => product.id === id);
       product.totalQuantity = product.totalQuantity + 1;
-      product.totalPrice = price * product.totalQuantity;
+      product.totalPrice = product.price * product.totalQuantity;
 
       if (addToCart.find((item) => item.id === product.id)) {
         var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
