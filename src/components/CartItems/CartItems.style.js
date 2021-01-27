@@ -5,6 +5,7 @@ background: #fff;
 z-index: 50;
 padding: 20px;
 border-radius: 5px;
+border: 1px solid lightgray;
 
 @media (max-width: 630px){
  padding: 10px;

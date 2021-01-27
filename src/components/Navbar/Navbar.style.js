@@ -27,6 +27,7 @@ export const NavbarContainer = styled.div`
 
 export const NavLogo = styled.img`
  width: 100px;
+ cursor: pointer;
     @media (max-width: 1024px) {
       width: 90px;
     }
