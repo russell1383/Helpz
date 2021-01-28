@@ -79,7 +79,7 @@ const ProductInfoBanner = () => {
           <Col md={2} className="d-none">
             <Sticky
               enabled={true}
-              top={90}
+              top={81}
               bottomBoundary="#more-details"
               className="category_card"
             >
@@ -206,7 +206,7 @@ const ProductInfoBanner = () => {
           </Col>
 
           <Col md={2} className="d-none">
-            <Sticky enabled={true} top={90} bottomBoundary="#more-details">
+            <Sticky enabled={true} top={81} bottomBoundary="#more-details">
               <MenuItems />
             </Sticky>
           </Col>

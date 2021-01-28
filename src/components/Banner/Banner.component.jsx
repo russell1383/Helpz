@@ -118,7 +118,7 @@ const Banner = () => {
             <Col md={2} className="d-none">
               <Sticky
                 enabled={true}
-                top={90}
+                top={81}
                 bottomBoundary="#testimonials"
                 className="category_card"
               >
@@ -147,7 +147,7 @@ const Banner = () => {
               />
             </Col>
             <Col md={2} className="d-none">
-              <Sticky enabled={true} top={90} bottomBoundary="#testimonials">
+              <Sticky enabled={true} top={81} bottomBoundary="#testimonials">
                 <MenuItems />
               </Sticky>
             </Col>

@@ -23,7 +23,7 @@ const ViewCartBanner = () => {
           <Col md={2} className="d-none">
             <Sticky
               enabled={true}
-              top={90}
+              top={81}
               bottomBoundary="#payment_option"
               className="category_card"
             >
@@ -49,7 +49,7 @@ const ViewCartBanner = () => {
           </Col>
 
           <Col md={2} className="d-none">
-            <Sticky enabled={true} top={90} bottomBoundary="#payment_option">
+            <Sticky enabled={true} top={81} bottomBoundary="#payment_option">
               <MenuItems />
             </Sticky>
           </Col>

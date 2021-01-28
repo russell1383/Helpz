@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const CategoriesCardContainerWrap = styled.div`
-position: relative;
-`
+  position: relative;
+`;
 
 export const CategoriesCardContainer = styled.div`
   width: 100%;
-  height: 100%;
   background: #44a72c;
   color: #fff;
   padding: 8%;
@@ -44,61 +43,37 @@ export const CategoriesCardContainer = styled.div`
   }
 `;
 
-export const Dropdown = styled.div`
-position: absolute;
-display: ${({ open }) => (open ? "block" : "none")};
-top: 0;
-left: 100.5%;
-background: #44a72c;
-height: 100%;
-color: #fff;
-width: 80%;
-cursor: pointer;
-transition: all 0.5s ease;
+export const SubCatergoriesWrap = styled.div`
+  display: ${({ open }) => (open ? "block" : "none")};
+  position: absolute;
+  top: 0;
+  left: 100.5%;
+  background: #44a72c;
+  height: 100%;
+  width: 200%;
+  /* overflow: scroll; */
+`;
 
+export const SubCategories = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  color: #fff;
+  cursor: pointer;
+`;
+
+export const SubCategoryItemsContainer = styled.div`
+  width: 50%;
+`;
+
+export const SubCategoryItems = styled.div`
+padding: 5%;
+
+h4{
+padding: 5% 0;
 }
 
-h6{
-  font-size: 15px;
-  font-weight: 200;
-  border-bottom: 1px solid #fff;
-  padding: 5% 5%;
-  font-family: "UniNeueRegular";
-
-  @media (max-width: 1280px) {
-    font-size: 11px;
-  }
-  @media (max-width: 900px) {
-    font-size: 9px;
-  }
-
-`
-
-export const SubDropDown = styled.div`
-display: ${({ openSub }) => (openSub ? "block" : "none")};
-width: 120%;
-left: 180.8%;
-height: 100%;
-position: absolute;
-top: 0;
-background: #44a72c;
-color: #fff;
-width: 200px;
-cursor: pointer;
-
-h6{
-  font-size: 15px;
-  font-weight: 200;
-  border-bottom: 1px solid #fff;
-  padding: 5% 5%;
-  
-  font-family: "UniNeueRegular";
-
-  @media (max-width: 1280px) {
-    font-size: 11px;
-  }
-  @media (max-width: 900px) {
-    font-size: 9px;
-  }
+p{
+font-size: 13px;
+padding: 2% 0;
 }
-`
+`;

@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
 import {
   CategoriesCardContainer,
   CategoriesCardContainerWrap,
-  Dropdown,
-  SubDropDown,
+  SubCategories,
+  SubCategoryItems,
+  SubCategoryItemsContainer,
+  SubCatergoriesWrap,
 } from "./CartegoriesCard.style";
 
 const CategoriesCard = () => {
-
-  const {productInfo} = useParams()
-
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
-  const [childCategories, setChildCategories] = useState([]);
   const [open, setOpen] = useState(false);
   const [openSub, setOpenSub] = useState(false);
 
@@ -27,12 +24,8 @@ const CategoriesCard = () => {
 
   const handleGetSubCategories = (items) => {
     setSubCategories(items.subs);
+    console.log(subCategories);
     setOpen(true);
-  };
-
-  const handleChildCategories = (items) => {
-    setChildCategories(items.childs);
-    setOpenSub(true);
   };
 
   return (
@@ -52,26 +45,42 @@ const CategoriesCard = () => {
                 onMouseOver={() => {
                   handleGetSubCategories(category);
                 }}
-                onMouseLeave={()=>setOpenSub(false)}
+                onMouseLeave={() => setOpenSub(false)}
               >
                 {category.name}
-               
               </p>
             ))}
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
         </CategoriesCardContainer>
 
-        <Dropdown open={open}>
-          {subCategories.map((item) => (
-            <h6 key={item.id} onMouseOver={()=>handleChildCategories(item)}>{item.name}</h6>
-          ))}
-        </Dropdown>
-
-        <SubDropDown openSub={openSub} >
-          {childCategories &&
-            childCategories.map((product) => (
-              <h6 key={product.id}>{product.name}</h6>
+        <SubCatergoriesWrap open={open}>
+          <SubCategories>
+            {subCategories.map((item, idx) => (
+              <SubCategoryItemsContainer key={idx}>
+                <SubCategoryItems>
+                  <h4> {item.name}</h4>
+                  {item.childs &&
+                    item.childs.map((pd, idx) => <p key={idx}>{pd.name}</p>)}
+                </SubCategoryItems>
+              </SubCategoryItemsContainer>
             ))}
-        </SubDropDown> 
+          </SubCategories>
+        </SubCatergoriesWrap>
       </CategoriesCardContainerWrap>
     </>
   );

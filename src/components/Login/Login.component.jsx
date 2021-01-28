@@ -68,7 +68,7 @@ const LoginComponent = () => {
         if (response.data.errors) {
           setError(response.data.errors[0]);
         } else {
-          console.log(response);
+          console.log(response.config.data.phone);
           setError("");
         }
         e.target.reset();
