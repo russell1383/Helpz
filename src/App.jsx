@@ -7,11 +7,17 @@ import ViewCart from "./pages/ViewCart/ViewCart.page";
 import  ProductInfo  from "./pages/ProductInfo/ProductInfo.page";
 import NotFound from "./pages/NotFound/NotFound.page";
 import Offer from "./pages/Offer/Offer.page";
+import Signup from "./pages/Signup/Signup.page";
 
 export const UserContext = createContext();
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState({
+    phone: "",
+    name: "",
+    email: "",
+    password:""
+  });
   const [addToCart, setAddToCart] = useState([]);
 
   return (
@@ -28,11 +34,15 @@ function App() {
               <Home />
             </Route>
 
-            <Route path="/category/:productInfo">
+            <Route path="/category/:productName">
               <ProductInfo />
             </Route>
 
             <Route path="/login">
+              <Login />
+            </Route>
+
+            <Route path="/Signup">
               <Login />
             </Route>
 

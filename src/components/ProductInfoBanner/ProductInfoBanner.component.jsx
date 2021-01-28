@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "react-grid-system";
 import Sticky from "react-stickynode";
 import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
+import { UserContext } from "../../App";
 import MenuItems from "../MenuItems/MenuItems.component";
 import {
   MdProductInfoOffLabel,
@@ -22,8 +23,55 @@ import {
 import img from "../../assets/images/product-images/product-1.png";
 import leftArrow from "../../assets/icons/left-arrow.png";
 import rightArrow from "../../assets/icons/right-arrow.png";
+import { useParams } from "react-router-dom";
+import { productData } from "../../productData/productData";
 
 const ProductInfoBanner = () => {
+  const { productName } = useParams();
+  const [product, setProduct] = useState({});
+  const { value, value2 } = useContext(UserContext);
+  const [addToCart, setAddToCart] = value2;
+
+  useEffect(() => {
+    const pd = productData.find(
+      (item) => item.name.toLowerCase() === productName.toLowerCase()
+    );
+    setProduct(pd);
+  }, [productName]);
+
+  
+
+
+  const quantityIncrement = (id) => {
+    if (addToCart.find((item) => item.id === id)) {
+      const product = addToCart.find((product) => product.id === id);
+      product.totalQuantity = product.totalQuantity + 1;
+      product.totalPrice = product.price * product.totalQuantity;
+      var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
+        var newItems = [...addToCart];
+        newItems[objectIndex] = product;
+        setAddToCart(newItems);
+    }
+  }
+
+  const quantityDecrement = (id) => {
+    if (addToCart.find((item) => item.id === id)) { 
+      const product = addToCart.find((product) => product.id === id);
+      if (product.totalQuantity > 1) {
+        product.totalQuantity = product.totalQuantity - 1;
+        product.totalPrice = product.price * product.totalQuantity;
+        var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
+        var newItems = [...addToCart];
+        newItems[objectIndex] = product;
+        setAddToCart(newItems);
+      }
+    }
+  }
+
+
+
+  console.log(product);
+
   return (
     <>
       <ProductBannerContainer>
@@ -49,16 +97,19 @@ const ProductInfoBanner = () => {
               <ProductInfoBox>
                 <ProductInfoBoxImgContainerWrap>
                   <ProductInfoBoxImgContainer>
-                    <img src={img} alt="" />
-                    <MdProductInfoOffLabel> 25% <br /> Off</MdProductInfoOffLabel>
+                    <img src={product.img} alt="" />
+                    <MdProductInfoOffLabel>
+                      {" "}
+                      25% <br /> Off
+                    </MdProductInfoOffLabel>
                   </ProductInfoBoxImgContainer>
 
                   <ProductSubImgContainer>
-                    <img src={img} alt="" />
-                    <img src={img} alt="" />
-                    <img src={img} alt="" />
-                    <img src={img} alt="" />
-                    <img src={img} alt="" />
+                    <img src={product.img} alt="" />
+                    <img src={product.img} alt="" />
+                    <img src={product.img} alt="" />
+                    <img src={product.img} alt="" />
+                    <img src={product.img} alt="" />
 
                     <div className="left_arrow">
                       <img src={leftArrow} className="arrow_icon" alt="" />
@@ -70,12 +121,12 @@ const ProductInfoBanner = () => {
                 </ProductInfoBoxImgContainerWrap>
                 <ProductInfo>
                   <p>Fresh</p>
-                  <h3>Onion</h3>
+                  <h3>{product.name}</h3>
                   <p>1 kg</p>
                   <p className="d-none">
                     Price : <del>30Tk</del>
                   </p>
-                  <h3 className="price_tag d-none">20Tk</h3>
+                  <h3 className="price_tag d-none">{product.price}Tk</h3>
                   <h3>Fresh Onion Offer</h3>
                   <p>
                     Fresh Onion Offer If You buy 5 kg , we will provide 100
@@ -97,12 +148,26 @@ const ProductInfoBanner = () => {
                   <ProductOrderButtonsContainer>
                     <div>
                       <div className="quantity_box">
-                        <button>+</button>
-                        1kg
-                        <button>-</button>
+                        <button onClick={()=>quantityIncrement(product.id)}>+</button>
+                        {product.totalQuantity
+                          ? product.totalQuantity
+                          : product.quantity}{" "}
+                        kg
+                        <button onClick={()=>quantityDecrement(product.id)}>-</button>
                       </div>
 
-                      <button>Add To cart</button>
+                      <button
+                        disabled={
+                          addToCart.length &&
+                          addToCart.find((p) => p.id === product.id) &&
+                          true
+                        }
+                      >
+                        {addToCart.length &&
+                        addToCart.find((p) => p.id === product.id)
+                          ? "Product Added"
+                          : "Add to cart"}
+                      </button>
                     </div>
                     <div>
                       <button>Order Now</button>
@@ -115,12 +180,11 @@ const ProductInfoBanner = () => {
                   </ProductInfoOffLabel>
 
                   <MdProductPrice>
-                  <p>
-                    Price : <del>30Tk</del>
-                  </p>
-                  <h3 className="price_tag">20Tk</h3>
+                    <p>
+                      Price : <del>30Tk</del>
+                    </p>
+                    <h3 className="price_tag">20Tk</h3>
                   </MdProductPrice>
-
                 </ProductInfo>
               </ProductInfoBox>
 
@@ -130,13 +194,13 @@ const ProductInfoBanner = () => {
                 <p>5 KG</p>
                 <p>30% OFF</p>
                 <p>80 TK</p>
-                <input type="radio" name="offer" className="circle"/>
+                <input type="radio" name="offer" className="circle" />
               </div>
               <div className="packeg_offer">
-              <p>5 KG</p>
+                <p>5 KG</p>
                 <p>30% OFF</p>
                 <p>80 TK</p>
-                <input type="radio" name="offer" className="circle"/>
+                <input type="radio" name="offer" className="circle" />
               </div>
             </ProductInfoContainer>
           </Col>

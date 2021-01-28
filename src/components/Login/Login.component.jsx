@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import loginImg from "../../assets/images/login-img.png";
@@ -23,9 +23,16 @@ import {
   ResendOTPform,
 } from "./Login.style";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../../App";
 
 const LoginComponent = () => {
   const { register, handleSubmit, watch, errors } = useForm();
+
+  
+  const { value, value2 } = useContext(UserContext);
+  const [loggedInUser, setLoggedInUser] = value;
+
+
   const [login, setLogin] = useState(true);
   const [signUp, setSignUp] = useState(false);
   const [proceedOTP, setProceedOTP] = useState(false);
@@ -49,7 +56,6 @@ const LoginComponent = () => {
 
     setOtp([...otp.map((d, idx) => (idx === index ? element.value : d))]);
 
-    //Focus next input
     if (element.nextSibling) {
       element.nextSibling.focus();
     }
@@ -126,6 +132,8 @@ const LoginComponent = () => {
         }
       });
   };
+
+  console.log(loggedInUser)
 
   return (
     <>
