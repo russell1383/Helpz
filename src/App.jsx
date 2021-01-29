@@ -43,7 +43,7 @@ function App() {
             </Route>
 
             <Route path="/Signup">
-              <Login />
+              <Signup /> 
             </Route>
 
             <Route path="/view-cart">
