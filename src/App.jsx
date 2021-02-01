@@ -11,6 +11,7 @@ import Signup from "./pages/Signup/Signup.page";
 import CategoryItems from "./pages/CategoryItems/CategoryItems.page";
 import SubCategoryItems from "./pages/SubCategoryItems/SubCategoryItems.page";
 import ChildCategoryItems from "./pages/ChildCategoryItems/ChildCategoryItems.page";
+import ProductCard from "./components/ProductCard/ProductCard.component";
 
 export const UserContext = createContext();
 
@@ -41,15 +42,15 @@ function App() {
               <ProductInfo />
             </Route>
 
-            <Route path="/products/category/:categoryId">
+            <Route path="/products/category/:categoryName/:categoryId">
               <CategoryItems />
             </Route>
 
-            <Route path="/products/sub-category/:subcategoryId">
+            <Route path="/products/sub-category/:subCategoryName/:subcategoryId">
               <SubCategoryItems/>
             </Route>
 
-            <Route path="/products/child-category/:childCategoryId">
+            <Route path="/products/child-category/:childCategoryName/:childCategoryId">
               <ChildCategoryItems/>
             </Route>
 
@@ -67,6 +68,10 @@ function App() {
 
             <Route path="/offer">
               <Offer/>
+            </Route>
+
+            <Route path="/test">
+              <ProductCard/>
             </Route>
 
             <Route exact path="/">

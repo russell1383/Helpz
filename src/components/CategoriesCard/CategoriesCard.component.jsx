@@ -53,7 +53,7 @@ const CategoriesCard = () => {
                 }}
                 onMouseLeave={() => setOpenSub(false)}
                 onClick={() =>
-                  history.push(`/products/category/${category.id}`)
+                  history.push(`/products/category/${category.name}/${category.id}`)
                 }
               >
                 {category.name}
@@ -69,7 +69,7 @@ const CategoriesCard = () => {
                   <h4
                     key={item.id}
                     onClick={() =>
-                      history.push(`/products/sub-category/${item.id}`)
+                      history.push(`/products/sub-category/${item.name}/${item.id}`)
                     }
                   >
                     {item.name}
@@ -79,7 +79,7 @@ const CategoriesCard = () => {
                       <p
                         key={pd.id}
                         onClick={() =>
-                          history.push(`/products/child-category/${pd.id}`)
+                          history.push(`/products/child-category/${pd.name}/${pd.id}`)
                         }
                       >
                         {pd.name}
