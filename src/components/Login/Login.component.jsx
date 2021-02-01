@@ -37,7 +37,7 @@ const LoginComponent = () => {
         if (response.data.errors) {
           setError(response.data.errors[0]);
         } else {
-          setLoggedInUser(JSON.parse(response.config.data));
+          setLoggedInUser(response.data)
           setError("");
         }
         e.target.reset();

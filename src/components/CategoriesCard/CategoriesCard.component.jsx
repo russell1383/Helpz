@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   CategoriesCardContainer,
   CategoriesCardContainerWrap,
@@ -13,6 +14,7 @@ const CategoriesCard = () => {
   const [subCategories, setSubCategories] = useState([]);
   const [open, setOpen] = useState(false);
   const [openSub, setOpenSub] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     fetch("https://mudee.shop/eCommerce/api/allcategories")
@@ -24,8 +26,12 @@ const CategoriesCard = () => {
 
   const handleGetSubCategories = (items) => {
     setSubCategories(items.subs);
-    console.log(subCategories);
     setOpen(true);
+  };
+
+  const handleCategoryItem = (item) => {
+    console.log(item.id);
+    history.push(`/products/category/${item.id}`);
   };
 
   return (
@@ -46,26 +52,13 @@ const CategoriesCard = () => {
                   handleGetSubCategories(category);
                 }}
                 onMouseLeave={() => setOpenSub(false)}
+                onClick={() =>
+                  history.push(`/products/category/${category.id}`)
+                }
               >
                 {category.name}
               </p>
             ))}
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
         </CategoriesCardContainer>
 
         <SubCatergoriesWrap open={open}>
@@ -73,9 +66,25 @@ const CategoriesCard = () => {
             {subCategories.map((item, idx) => (
               <SubCategoryItemsContainer key={idx}>
                 <SubCategoryItems>
-                  <h4> {item.name}</h4>
+                  <h4
+                    key={item.id}
+                    onClick={() =>
+                      history.push(`/products/sub-category/${item.id}`)
+                    }
+                  >
+                    {item.name}
+                  </h4>
                   {item.childs &&
-                    item.childs.map((pd, idx) => <p key={idx}>{pd.name}</p>)}
+                    item.childs.map((pd) => (
+                      <p
+                        key={pd.id}
+                        onClick={() =>
+                          history.push(`/products/child-category/${pd.id}`)
+                        }
+                      >
+                        {pd.name}
+                      </p>
+                    ))}
                 </SubCategoryItems>
               </SubCategoryItemsContainer>
             ))}

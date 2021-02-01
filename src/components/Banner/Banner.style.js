@@ -44,10 +44,10 @@ export const CustomBannerImgTwo = styled.img`
 `;
 export const CustomBannerImgThree = styled.img`
   width: 100%;
-  height: 60%;
+  height: 50%;
 `;
 export const CustomBannerImgFour = styled.img`
-  height: 100%;
+  height: 109%;
   width: 100%;
 `;
 

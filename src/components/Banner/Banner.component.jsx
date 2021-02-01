@@ -65,10 +65,10 @@ const Banner = () => {
       <BannerContainer>
         <BannerTopPart>
           <Row gutterWidth={6}>
-            <Col xs={3} md={2} className="p-relative">
+            <Col xs={2.5} md={1.5} className="p-relative">
               <BannerImg src={bannerImg1} alt="" />
             </Col>
-            <Col xs={6} md={4}>
+            <Col xs={7} md={4.5}>
               <BannerImg src={bannerImg2} alt="" />
               <TextAboveBannerImg>
                 <h3>100% NATURAL</h3>
@@ -77,7 +77,7 @@ const Banner = () => {
                 </h1>
               </TextAboveBannerImg>
             </Col>
-            <Col md={4} className="d-none">
+            <Col md={4.5} className="d-none">
               <CustomBannerImgThree src={bannerImg3} alt="" />
               <Row nogutter>
                 <Col md={6}>
@@ -92,7 +92,7 @@ const Banner = () => {
               </Row>
             </Col>
 
-            <Col xs={3} md={2}>
+            <Col xs={2.5} md={1.5}>
               <BannerImg src={bannerImg6} alt="" />
             </Col>
           </Row>
@@ -113,9 +113,11 @@ const Banner = () => {
           </Row>
         </BannerTopPart>
 
+        
+
         <BannerBottomPart>
           <Row gutterWidth={6}>
-            <Col md={2} className="d-none">
+            <Col md={1.5} className="d-none">
               <Sticky
                 enabled={true}
                 top={81}
@@ -125,7 +127,7 @@ const Banner = () => {
                 <CategoriesCard />
               </Sticky>
             </Col>
-            <Col xs={6} md={4}>
+            <Col xs={6} md={4.5}>
               <BannerImg src={bannerImg7} className="bannerImg1" alt="" />
               <TextAboveBannerImg>
                 <h3>100% NATURAL</h3>
@@ -134,7 +136,7 @@ const Banner = () => {
                 </h1>
               </TextAboveBannerImg>
             </Col>
-            <Col xs={6} md={4}>
+            <Col xs={6} md={4.5}>
               <CustomBannerImgTwo
                 src={bannerImg8}
                 className="bannerImg1"
@@ -146,7 +148,7 @@ const Banner = () => {
                 alt=""
               />
             </Col>
-            <Col md={2} className="d-none">
+            <Col md={1.5} className="d-none">
               <Sticky enabled={true} top={81} bottomBoundary="#testimonials">
                 <MenuItems />
               </Sticky>

@@ -28,7 +28,7 @@ export const CategoriesCardContainer = styled.div`
   }
 
   p {
-    font-size: 16px;
+    font-size: 14px;
     border-bottom: 1px solid #fff;
     padding: 4% 0%;
     margin-top: 5%;

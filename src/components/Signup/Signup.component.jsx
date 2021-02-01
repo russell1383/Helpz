@@ -43,7 +43,11 @@ const SignupContent = () => {
     setNum(data.phone);
 
     axios
-      .post("https://mudee.shop/eCommerce/api/register", data)
+      .post("https://mudee.shop/eCommerce/api/register", data, {
+        headers: {
+          'accept': 'application/json',
+      },
+      })
       .then((response) => {
         if (response.data.errors) {
           if (response.data.errors.phone) {
