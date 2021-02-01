@@ -4,7 +4,7 @@ import Home from "./pages/Home/Home.page";
 import { createContext, useState } from "react";
 import Login from "./pages/Login/Login.page";
 import ViewCart from "./pages/ViewCart/ViewCart.page";
-import  ProductInfo  from "./pages/ProductInfo/ProductInfo.page";
+import ProductInfo from "./pages/ProductInfo/ProductInfo.page";
 import NotFound from "./pages/NotFound/NotFound.page";
 import Offer from "./pages/Offer/Offer.page";
 import Signup from "./pages/Signup/Signup.page";
@@ -20,14 +20,14 @@ function App() {
     phone: "",
     name: "",
     email: "",
-    password:""
+    password: "",
   });
   const [addToCart, setAddToCart] = useState([]);
 
   return (
     <UserContext.Provider
       value={{
-        value: [loggedInUser, setLoggedInUser], 
+        value: [loggedInUser, setLoggedInUser],
         value2: [addToCart, setAddToCart],
       }}
     >
@@ -47,11 +47,11 @@ function App() {
             </Route>
 
             <Route path="/products/sub-category/:subCategoryName/:subcategoryId">
-              <SubCategoryItems/>
+              <SubCategoryItems />
             </Route>
 
             <Route path="/products/child-category/:childCategoryName/:childCategoryId">
-              <ChildCategoryItems/>
+              <ChildCategoryItems />
             </Route>
 
             <Route path="/login">
@@ -59,19 +59,19 @@ function App() {
             </Route>
 
             <Route path="/Signup">
-              <Signup /> 
+              <Signup />
             </Route>
 
             <Route path="/view-cart">
-              <ViewCart/>
+              <ViewCart />
             </Route>
 
             <Route path="/offer">
-              <Offer/>
+              <Offer />
             </Route>
 
             <Route path="/test">
-              <ProductCard/>
+              <ProductCard />
             </Route>
 
             <Route exact path="/">
@@ -79,9 +79,8 @@ function App() {
             </Route>
 
             <Route exact path="*">
-              <NotFound/>
+              <NotFound />
             </Route>
-
           </Switch>
         </Router>
       </div>
