@@ -11,6 +11,7 @@ export const BannerContainer = styled.div`
   @media (max-width: 768px) {
     padding-top: 140px;
     width: 100vw;
+    padding: 0 2%;
     }
 
     @media (max-width:400px) {
@@ -54,6 +55,14 @@ export const CustomBannerImgFour = styled.img`
 export const CustomBannerImgFive = styled.img`
 width: 96vw;
 margin: 0 auto;
+padding: 1% 0.8% 1% 0;
+
+@media (max-width:490px){
+  padding: 1% 1% 1% 0;
+}
+@media (max-width:400px){
+  padding: 1% 1.5% 1% 0;
+}
 `
 
 export const TextAboveBannerImg = styled.div`

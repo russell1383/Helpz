@@ -38,6 +38,7 @@ import SearchSuggestions from "../SearchSuggestions/SearchSuggestions.component"
 import CartItems from "../CartItems/CartItems.component";
 import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "../../App";
+import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 
 const Navbar = () => {
   const { value, value2 } = useContext(UserContext);
@@ -192,25 +193,10 @@ const Navbar = () => {
             <MdSidebarItems>Logout</MdSidebarItems>
           </MdSidebar>
 
-          <MdcategoryWrap>
             <MdCategoryBar openCatergory={openCatergory}>
-              {categories.map((category, idx) => (
-                <MdCategoryItems
-                  key={idx}
-                  onMouseOver={() => handleGetSubCategories(category)}
-                >
-                  {category.name}
-                </MdCategoryItems>
-              ))}
+              <CategoriesCard></CategoriesCard>
             </MdCategoryBar>
 
-            <MdSubCategoryBar open={subCategoryOpen}>
-              {subCategories.map((item, idx) => (
-                <MdCategoryItems key={idx}>{item.name}</MdCategoryItems>
-              ))}
-              {/*  */}
-            </MdSubCategoryBar>
-          </MdcategoryWrap>
 
           <MdSearchBoxWrap>
             <MdSearchBox>
@@ -220,7 +206,7 @@ const Navbar = () => {
                 onClick={handleShowSearchSuggestions}
               />
               <div>
-                <FontAwesomeIcon icon={faSearch} />
+                <FontAwesomeIcon icon={faSearch} /> 
               </div>
             </MdSearchBox>
             <MdSearchSuggestionsContainer open={showSearchSuggest}>

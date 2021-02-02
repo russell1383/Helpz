@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProductImages = styled.img`
-  width: 63vw;
+width: 71.5vw;
   display: block;
   margin: 5% auto;
   font-family: "Roboto", sans-serif;

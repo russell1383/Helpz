@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const ProductContainerWrap = styled.div`
-  width: 63vw;
+  width: 71.5vw;
   margin: 0 auto;
   position: relative;
-  @media (max-width: 560px) {
+  @media (max-width: 768px) {
     width: 100%;
+    padding: 0 3%;
   }
 
   h2 {

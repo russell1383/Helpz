@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CategoriesCardContainerWrap = styled.div`
   position: relative;
-`;
+  `;
 
 export const CategoriesCardContainer = styled.div`
   width: 100%;
@@ -23,9 +23,7 @@ export const CategoriesCardContainer = styled.div`
     }
   }
 
-  @media (max-width: 752px) {
-    display: none;
-  }
+ 
 
   p {
     font-size: 14px;
@@ -52,6 +50,11 @@ export const SubCatergoriesWrap = styled.div`
   height: 100%;
   width: 200%;
   /* overflow: scroll; */
+
+  
+@media (max-width:768px){
+ width:130%;
+}
 `;
 
 export const SubCategories = styled.div`
@@ -70,10 +73,18 @@ padding: 5%;
 
 h4{
 padding: 5% 0;
+
+@media (max-width:768px){
+  font-size:12px; 
+}
 }
 
 p{
 font-size: 13px;
 padding: 2% 0;
+
+@media (max-width:768px){
+  font-size:9px; 
+}
 }
 `;

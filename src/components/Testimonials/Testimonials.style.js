@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const TestimonialsContainer = styled.div`
-width: 63vw;
+width: 71.5vw;
 margin:0 auto;
 padding: 100px 0;
-@media (max-width: 560px) {
-    width: 95vw;
+@media (max-width: 768px) {
+    width: 94vw;
   }
 
 img{

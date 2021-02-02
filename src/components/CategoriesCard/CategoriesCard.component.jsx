@@ -9,7 +9,7 @@ import {
   SubCatergoriesWrap,
 } from "./CartegoriesCard.style";
 
-const CategoriesCard = () => {
+const CategoriesCard = ({d}) => {
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
   const [open, setOpen] = useState(false);

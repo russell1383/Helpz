@@ -159,7 +159,7 @@ export const MdNavbarContainer = styled.div`
     display: flex;
     flex-direction: column;
     z-index: 30;
-    padding: 0 5%;
+    padding: 0 3%;
   }
 `;
 
@@ -295,9 +295,6 @@ export const MdSidebarItems = styled.h6`
 
 // -----------------CategoryBar on Medium Device-----------------//
 
-export const MdcategoryWrap = styled.div`
-  position: relative;
-`;
 
 export const MdCategoryBar = styled.div`
   display: none;
@@ -310,8 +307,7 @@ export const MdCategoryBar = styled.div`
     background: #44a72c;
     z-index: 40;
     position: absolute;
-    padding: 2% 3%;
-    top: 50px;
+    top: 125px;
   }
 `;
 
