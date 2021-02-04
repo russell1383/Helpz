@@ -31,12 +31,13 @@ export const productData = [
     price: 20,
     img: "https://i.ibb.co/J7sQMvR/product-4.png",
   },
-  // {
-  //   name: "Capsicum - Green",
-  //   offer: "25% OFF",
-  //   quantity: "1kg",
-  //   price: "20 tk",
-  //   img: "https://i.ibb.co/bmh2KPQ/product-5.png",
-  //
-  // },
+  {
+    id:5,
+    name: "Capsicum",
+    offer: "25% OFF",
+    quantity: 1,
+    price: 20 ,
+    img: "https://i.ibb.co/bmh2KPQ/product-5.png",
+  
+  },
 ];

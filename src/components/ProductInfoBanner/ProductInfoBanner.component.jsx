@@ -70,7 +70,6 @@ const ProductInfoBanner = () => {
 
 
 
-  console.log(product);
 
   return (
     <>

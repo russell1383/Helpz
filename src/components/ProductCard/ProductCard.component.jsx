@@ -13,16 +13,21 @@ import {
   CardLabel,
 } from "./ProductCard.style";
 
-const ProductCard = () => {
+const ProductCard = ({ name, img, price, rewardPoint }) => {
   return (
     <>
-          <ProductCardContainer>
-              <CardLabel>20% <br/> off</CardLabel>
-        <img src={img} alt="" />
+      <ProductCardContainer>
+        <CardLabel>
+          20% <br /> off
+        </CardLabel>
+        <img
+          src={`https://mudee.shop/eCommerce/assets/images/products/${img}`}
+          alt=""
+        />
         <CardInfo>
           <CartTextWrap>
             <p>Fresh</p>
-            <h3>Onion</h3>
+            <h3>{name.substring(0,name.indexOf(' '))}</h3>
             <p>1 kg</p>
           </CartTextWrap>
           <CartTextWrap>
@@ -30,12 +35,12 @@ const ProductCard = () => {
             <h6>
               <del>30 tk</del>
             </h6>
-            <h5>30 tk</h5>
+            <h5>{price} tk</h5>
           </CartTextWrap>
         </CardInfo>
 
         <RewardPointText>
-          Buy this & get <span>20 </span>point
+          Buy this & get <span>{rewardPoint} </span>point
         </RewardPointText>
 
         <CardInfo>

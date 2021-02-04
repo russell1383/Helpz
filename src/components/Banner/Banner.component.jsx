@@ -8,6 +8,7 @@ import {
   BannerTopPart,
   CustomBannerImgFive,
   CustomBannerImgFour,
+  CustomBannerImgFourRight,
   CustomBannerImgThree,
   CustomBannerImgTwo,
   TextAboveBannerImg,
@@ -32,7 +33,6 @@ const Banner = () => {
   const [productId, setProductId] = useState({});
   const [open, setOpen] = useState(false);
 
-  // console.log(productId);
 
   useEffect(() => {
     fetch("https://mudee.shop/eCommerce/api/allcategories")
@@ -84,7 +84,7 @@ const Banner = () => {
                   <CustomBannerImgFour src={bannerImg4} />
                 </Col>
                 <Col md={6}>
-                  <CustomBannerImgFour
+                  <CustomBannerImgFourRight
                     src={bannerImg5}
                     className="left-space"
                   />

@@ -16,12 +16,7 @@ import ProductCard from "./components/ProductCard/ProductCard.component";
 export const UserContext = createContext();
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState({
-    phone: "",
-    name: "",
-    email: "",
-    password: "",
-  });
+  const [loggedInUser, setLoggedInUser] = useState({});
   const [addToCart, setAddToCart] = useState([]);
 
   return (

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const NavbarContainerWrap = styled.div`
   position: relative;
+
 `;
 
 export const NavbarContainer = styled.div`
@@ -133,11 +134,12 @@ border: 1px solid lightgray;
 `
 
 export const ShoppingCartContainer = styled.div`
-  width: 60%;
+  width: 40%;
   position: fixed;
   top: 75px;
   right: 1.8%;
   z-index: 50;
+ 
 
   @media (max-width: 768px) {
     display: none;

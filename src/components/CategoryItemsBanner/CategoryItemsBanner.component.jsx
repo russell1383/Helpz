@@ -13,17 +13,16 @@ import {
 } from "./CategoryItemsBanner.style";
 
 const CategoryItemsBanner = ({ id, name }) => {
-  const [product, setProduct] = useState([]);
+  const [products, setProducts] = useState([]);
   useEffect(() => {
     if (id) {
       let data = { category_id: id };
       axios
         .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
-        .then((response) => setProduct(response.data));
+        .then((response) => setProducts(response.data));
     }
   }, [id]);
 
-  console.log(product);
   return (
     <>
       <BannerContainer>
@@ -44,16 +43,15 @@ const CategoryItemsBanner = ({ id, name }) => {
               <p>HOME > {name}</p>
               <h2>{name}</h2>
               <CategoryProductsContainer>
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                {products.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    name={product.name}
+                    img={product.photo}
+                    price={product.price}
+                    rewardPoint={product.reward_point}
+                  />
+                ))}
               </CategoryProductsContainer>
               <ShowMoreButton>Show More</ShowMoreButton>
             </CategoryItemsContainer>

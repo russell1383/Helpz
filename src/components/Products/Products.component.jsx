@@ -57,21 +57,21 @@ const handleQuantity = (id) => {
     }
   };
 
-  console.log(addToCart);
+
 
   var settings = {
     focusOnSelect: false,
     dots: false,
     infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 5,
+    slidesToScroll: 5,
     autoplay: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 4,
+          slidesToScroll: 4,
         },
       },
       {

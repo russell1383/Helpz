@@ -5,7 +5,7 @@ export const ProductGalleryContainer = styled.div`
   margin: 0 auto;
   padding: 100px 0;
   font-family: "Roboto", sans-serif;
-  @media (max-width: 560px) {
+  @media (max-width: 768px) {
     width: 95vw;
   }
 `;

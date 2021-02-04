@@ -30,7 +30,6 @@ const CategoriesCard = ({d}) => {
   };
 
   const handleCategoryItem = (item) => {
-    console.log(item.id);
     history.push(`/products/category/${item.id}`);
   };
 

@@ -50,6 +50,12 @@ export const CustomBannerImgThree = styled.img`
 export const CustomBannerImgFour = styled.img`
   height: 109%;
   width: 100%;
+  padding-right:1%;
+`;
+export const CustomBannerImgFourRight = styled.img`
+  height: 109%;
+  width: 100%;
+  padding-left:1%;
 `;
 
 export const CustomBannerImgFive = styled.img`

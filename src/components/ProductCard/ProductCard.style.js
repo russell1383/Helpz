@@ -6,12 +6,17 @@ export const ProductCardContainer = styled.div`
   background: #ffffff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   position: relative;
+    overflow: hidden;
 
   img {
     width: 70%;
     margin: 0 auto;
     display: block;
-    padding-top:5%;
+    padding-top: 5%;
+    transition: transform 0.5s ease;
+    &:hover {
+      transform: scale(1.3);
+    }
   }
 
   p,
@@ -21,16 +26,16 @@ export const ProductCardContainer = styled.div`
     font-family: "UniNeueRegular";
   }
 
-  @media (max-width: 1280px){
+  @media (max-width: 1280px) {
     width: 24%;
   }
-  @media (max-width: 1280px){
+  @media (max-width: 1280px) {
     width: 49%;
   }
 `;
 
 export const CardLabel = styled.div`
-position: absolute;
+  position: absolute;
   width: 40px;
   height: 65px;
   padding-left: 8px;
@@ -48,7 +53,7 @@ position: absolute;
     width: 30px;
     height: 40px;
   }
-`
+`;
 
 export const CardInfo = styled.div`
   display: flex;
