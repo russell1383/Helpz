@@ -22,6 +22,7 @@ import {
 import LoginModal from "../LoginModal/LoginModal.component";
 import { UserContext } from "../../App";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const ViewCartPaymentOptions = () => {
   const { value, value2 } = useContext(UserContext);
@@ -29,7 +30,7 @@ const ViewCartPaymentOptions = () => {
   const [addToCart, setAddToCart] = value2;
   const [pickup, setPickup] = useState();
   const [open, setOpen] = useState(false);
-
+  const history = useHistory();
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
@@ -38,14 +39,14 @@ const ViewCartPaymentOptions = () => {
     setPickup(e.target.value);
   };
 
-  const handleOrderReq = () => {
-    if (loggedInUser.phone) {
+  const handleOrderReq = (info) => {
+    if (loggedInUser.id || info.id) {
       let orderInfo = {
-        user_id: loggedInUser.id,
-        customer_email: loggedInUser.email,
-        customer_name: loggedInUser.name,
-        customer_phone: loggedInUser.phone,
-        method: "Amarpay",
+        user_id: loggedInUser.id || info.id,
+        customer_email: loggedInUser.email || info.email,
+        customer_name: loggedInUser.name || info.name,
+        customer_phone: loggedInUser.phone || info.phone,
+        paymentMethod: "Amarpay",
         shipping: "pickup",
         pickup_location: pickup,
         ordered_products: [...addToCart],
@@ -54,15 +55,13 @@ const ViewCartPaymentOptions = () => {
         payment_status: "",
         cupon_code: "",
       };
-
-        axios
-          .post("https://mudee.shop/eCommerce/api/order/store", orderInfo)
-          .then((response) => {
-            console.log(response);
-            setOpen(false);
-          });
-
-      console.log(orderInfo);
+      axios
+        .post("https://mudee.shop/eCommerce/api/order/store", orderInfo)
+        .then((response) => {
+          console.log(response);
+          setOpen(false);
+          history.push("/invoice")
+        });
     } else {
       setOpen(true);
     }
@@ -78,8 +77,8 @@ const ViewCartPaymentOptions = () => {
           setLoggedInUser(response.data);
           // setError("");
 
-          handleOrderReq();
-          console.log("hello")
+          handleOrderReq(response.data);
+          console.log("hello");
         }
         e.target.reset();
       });
@@ -101,7 +100,7 @@ const ViewCartPaymentOptions = () => {
         </DiscountContainer>
 
         <h3>Pickup Point :</h3>
-        <PickupOptions onChange={handleChange}>
+        <PickupOptions onChange={handleChange} required>
           <option value="">----Select a pick point----</option>
           <option value="Dhanmondi Branch">Dhanmondi Branch</option>
         </PickupOptions>

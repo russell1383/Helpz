@@ -12,6 +12,7 @@ import CategoryItems from "./pages/CategoryItems/CategoryItems.page";
 import SubCategoryItems from "./pages/SubCategoryItems/SubCategoryItems.page";
 import ChildCategoryItems from "./pages/ChildCategoryItems/ChildCategoryItems.page";
 import ProductCard from "./components/ProductCard/ProductCard.component";
+import Invoice from "./pages/Invoice/Invoice";
 
 export const UserContext = createContext();
 
@@ -69,7 +70,11 @@ function App() {
               <ProductCard />
             </Route>
 
-            <Route exact path="/">
+            <Route path="/invoice">
+              <Invoice />
+            </Route>
+
+            <Route exact path="/">  
               <Home />
             </Route>
 

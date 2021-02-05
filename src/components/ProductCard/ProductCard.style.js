@@ -6,7 +6,7 @@ export const ProductCardContainer = styled.div`
   background: #ffffff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   position: relative;
-    overflow: hidden;
+  overflow: hidden;
 
   img {
     width: 70%;
