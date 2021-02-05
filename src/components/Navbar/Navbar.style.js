@@ -110,6 +110,10 @@ export const ShoppingCart = styled.div`
       padding-top: 3px;
     }
   }
+
+  h4{
+    font-size: 14px;
+  }
 `;
 
 export const ItemsOnCart = styled.div`
