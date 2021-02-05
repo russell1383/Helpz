@@ -37,8 +37,9 @@ const LoginComponent = () => {
         if (response.data.errors) {
           setError(response.data.errors[0]);
         } else {
-          setLoggedInUser(response.data)
+          setLoggedInUser(response.data);
           setError("");
+          history.goBack();
         }
         e.target.reset();
       });

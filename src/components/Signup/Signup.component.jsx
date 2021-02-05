@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
@@ -17,10 +17,12 @@ import helpzLogo from "../../assets/icons/logo-green.png";
 import googleIcon from "../../assets/icons/Google.png";
 import fbIcon from "../../assets/icons/facebook.png";
 import axios from "axios";
+import { UserContext } from "../../App";
 
 const SignupContent = () => {
   const { register, handleSubmit, watch, errors } = useForm();
-
+  const { value, value2 } = useContext(UserContext);
+  const [loggedInUser, setLoggedInUser] = value;
   const history = useHistory();
   const [signUp, setSignUp] = useState(true);
   const [proceedOTP, setProceedOTP] = useState(false);
@@ -60,6 +62,7 @@ const SignupContent = () => {
           setSignUp(false);
           setProceedOTP(true);
           e.target.reset();
+         
         }
       });
   };
@@ -78,8 +81,10 @@ const SignupContent = () => {
         } else {
           console.log("Regestered Successfully");
           console.log(response);
+          setLoggedInUser(response.data);
           setError("");
           setOtp([...otp.map((v) => "")]);
+          history.goBack();
         }
       });
   };

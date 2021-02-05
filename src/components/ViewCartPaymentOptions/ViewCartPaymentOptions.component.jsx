@@ -78,7 +78,6 @@ const ViewCartPaymentOptions = () => {
           // setError("");
 
           handleOrderReq(response.data);
-          console.log("hello");
         }
         e.target.reset();
       });
