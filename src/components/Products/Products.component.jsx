@@ -14,6 +14,7 @@ import {
   RightArrowButton,
   PickupTimigBox,
   TimeBox,
+  ProductWrap,
 } from "./Products.style";
 import LeftArrow from "../../assets/icons/left-arrow.png";
 import RightArrow from "../../assets/icons/right-arrow.png";
@@ -45,8 +46,7 @@ const Products = ({ header, subheader }) => {
       .then((response) => setProducts(response.data));
   }, []);
 
-
-const handleQuantity = (id) => {
+  const handleQuantity = (id) => {
     if (addToCart.find((product) => product.id === id)) {
       const product = addToCart.find((product) => product.id === id);
       product.totalQuantity = product.totalQuantity + 1;
@@ -60,8 +60,6 @@ const handleQuantity = (id) => {
       }
     }
   };
-
-
 
   var settings = {
     focusOnSelect: false,
@@ -95,7 +93,7 @@ const handleQuantity = (id) => {
       },
     ],
   };
-  console.log(addToCart)
+  console.log(addToCart);
 
   return (
     <>
@@ -112,7 +110,7 @@ const handleQuantity = (id) => {
 
         <Slider {...settings}>
           {products.map((product, idx) => (
-            <div>
+            <ProductWrap>
               <ProductBox key={idx}>
                 <OffLabel>25% Off</OffLabel>
                 <ProductImg
@@ -120,11 +118,15 @@ const handleQuantity = (id) => {
                   // onClick={() => history.push(`/category/${product.name}`)}
                 ></ProductImg>
                 <ProductInfo
-                  // onClick={() => history.push(`/category/${product.name}`)}
+                // onClick={() => history.push(`/category/${product.name}`)}
                 >
                   <div>
                     <p>Fresh</p>
-                    <h3>{product.name.substring(0,product.name.indexOf(' '))}</h3>
+                    <h3>
+                      {product.name
+                        && product.name.substring(0, product.name.indexOf(" "))
+                        || "Name"}{" "}
+                    </h3>
                     <p>1kg</p>
                   </div>
                   <div>
@@ -171,7 +173,7 @@ const handleQuantity = (id) => {
                   </button>
                 </ProductButtonContainer>
               </ProductBox>
-            </div>
+            </ProductWrap>
           ))}
         </Slider>
       </ProductContainerWrap>

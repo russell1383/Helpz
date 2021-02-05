@@ -89,6 +89,8 @@ export const ProductBox = styled.div`
       font-size: 8px;
     }
   }
+
+ 
 `;
 export const OffLabel = styled.div`
   position: absolute;
@@ -110,6 +112,11 @@ export const OffLabel = styled.div`
     height: 40px;
   }
 `;
+
+export const ProductWrap = styled.div`
+display:flex;
+padding-right:3%; 
+`
 
 export const ProductImg = styled.img`
   width: 80%;
