@@ -19,12 +19,14 @@ export const UserContext = createContext();
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
   const [addToCart, setAddToCart] = useState([]);
+  const [pdInfo,setPdInfo] = useState({}) 
 
   return (
     <UserContext.Provider
       value={{
         value: [loggedInUser, setLoggedInUser],
         value2: [addToCart, setAddToCart],
+        value3:[pdInfo,setPdInfo]
       }}
     >
       <div className="App">

@@ -112,10 +112,10 @@ const handleQuantity = (id) => {
                 <OffLabel>25% Off</OffLabel>
                 <ProductImg
                   src={product.img}
-                  onClick={() => history.push(`/category/${product.name}`)}
+                  // onClick={() => history.push(`/category/${product.name}`)}
                 ></ProductImg>
                 <ProductInfo
-                  onClick={() => history.push(`/category/${product.name}`)}
+                  // onClick={() => history.push(`/category/${product.name}`)}
                 >
                   <div>
                     <p>Fresh</p>

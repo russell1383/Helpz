@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { UserContext } from "../../App";
 import img from "../../assets/images/product-images/product-1.png";
 import {
   CardButtonWrap,
@@ -14,21 +16,34 @@ import {
 } from "./ProductCard.style";
 
 const ProductCard = ({ name, img, price, rewardPoint }) => {
+
+  const { value, value2,value3 } = useContext(UserContext);
+  const [pdInfo, setPdInfo] = value3;
+  const history = useHistory();
+
+  const handlePdClick = () => {
+    setPdInfo({ name, img, price, rewardPoint })
+    
+    if (pdInfo) {
+      history.push(`/category/pd`)
+    }
+  }
+console.log(pdInfo)
   return (
     <>
-      <ProductCardContainer>
+      <ProductCardContainer onClick={handlePdClick}>
         <CardLabel>
           20% <br /> off
         </CardLabel>
         <img
           src={`https://mudee.shop/eCommerce/assets/images/products/${img}`}
-          alt=""
+          alt="" 
         />
         <CardInfo>
           <CartTextWrap>
             <p>Fresh</p>
-            <h3>{name.substring(0,name.indexOf(' '))}</h3>
-            <p>1 kg</p>
+            <h3>{name.substring(0,name.indexOf(' '))}</h3> 
+            <p>1 kg</p> 
           </CartTextWrap>
           <CartTextWrap>
             <h6>Price</h6>

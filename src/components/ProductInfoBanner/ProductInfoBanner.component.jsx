@@ -29,15 +29,16 @@ import { productData } from "../../productData/productData";
 const ProductInfoBanner = () => {
   const { productName } = useParams();
   const [product, setProduct] = useState({});
-  const { value, value2 } = useContext(UserContext);
+  const { value, value2,value3 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
+  const [pdInfo, setPdInfo] = value3;
 
-  useEffect(() => {
-    const pd = productData.find(
-      (item) => item.name.toLowerCase() === productName.toLowerCase()
-    );
-    setProduct(pd);
-  }, [productName]);
+  // useEffect(() => {
+  //   const pd = productData.find(
+  //     (item) => item.name.toLowerCase() === productName.toLowerCase()
+  //   );
+  //   setProduct(pd);
+  // }, [productName]);
 
   
 
@@ -69,24 +70,26 @@ const ProductInfoBanner = () => {
   }
 
 
-
+console.log(pdInfo)
 
   return (
     <>
       <ProductBannerContainer>
         <Row nogutter>
-          <Col md={2} className="d-none">
-            <Sticky
-              enabled={true}
-              top={81}
-              bottomBoundary="#more-details"
-              className="category_card"
-            >
-              <CategoriesCard />
-            </Sticky>
-          </Col>
+          
 
-          <Col md={8}>
+          <Col md={1.5} className="d-none">
+              <Sticky
+                enabled={true}
+                top={81}
+                bottomBoundary="#more-details"
+                className="category_card"
+              >
+                <CategoriesCard />
+              </Sticky>
+            </Col>
+
+          <Col md={9}>
             <ProductInfoContainer>
               <p className="bread_crumb">
                 HOME > FRUITS & VEGETABLES > FRESH VEGETABLES > POTATO, ONION &
@@ -96,7 +99,7 @@ const ProductInfoBanner = () => {
               <ProductInfoBox>
                 <ProductInfoBoxImgContainerWrap>
                   <ProductInfoBoxImgContainer>
-                    <img src={product.img} alt="" />
+                    <img src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.img}`} alt="" />
                     <MdProductInfoOffLabel>
                       {" "}
                       25% <br /> Off
@@ -104,11 +107,11 @@ const ProductInfoBanner = () => {
                   </ProductInfoBoxImgContainer>
 
                   <ProductSubImgContainer>
-                    <img src={product.img} alt="" />
-                    <img src={product.img} alt="" />
-                    <img src={product.img} alt="" />
-                    <img src={product.img} alt="" />
-                    <img src={product.img} alt="" />
+                    <img src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.img}`} alt="" />
+                    <img src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.img}`} alt="" />
+                    <img src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.img}`} alt="" />
+                    <img src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.img}`} alt="" />
+                    <img src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.img}`} alt="" />
 
                     <div className="left_arrow">
                       <img src={leftArrow} className="arrow_icon" alt="" />
@@ -120,21 +123,21 @@ const ProductInfoBanner = () => {
                 </ProductInfoBoxImgContainerWrap>
                 <ProductInfo>
                   <p>Fresh</p>
-                  <h3>{product.name}</h3>
+                  <h3>{pdInfo.name}</h3>
                   <p>1 kg</p>
                   <p className="d-none">
                     Price : <del>30Tk</del>
                   </p>
-                  <h3 className="price_tag d-none">{product.price}Tk</h3>
-                  <h3>Fresh Onion Offer</h3>
+                  <h3 className="price_tag d-none">{pdInfo.price}Tk</h3>
+                  <h3>Fresh {pdInfo.name} Offer</h3>
                   <p>
-                    Fresh Onion Offer If You buy 5 kg , we will provide 100
+                    Fresh {pdInfo.name} Offer If You buy 5 kg , we will provide 100
                     Loyalty Reward as gift
                   </p>
 
                   <RewardContainer>
                     <p>Buy This & get reward : </p>
-                    <div>20</div>
+                    <div>{pdInfo.rewardPoint}</div>
                   </RewardContainer>
                   <p>Pickup timeing : </p>
                   <ProductInfoPickupTimingBox>
@@ -148,10 +151,10 @@ const ProductInfoBanner = () => {
                     <div>
                       <div className="quantity_box">
                         <button onClick={()=>quantityIncrement(product.id)}>+</button>
-                        {product.totalQuantity
+                        {/* {product.totalQuantity
                           ? product.totalQuantity
-                          : product.quantity}{" "}
-                        kg
+                          : product.quantity} */}
+                        1kg
                         <button onClick={()=>quantityDecrement(product.id)}>-</button>
                       </div>
 
@@ -204,11 +207,11 @@ const ProductInfoBanner = () => {
             </ProductInfoContainer>
           </Col>
 
-          <Col md={2} className="d-none">
-            <Sticky enabled={true} top={81} bottomBoundary="#more-details">
-              <MenuItems />
-            </Sticky>
-          </Col>
+          <Col md={1.5} className="d-none">
+              <Sticky enabled={true} top={81} bottomBoundary="#testimonials">
+                <MenuItems />
+              </Sticky>
+            </Col>
         </Row>
       </ProductBannerContainer>
     </>
