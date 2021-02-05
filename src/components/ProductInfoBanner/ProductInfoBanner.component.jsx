@@ -104,26 +104,12 @@ const ProductInfoBanner = () => {
                   </ProductInfoBoxImgContainer>
 
                   <ProductSubImgContainer>
-                    <img
-                      src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
-                      alt=""
-                    />
-                    <img
-                      src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
-                      alt=""
-                    />
-                    <img
-                      src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
-                      alt=""
-                    />
-                    <img
-                      src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
-                      alt=""
-                    />
-                    <img
-                      src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
-                      alt=""
-                    />
+                    {[1, 2, 3, 4, 5].map((item, idx) => (
+                      <img
+                        src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
+                        alt=""
+                      />
+                    ))}
 
                     <div className="left_arrow">
                       <img src={leftArrow} className="arrow_icon" alt="" />
