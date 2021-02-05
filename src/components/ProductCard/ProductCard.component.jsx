@@ -15,47 +15,52 @@ import {
   CardLabel,
 } from "./ProductCard.style";
 
-const ProductCard = ({ name, img, price, rewardPoint }) => {
-
-  const { value, value2,value3 } = useContext(UserContext);
+const ProductCard = ({
+  productInfo,
+  handleAddToCart,
+  handleQuantity
+}) => {
+  const { value, value2, value3 } = useContext(UserContext);
+  const [addToCart, setAddToCart] = value2;
   const [pdInfo, setPdInfo] = value3;
   const history = useHistory();
 
   const handlePdClick = () => {
-    setPdInfo({ name, img, price, rewardPoint })
-    
+    setPdInfo(productInfo);
+
     if (pdInfo) {
-      history.push(`/category/pd`)
+      history.push(`/category/pd`);
     }
-  }
-console.log(pdInfo)
+  };
+
   return (
     <>
-      <ProductCardContainer onClick={handlePdClick}>
+      <ProductCardContainer>
         <CardLabel>
           20% <br /> off
         </CardLabel>
         <img
-          src={`https://mudee.shop/eCommerce/assets/images/products/${img}`}
-          alt="" 
+          src={`https://mudee.shop/eCommerce/assets/images/products/${productInfo.photo}`}
+          alt=""
+          onClick={handlePdClick}
         />
-        <CardInfo>
+        <CardInfo onClick={handlePdClick}>
           <CartTextWrap>
             <p>Fresh</p>
-            <h3>{name.substring(0,name.indexOf(' '))}</h3> 
-            <p>1 kg</p> 
+            <h3>{productInfo.name.substring(0, productInfo.name.indexOf(" "))}</h3>
+            <p>1 kg</p>
           </CartTextWrap>
           <CartTextWrap>
             <h6>Price</h6>
             <h6>
               <del>30 tk</del>
             </h6>
-            <h5>{price} tk</h5>
+            <h5>{productInfo.price} tk</h5>
           </CartTextWrap>
         </CardInfo>
 
         <RewardPointText>
-          Buy this & get <span>{rewardPoint} </span>point
+          Buy this & get <span>{productInfo.reward_point} </span>point
         </RewardPointText>
 
         <CardInfo>
@@ -70,8 +75,20 @@ console.log(pdInfo)
 
         <CardFooterText>Express Delivery: Today 2:00PM - 4:00PM</CardFooterText>
         <CardButtonWrap>
-          <button className="addToCart">Add to cart</button>
-          <button className="plus">+</button>
+          <button
+            className="addToCart"
+            disabled={
+              addToCart.length &&
+              addToCart.find((p) => p.id === productInfo.id) &&
+              true
+            }
+            onClick={() => handleAddToCart(productInfo)}
+          >
+            {addToCart.length && addToCart.find((p) => p.id === productInfo.id)
+              ? "Product Added"
+              : "Add to cart"}
+          </button>
+          <button className="plus"  onClick={() => handleQuantity(productInfo.id)}>+</button>
         </CardButtonWrap>
       </ProductCardContainer>
     </>

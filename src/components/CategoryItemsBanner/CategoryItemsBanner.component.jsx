@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "react-grid-system";
 import Sticky from "react-stickynode";
+import { UserContext } from "../../App";
 import { BannerContainer } from "../Banner/Banner.style";
 import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 import MenuItems from "../MenuItems/MenuItems.component";
@@ -14,6 +15,8 @@ import {
 
 const CategoryItemsBanner = ({ id, name }) => {
   const [products, setProducts] = useState([]);
+  const { value, value2 } = useContext(UserContext);
+  const [addToCart, setAddToCart] = value2;
   useEffect(() => {
     if (id) {
       let data = { category_id: id };
@@ -22,6 +25,31 @@ const CategoryItemsBanner = ({ id, name }) => {
         .then((response) => setProducts(response.data));
     }
   }, [id]);
+
+  const handleAddToCart = (item) => {
+    console.log(item)
+    let newItem = [...addToCart, item];
+    item.price = parseInt(item.price);
+    item.quantity = 1;
+    item.totalPrice = item.price;
+    item.totalQuantity = item.quantity;
+    setAddToCart(newItem);
+  };
+
+  const handleQuantity = (id) => {
+    if (addToCart.find((product) => product.id === id)) {
+      const product = addToCart.find((product) => product.id === id);
+      product.totalQuantity = product.totalQuantity + 1;
+      product.totalPrice = product.price * product.totalQuantity;
+
+      if (addToCart.find((item) => item.id === product.id)) {
+        var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
+        var newItems = [...addToCart];
+        newItems[objectIndex] = product;
+        setAddToCart(newItems);
+      }
+    }
+  };
 
   return (
     <>
@@ -46,10 +74,10 @@ const CategoryItemsBanner = ({ id, name }) => {
                 {products.map((product) => (
                   <ProductCard
                     key={product.id}
-                    name={product.name}
-                    img={product.photo}
-                    price={product.price}
                     rewardPoint={product.reward_point}
+                    productInfo={product}
+                    handleAddToCart={handleAddToCart}
+                    handleQuantity={handleQuantity}
                   />
                 ))}
               </CategoryProductsContainer>

@@ -29,7 +29,7 @@ import { productData } from "../../productData/productData";
 const ProductInfoBanner = () => {
   const { productName } = useParams();
   const [product, setProduct] = useState({});
-  const { value, value2,value3 } = useContext(UserContext);
+  const { value, value2, value3 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
   const [pdInfo, setPdInfo] = value3;
 
@@ -40,23 +40,20 @@ const ProductInfoBanner = () => {
   //   setProduct(pd);
   // }, [productName]);
 
-  
-
-
   const quantityIncrement = (id) => {
     if (addToCart.find((item) => item.id === id)) {
       const product = addToCart.find((product) => product.id === id);
       product.totalQuantity = product.totalQuantity + 1;
       product.totalPrice = product.price * product.totalQuantity;
       var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
-        var newItems = [...addToCart];
-        newItems[objectIndex] = product;
-        setAddToCart(newItems);
+      var newItems = [...addToCart];
+      newItems[objectIndex] = product;
+      setAddToCart(newItems);
     }
-  }
+  };
 
   const quantityDecrement = (id) => {
-    if (addToCart.find((item) => item.id === id)) { 
+    if (addToCart.find((item) => item.id === id)) {
       const product = addToCart.find((product) => product.id === id);
       if (product.totalQuantity > 1) {
         product.totalQuantity = product.totalQuantity - 1;
@@ -67,27 +64,24 @@ const ProductInfoBanner = () => {
         setAddToCart(newItems);
       }
     }
-  }
+  };
 
-
-console.log(pdInfo)
+  console.log(pdInfo);
 
   return (
     <>
       <ProductBannerContainer>
         <Row nogutter>
-          
-
           <Col md={1.5} className="d-none">
-              <Sticky
-                enabled={true}
-                top={81}
-                bottomBoundary="#more-details"
-                className="category_card"
-              >
-                <CategoriesCard />
-              </Sticky>
-            </Col>
+            <Sticky
+              enabled={true}
+              top={81}
+              bottomBoundary="#more-details"
+              className="category_card"
+            >
+              <CategoriesCard />
+            </Sticky>
+          </Col>
 
           <Col md={9}>
             <ProductInfoContainer>
@@ -99,7 +93,10 @@ console.log(pdInfo)
               <ProductInfoBox>
                 <ProductInfoBoxImgContainerWrap>
                   <ProductInfoBoxImgContainer>
-                    <img src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.img}`} alt="" />
+                    <img
+                      src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
+                      alt=""
+                    />
                     <MdProductInfoOffLabel>
                       {" "}
                       25% <br /> Off
@@ -107,11 +104,26 @@ console.log(pdInfo)
                   </ProductInfoBoxImgContainer>
 
                   <ProductSubImgContainer>
-                    <img src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.img}`} alt="" />
-                    <img src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.img}`} alt="" />
-                    <img src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.img}`} alt="" />
-                    <img src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.img}`} alt="" />
-                    <img src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.img}`} alt="" />
+                    <img
+                      src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
+                      alt=""
+                    />
+                    <img
+                      src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
+                      alt=""
+                    />
+                    <img
+                      src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
+                      alt=""
+                    />
+                    <img
+                      src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
+                      alt=""
+                    />
+                    <img
+                      src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
+                      alt=""
+                    />
 
                     <div className="left_arrow">
                       <img src={leftArrow} className="arrow_icon" alt="" />
@@ -123,21 +135,25 @@ console.log(pdInfo)
                 </ProductInfoBoxImgContainerWrap>
                 <ProductInfo>
                   <p>Fresh</p>
-                  <h3>{pdInfo.name}</h3>
+                  <h3>{pdInfo.name.substring(0, pdInfo.name.indexOf(" "))}</h3>
                   <p>1 kg</p>
                   <p className="d-none">
                     Price : <del>30Tk</del>
                   </p>
                   <h3 className="price_tag d-none">{pdInfo.price}Tk</h3>
-                  <h3>Fresh {pdInfo.name} Offer</h3>
+                  <h3>
+                    Fresh {pdInfo.name.substring(0, pdInfo.name.indexOf(" "))}{" "}
+                    Offer
+                  </h3>
                   <p>
-                    Fresh {pdInfo.name} Offer If You buy 5 kg , we will provide 100
-                    Loyalty Reward as gift
+                    Fresh {pdInfo.name.substring(0, pdInfo.name.indexOf(" "))}{" "}
+                    Offer If You buy 5 kg , we will provide 100 Loyalty Reward
+                    as gift
                   </p>
 
                   <RewardContainer>
                     <p>Buy This & get reward : </p>
-                    <div>{pdInfo.rewardPoint}</div>
+                    <div>{pdInfo.reward_point}</div>
                   </RewardContainer>
                   <p>Pickup timeing : </p>
                   <ProductInfoPickupTimingBox>
@@ -150,12 +166,16 @@ console.log(pdInfo)
                   <ProductOrderButtonsContainer>
                     <div>
                       <div className="quantity_box">
-                        <button onClick={()=>quantityIncrement(product.id)}>+</button>
+                        <button onClick={() => quantityIncrement(product.id)}>
+                          +
+                        </button>
                         {/* {product.totalQuantity
                           ? product.totalQuantity
                           : product.quantity} */}
                         1kg
-                        <button onClick={()=>quantityDecrement(product.id)}>-</button>
+                        <button onClick={() => quantityDecrement(product.id)}>
+                          -
+                        </button>
                       </div>
 
                       <button
@@ -208,10 +228,10 @@ console.log(pdInfo)
           </Col>
 
           <Col md={1.5} className="d-none">
-              <Sticky enabled={true} top={81} bottomBoundary="#testimonials">
-                <MenuItems />
-              </Sticky>
-            </Col>
+            <Sticky enabled={true} top={81} bottomBoundary="#testimonials">
+              <MenuItems />
+            </Sticky>
+          </Col>
         </Row>
       </ProductBannerContainer>
     </>

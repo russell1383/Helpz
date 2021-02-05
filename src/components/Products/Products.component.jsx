@@ -20,6 +20,7 @@ import RightArrow from "../../assets/icons/right-arrow.png";
 import { UserContext } from "../../App";
 import { useHistory } from "react-router-dom";
 import { productData } from "../../productData/productData";
+import axios from "axios";
 
 const Products = ({ header, subheader }) => {
   const history = useHistory();
@@ -30,16 +31,19 @@ const Products = ({ header, subheader }) => {
 
   const handleAddToCart = (item) => {
     let newItem = [...addToCart, item];
+    item.price = parseInt(item.price);
+    item.quantity = 1;
     item.totalPrice = item.price;
     item.totalQuantity = item.quantity;
     setAddToCart(newItem);
   };
 
-  // useEffect(() => {
-  //   fetch("https://mudee.shop/eCommerce/api/category/electric")
-  //     .then((res) => res.json())
-  //     .then((data) => setProducts(data[2].data));
-  // }, []);
+  useEffect(() => {
+    let data = { category_id: 1 };
+    axios
+      .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
+      .then((response) => setProducts(response.data));
+  }, []);
 
 
 const handleQuantity = (id) => {
@@ -91,6 +95,7 @@ const handleQuantity = (id) => {
       },
     ],
   };
+  console.log(addToCart)
 
   return (
     <>
@@ -106,12 +111,12 @@ const handleQuantity = (id) => {
         </RightArrowButton>
 
         <Slider {...settings}>
-          {productData.map((product, idx) => (
+          {products.map((product, idx) => (
             <div>
               <ProductBox key={idx}>
                 <OffLabel>25% Off</OffLabel>
                 <ProductImg
-                  src={product.img}
+                  src={`https://mudee.shop/eCommerce/assets/images/products/${product.photo}`}
                   // onClick={() => history.push(`/category/${product.name}`)}
                 ></ProductImg>
                 <ProductInfo
@@ -119,8 +124,8 @@ const handleQuantity = (id) => {
                 >
                   <div>
                     <p>Fresh</p>
-                    <h3>{product.name.substring(0, 10)}</h3>
-                    <p>{product.quantity}kg</p>
+                    <h3>{product.name.substring(0,product.name.indexOf(' '))}</h3>
+                    <p>1kg</p>
                   </div>
                   <div>
                     <h6>Price</h6>
