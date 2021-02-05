@@ -33,12 +33,14 @@ const ProductInfoBanner = () => {
   const [addToCart, setAddToCart] = value2;
   const [pdInfo, setPdInfo] = value3;
 
-  // useEffect(() => {
-  //   const pd = productData.find(
-  //     (item) => item.name.toLowerCase() === productName.toLowerCase()
-  //   );
-  //   setProduct(pd);
-  // }, [productName]);
+  const handleAddToCart = (item) => {
+    let newItem = [...addToCart, item];
+    item.price = parseInt(item.price);
+    item.quantity = 1;
+    item.totalPrice = item.price;
+    item.totalQuantity = item.quantity;
+    setAddToCart(newItem);
+  };
 
   const quantityIncrement = (id) => {
     if (addToCart.find((item) => item.id === id)) {
@@ -152,14 +154,14 @@ const ProductInfoBanner = () => {
                   <ProductOrderButtonsContainer>
                     <div>
                       <div className="quantity_box">
-                        <button onClick={() => quantityIncrement(product.id)}>
+                        <button onClick={() => quantityIncrement(pdInfo.id)}>
                           +
                         </button>
-                        {/* {product.totalQuantity
-                          ? product.totalQuantity
-                          : product.quantity} */}
-                        1kg
-                        <button onClick={() => quantityDecrement(product.id)}>
+                        {pdInfo.totalQuantity
+                          ? pdInfo.totalQuantity
+                          : pdInfo.quantity}
+                        kg
+                        <button onClick={() => quantityDecrement(pdInfo.id)}>
                           -
                         </button>
                       </div>
@@ -167,13 +169,14 @@ const ProductInfoBanner = () => {
                       <button
                         disabled={
                           addToCart.length &&
-                          addToCart.find((p) => p.id === product.id) &&
+                          addToCart.find((p) => p.id === pdInfo.id) &&
                           true
                         }
+                        onClick={() => handleAddToCart(pdInfo)}
                       >
                         {addToCart.length &&
-                        addToCart.find((p) => p.id === product.id)
-                          ? "Product Added"
+                        addToCart.find((p) => p.id === pdInfo.id)
+                          ? "Already on Cart"
                           : "Add to cart"}
                       </button>
                     </div>
