@@ -11,6 +11,11 @@
   z-index: 50;
 }
 
+.overflow-hidden{
+  overflow: hidden;
+  transition: transform 0.5s ease;
+}
+
 @media (max-width: 768px) {
   .d-none {
     display: none !important;

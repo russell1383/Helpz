@@ -38,3 +38,11 @@ export const ShowMoreButton = styled.button`
     border: none;
     outline: none;
 `
+
+export const LoaderGif = styled.img`
+width:18%;
+margin: 0 auto;
+display:block;
+padding:12% 0;
+
+`

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useDetectClickOutside } from 'react-detect-click-outside';
 import {
   ProductRowWrap,
   ProductRow,
@@ -12,6 +13,17 @@ import { UserContext } from "../../App";
 const CartProduct = () => {
   const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
+  const [toggleDropdown, setToggleDropdown] = useState(false);
+
+  const closeToggle = () => {
+    setToggleDropdown(false);
+  };
+
+  const ref = useDetectClickOutside({ onTriggered: closeToggle });
+
+
+
+
 
   const removeItemFromCart = (id) => {
     const remainingProduct = addToCart.filter((item) => item.id !== id);
@@ -45,7 +57,7 @@ const CartProduct = () => {
   };
 
   return (
-    <div>
+    <div ref={ref}>
       {addToCart.length ? (
         addToCart.map((product) => (
           <ProductRow key={product.id}>

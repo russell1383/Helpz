@@ -33,6 +33,8 @@ const ProductCard = ({
     }
   };
 
+  console.log(productInfo)
+
   return (
     <>
       <ProductCardContainer>
@@ -40,7 +42,7 @@ const ProductCard = ({
           20% <br /> off
         </CardLabel>
         <img
-          src={`https://mudee.shop/eCommerce/assets/images/products/${productInfo.photo}`}
+          src={ `https://mudee.shop/eCommerce/assets/images/products/${productInfo.photo}`}
           alt=""
           onClick={handlePdClick}
         />

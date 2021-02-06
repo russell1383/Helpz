@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Col, Row } from 'react-grid-system';
 import Sticky from 'react-stickynode';
+import { UserContext } from '../../App';
 import { BannerContainer } from '../Banner/Banner.style';
 import CategoriesCard from '../CategoriesCard/CategoriesCard.component';
 import { CategoryItemsContainer, CategoryProductsContainer, ShowMoreButton } from '../CategoryItemsBanner/CategoryItemsBanner.style';
@@ -10,7 +11,9 @@ import ProductCard from '../ProductCard/ProductCard.component';
 
 const SubCategoryItemsContent = ({ id, name }) => {
 
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const { value, value2 } = useContext(UserContext);
+  const [addToCart, setAddToCart] = value2;
     useEffect(() => {
       if (id) {
         let data = { subcategory_id: id };
@@ -19,6 +22,31 @@ const SubCategoryItemsContent = ({ id, name }) => {
           .then((response) => setProducts(response.data));
       }
     }, [id]);
+  
+    const handleAddToCart = (item) => {
+      console.log(item)
+      let newItem = [...addToCart, item];
+      item.price = parseInt(item.price);
+      item.quantity = 1;
+      item.totalPrice = item.price;
+      item.totalQuantity = item.quantity;
+      setAddToCart(newItem);
+    };
+  
+    const handleQuantity = (id) => {
+      if (addToCart.find((product) => product.id === id)) {
+        const product = addToCart.find((product) => product.id === id);
+        product.totalQuantity = product.totalQuantity + 1;
+        product.totalPrice = product.price * product.totalQuantity;
+  
+        if (addToCart.find((item) => item.id === product.id)) {
+          var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
+          var newItems = [...addToCart];
+          newItems[objectIndex] = product;
+          setAddToCart(newItems);
+        }
+      }
+    };
 
     return (
         <>
@@ -43,10 +71,10 @@ const SubCategoryItemsContent = ({ id, name }) => {
               {products.map((product) => (
                   <ProductCard
                     key={product.id}
-                    name={product.name}
-                    img={product.photo}
-                    price={product.price}
                     rewardPoint={product.reward_point}
+                    productInfo={product}
+                    handleAddToCart={handleAddToCart}
+                    handleQuantity={handleQuantity}
                   />
                 ))}
               </CategoryProductsContainer>

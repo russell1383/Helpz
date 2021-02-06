@@ -10,11 +10,14 @@ import ProductCard from "../ProductCard/ProductCard.component";
 import {
   CategoryItemsContainer,
   CategoryProductsContainer,
+  LoaderGif,
   ShowMoreButton,
 } from "./CategoryItemsBanner.style";
+import loading from "../../assets/gifs/loader.gif"
 
 const CategoryItemsBanner = ({ id, name }) => {
   const [products, setProducts] = useState([]);
+  const [loader, setLoader] = useState(true);
   const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
   useEffect(() => {
@@ -22,7 +25,10 @@ const CategoryItemsBanner = ({ id, name }) => {
       let data = { category_id: id };
       axios
         .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
-        .then((response) => setProducts(response.data));
+        .then((response) => {
+          setLoader(false);
+          setProducts(response.data);
+        });
     }
   }, [id]);
 
@@ -53,7 +59,9 @@ const CategoryItemsBanner = ({ id, name }) => {
 
   return (
     <>
+      
       <BannerContainer>
+       
         <Row gutterWidth={6}>
           <Col md={1.5} className="d-none">
             <Sticky

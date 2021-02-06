@@ -88,13 +88,13 @@ const ViewCartPaymentOptions = () => {
       <ViewCartContainer>
         <DiscountContainer>
           <div>
-            <p>Use Reward Point</p>
+            <p>Redeem Reward</p>
           </div>
           <div>
-            <p>Use Reward Point</p>
+            <p>Apply Casback</p>
           </div>
           <div>
-            <p>Use Reward Point</p>
+            <p>Apply Voucher</p>
           </div>
         </DiscountContainer>
 

@@ -47,67 +47,39 @@ const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [openCatergory, setOpenCatergory] = useState(false);
   const [showSearchSuggest, setShowSearchSuggest] = useState(false);
-  const [subCategoryOpen, setSubCategoryOpen] = useState(true);
-  const [showCartItems, setShowCartItems] = useState(false);
-  const [categories, setCategories] = useState([]);
-  const [subCategories, setSubCategories] = useState([]);
-  const [childCategories, setChildCategories] = useState([]);
-  const [open, setOpen] = useState(false);
-  const [openSub, setOpenSub] = useState(false);
 
   const history = useHistory();
 
-  useEffect(() => {
-    fetch("https://mudee.shop/eCommerce/api/allcategories")
-      .then((res) => res.json())
-      .then((data) => {
-        setCategories(data);
-      });
-  }, []);
-
-  const handleGetSubCategories = (items) => {
-    setSubCategories(items.subs);
-    setSubCategoryOpen(true);
+  const [toggleDropdown, setToggleDropdown] = useState(false);
+  const handleToggle = (e) => {
+    e.preventDefault();
+    setToggleDropdown((prevState) => !prevState);
+    setOpenCatergory(false);
+    setSidebarOpen(false);
+    setShowSearchSuggest(false);
+  };
+  const closeToggle = () => {
+    setToggleDropdown(false);
   };
 
-  const handleChildCategories = (items) => {
-    setChildCategories(items.childs);
-    setOpenSub(true);
-  };
 
   const handleMenubarClick = () => {
     setSidebarOpen(!sidebarOpen);
     setOpenCatergory(false);
     setShowSearchSuggest(false);
-    setSubCategoryOpen(false);
-    setShowCartItems(false);
   };
   const handleCategorybarClick = () => {
     setOpenCatergory(!openCatergory);
     setSidebarOpen(false);
     setShowSearchSuggest(false);
-    if (!sidebarOpen) {
-      setSubCategoryOpen(false);
-      setShowCartItems(false);
-    }
+    
   };
 
   const handleShowSearchSuggestions = () => {
     setOpenCatergory(false);
     setSidebarOpen(false);
     setShowSearchSuggest(!showSearchSuggest);
-    setSubCategoryOpen(false);
-    setShowCartItems(false);
   };
-
-  const handleShowCartItems = () => {
-    setOpenCatergory(false);
-    setSidebarOpen(false);
-    setShowSearchSuggest(false);
-    setSubCategoryOpen(false);
-    setShowCartItems(!showCartItems);
-  };
-
 
 
   return (
@@ -136,7 +108,7 @@ const Navbar = () => {
           </SearchBoxWrap>
 
           <ShoppingCart>
-            <div onClick={handleShowCartItems}>
+            <div onClick={handleToggle}>
               <img src={CartIcon} alt="" />
             </div>
             <h4>৳ {addToCart.reduce((a, b) => a + b.totalPrice, 0)}.0</h4>
@@ -146,9 +118,9 @@ const Navbar = () => {
            
           </ShoppingCart>
         </NavbarContainer>
-        {showCartItems && (
+        {toggleDropdown && (
           <ShoppingCartContainer>
-            <CartItems />
+            <CartItems closeToggle={closeToggle}/>
           </ShoppingCartContainer>
         )}
       </NavbarContainerWrap>
@@ -156,7 +128,7 @@ const Navbar = () => {
       <MdNavbarContainerWrap>
         <MdNavbarContainer>
           <MdTopHeaderContainer>
-            <MdShoppingCart onClick={handleShowCartItems}>
+            <MdShoppingCart onClick={handleToggle}>
               <img src={CartIcon} alt="" />
               <h4>৳ {addToCart.reduce((a, b) => a + b.totalPrice, 0)}.0</h4>
               {
@@ -217,9 +189,9 @@ const Navbar = () => {
           </MdSearchBoxWrap>
         </MdNavbarContainer>
 
-        {showCartItems && (
+        {toggleDropdown && (
           <MdShoppingCartContainer>
-            <CartItems />
+            <CartItems closeToggle={closeToggle}/>
           </MdShoppingCartContainer>
         )}
 
