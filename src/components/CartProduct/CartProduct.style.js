@@ -55,6 +55,9 @@ button{
     background: #fff;
     border: 1px solid black;
     border-radius: 2px;
+    display:flex;
+    align-items:center; 
+    justify-content: center;
     margin-bottom: 2px;
     width: 25px;
     cursor: pointer;

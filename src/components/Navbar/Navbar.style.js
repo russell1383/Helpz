@@ -247,7 +247,7 @@ export const MdSearchSuggestionsContainer = styled.div`
 
   @media (max-width: 768px) {
     display: ${({ open }) => (open ? "block" : "none")};
-    width: 90%;
+    width: 94%;
     background: #fff;
     position: fixed;
     z-index: 40;

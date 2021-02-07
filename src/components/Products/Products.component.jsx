@@ -93,7 +93,7 @@ const Products = ({ header, subheader }) => {
       },
     ],
   };
-  console.log(addToCart);
+
 
   return (
     <>

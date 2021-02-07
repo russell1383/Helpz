@@ -39,6 +39,7 @@ import CartItems from "../CartItems/CartItems.component";
 import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "../../App";
 import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
+import axios from "axios";
 
 const Navbar = () => {
   const { value, value2 } = useContext(UserContext);
@@ -47,10 +48,30 @@ const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [openCatergory, setOpenCatergory] = useState(false);
   const [showSearchSuggest, setShowSearchSuggest] = useState(false);
-
+  const [allProducts, setAllProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState();
   const history = useHistory();
 
   const [toggleDropdown, setToggleDropdown] = useState(false);
+
+  useEffect(() => {
+    let data = { category_id: 1 };
+    axios
+      .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
+      .then((response) => {
+        setAllProducts(response.data);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (allProducts.length) {
+      let item = allProducts.filter((pd) =>
+        pd.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      console.log(item);
+    }
+  }, [searchTerm]);
+
   const handleToggle = (e) => {
     e.preventDefault();
     setToggleDropdown((prevState) => !prevState);
@@ -62,7 +83,6 @@ const Navbar = () => {
     setToggleDropdown(false);
   };
 
-
   const handleMenubarClick = () => {
     setSidebarOpen(!sidebarOpen);
     setOpenCatergory(false);
@@ -72,7 +92,6 @@ const Navbar = () => {
     setOpenCatergory(!openCatergory);
     setSidebarOpen(false);
     setShowSearchSuggest(false);
-    
   };
 
   const handleShowSearchSuggestions = () => {
@@ -80,7 +99,6 @@ const Navbar = () => {
     setSidebarOpen(false);
     setShowSearchSuggest(!showSearchSuggest);
   };
-
 
   return (
     <>
@@ -94,6 +112,7 @@ const Navbar = () => {
                 type="text"
                 placeholder="Search Product"
                 onClick={handleShowSearchSuggestions}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
               <div>
                 <FontAwesomeIcon icon={faSearch} size="lg" />
@@ -112,15 +131,16 @@ const Navbar = () => {
               <img src={CartIcon} alt="" />
             </div>
             <h4>৳ {addToCart.reduce((a, b) => a + b.totalPrice, 0)}.0</h4>
-            {
-              addToCart.length ?  <ItemsOnCart>{addToCart.length}</ItemsOnCart> : ""
-            }
-           
+            {addToCart.length ? (
+              <ItemsOnCart>{addToCart.length}</ItemsOnCart>
+            ) : (
+              ""
+            )}
           </ShoppingCart>
         </NavbarContainer>
         {toggleDropdown && (
           <ShoppingCartContainer>
-            <CartItems closeToggle={closeToggle}/>
+            <CartItems closeToggle={closeToggle} />
           </ShoppingCartContainer>
         )}
       </NavbarContainerWrap>
@@ -131,9 +151,11 @@ const Navbar = () => {
             <MdShoppingCart onClick={handleToggle}>
               <img src={CartIcon} alt="" />
               <h4>৳ {addToCart.reduce((a, b) => a + b.totalPrice, 0)}.0</h4>
-              {
-              addToCart.length ?  <ItemsOnCart>{addToCart.length}</ItemsOnCart> : ""
-            }
+              {addToCart.length ? (
+                <ItemsOnCart>{addToCart.length}</ItemsOnCart>
+              ) : (
+                ""
+              )}
             </MdShoppingCart>
             <div>
               <MdLogoImg src={logo} alt="" onClick={() => history.push("/")} />
@@ -165,10 +187,9 @@ const Navbar = () => {
             <MdSidebarItems>Logout</MdSidebarItems>
           </MdSidebar>
 
-            <MdCategoryBar openCatergory={openCatergory}>
-              <CategoriesCard></CategoriesCard>
-            </MdCategoryBar>
-
+          <MdCategoryBar openCatergory={openCatergory}>
+            <CategoriesCard></CategoriesCard>
+          </MdCategoryBar>
 
           <MdSearchBoxWrap>
             <MdSearchBox>
@@ -178,7 +199,7 @@ const Navbar = () => {
                 onClick={handleShowSearchSuggestions}
               />
               <div>
-                <FontAwesomeIcon icon={faSearch} /> 
+                <FontAwesomeIcon icon={faSearch} />
               </div>
             </MdSearchBox>
             <MdSearchSuggestionsContainer open={showSearchSuggest}>
@@ -191,7 +212,7 @@ const Navbar = () => {
 
         {toggleDropdown && (
           <MdShoppingCartContainer>
-            <CartItems closeToggle={closeToggle}/>
+            <CartItems closeToggle={closeToggle} />
           </MdShoppingCartContainer>
         )}
 

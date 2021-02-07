@@ -1,4 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCoffee,
+  faGift,
+  faPrescriptionBottle,
+  faScroll,
+  faWallet,
+} from "@fortawesome/free-solid-svg-icons";
 import { ViewCartContainer } from "../ViewCartBanner/ViewCartBanner.style";
 import nagad from "../../assets/icons/Nagad-Logo 1.png";
 import bkash from "../../assets/icons/Bkash logo.png";
@@ -13,11 +21,12 @@ import eblSky from "../../assets/icons/Ebl sky.png";
 import islamiBank from "../../assets/icons/Islami bank.png";
 import cityBank from "../../assets/icons/City bank.png";
 import {
-  DiscountContainer,
   MobileBankingImg,
   OtherBankingImg,
   PaymentOptionsRow,
   PickupOptions,
+  RedeemButton,
+  RedeemButtonWrap,
 } from "./ViewCartPaymentOptions.style";
 import LoginModal from "../LoginModal/LoginModal.component";
 import { UserContext } from "../../App";
@@ -60,7 +69,7 @@ const ViewCartPaymentOptions = () => {
         .then((response) => {
           console.log(response);
           setOpen(false);
-          history.push("/invoice")
+          history.push("/invoice");
         });
     } else {
       setOpen(true);
@@ -86,17 +95,19 @@ const ViewCartPaymentOptions = () => {
   return (
     <div id="payment_option">
       <ViewCartContainer>
-        <DiscountContainer>
-          <div>
-            <p>Redeem Reward</p>
-          </div>
-          <div>
-            <p>Apply Casback</p>
-          </div>
-          <div>
-            <p>Apply Voucher</p>
-          </div>
-        </DiscountContainer>
+        <RedeemButtonWrap>
+          <RedeemButton yellow>
+            <FontAwesomeIcon icon={faGift} size="2x"/> <p>Redeem Reward</p> 
+          </RedeemButton>
+
+          <RedeemButton tomato>
+            <FontAwesomeIcon icon={faWallet} size="2x"/><p>Apply Casback</p> 
+          </RedeemButton>
+
+          <RedeemButton green>
+            <FontAwesomeIcon icon={faScroll} size="2x"/><p>Apply Voucher</p> 
+          </RedeemButton>
+        </RedeemButtonWrap>
 
         <h3>Pickup Point :</h3>
         <PickupOptions onChange={handleChange} required>
