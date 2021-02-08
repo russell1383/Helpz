@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const NavbarContainerWrap = styled.div`
   position: relative;
-
 `;
 
 export const NavbarContainer = styled.div`
@@ -22,17 +21,15 @@ export const NavbarContainer = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
-
- 
 `;
 
 export const NavLogo = styled.img`
- width: 100px;
- cursor: pointer;
-    @media (max-width: 1024px) {
-      width: 90px;
-    }
-`
+  width: 100px;
+  cursor: pointer;
+  @media (max-width: 1024px) {
+    width: 90px;
+  }
+`;
 
 export const SearchBoxWrap = styled.div`
   display: flex;
@@ -111,31 +108,31 @@ export const ShoppingCart = styled.div`
     }
   }
 
-  h4{
+  h4 {
     font-size: 14px;
   }
 `;
 
 export const ItemsOnCart = styled.div`
-position: absolute;
-width: 15px;
-height: 15px;
-background-color: #44A72C;
-font-size: 10px;
-font-weight: bold;
-display: flex;
-align-items: center;
-justify-content: center;
-top:0;
-left: 10%;
-border-radius: 50%;
-border: 1px solid lightgray;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #44a72c;
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 10%;
+  border-radius: 50%;
+  border: 1px solid lightgray;
 
-@media (max-width: 768px) {
-  left: 6px;
-  top:-5px;
+  @media (max-width: 768px) {
+    left: 6px;
+    top: -5px;
   }
-`
+`;
 
 export const ShoppingCartContainer = styled.div`
   width: 40%;
@@ -143,7 +140,6 @@ export const ShoppingCartContainer = styled.div`
   top: 75px;
   right: 1.8%;
   z-index: 50;
- 
 
   @media (max-width: 768px) {
     display: none;
@@ -274,7 +270,8 @@ export const MdSidebar = styled.div`
 display: none;
 
 @media (max-width: 768px){
-  display: ${({ sidebarOpen }) => (sidebarOpen ? "block" : "none")};
+  display: block;
+  transform: ${({ sidebarOpen }) => (sidebarOpen ? "translateX(0)" : "translateX(105%)")};
   position: fixed;
   height: 75vh;
   width: 30vh;
@@ -283,30 +280,37 @@ display: none;
   position:absolute;
   top: 60%;
   right: 8px;
-  padding-top: 5%;
-  padding-left: 3%;
+  padding:5% 0 0 5%;
+  transition: transform 0.3s ease-in-out;
+  }
 `;
 
-export const MdSidebarItems = styled.h6`
+export const MdSidebarItems = styled.div`
+  width: 100%;
   color: #fff;
-  font-size: 12px;
   font-weight: 500;
-  padding: 5%;
   font-family: "UniNeueRegular";
+  font-size: 14px;
+  padding-bottom: 18px;
+  span {
+    padding-left: 10px;
+  }
 
-  @media (max-width: 420px) {
-    font-size: 10px;
+  small{
+    font-weight: 400;
+    padding-left: 10px;
   }
 `;
 
 // -----------------CategoryBar on Medium Device-----------------//
 
-
 export const MdCategoryBar = styled.div`
   display: none;
 
   @media (max-width: 768px) {
-    display: ${({ openCatergory }) => (openCatergory ? "block" : "none")};
+    display: block;
+    transform: ${({ openCatergory }) => (openCatergory ? "translateX(0)" : "translateX(-110%)")};
+    transition: transform 0.3s ease-in-out;
     position: fixed;
     height: 60vh;
     width: 26vh;

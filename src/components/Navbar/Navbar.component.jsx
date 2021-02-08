@@ -30,7 +30,7 @@ import {
 } from "./Navbar.style";
 import logo from "../../assets/logos/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faGift, faHistory, faList, faSearch, faShoppingCart, faSignInAlt, faSignOutAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import HamburgerIcon from "../../assets/icons/hamburger-icon.png";
 import CatergoryBarIcon from "../../assets/icons/category-icon.png";
 import CartIcon from "../../assets/icons/Cart.png";
@@ -40,6 +40,7 @@ import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "../../App";
 import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 import axios from "axios";
+import Location from "../Location/Location.component";
 
 const Navbar = () => {
   const { value, value2 } = useContext(UserContext);
@@ -168,23 +169,20 @@ const Navbar = () => {
             />
           </MdTopHeaderContainer>
 
-          <MdSidebar sidebarOpen={sidebarOpen}>
+          <MdSidebar sidebarOpen={sidebarOpen} onClick={() => history.push("/")}>
+            <Location/>
             <MdSidebarItems>
-              <Link
-                to="/login"
-                style={{ textDecoration: "none", color: "#fff" }}
-              >
-                Login / Signup
-              </Link>
+              <FontAwesomeIcon icon={faSignInAlt} /> 
+                <span>Login / Signup</span> 
             </MdSidebarItems>
 
-            <MdSidebarItems>My Account</MdSidebarItems>
-            <MdSidebarItems>My Cart</MdSidebarItems>
-            <MdSidebarItems>My List</MdSidebarItems>
-            <MdSidebarItems>History</MdSidebarItems>
-            <MdSidebarItems>My Offer</MdSidebarItems>
-            <MdSidebarItems>Notification</MdSidebarItems>
-            <MdSidebarItems>Logout</MdSidebarItems>
+            <MdSidebarItems><FontAwesomeIcon icon={faUserCircle} /><span>My Account</span></MdSidebarItems>
+            <MdSidebarItems><FontAwesomeIcon icon={faShoppingCart} /><span>My Cart</span></MdSidebarItems>
+            <MdSidebarItems><FontAwesomeIcon icon={faList} /><span>My List</span></MdSidebarItems>
+            <MdSidebarItems><FontAwesomeIcon icon={faHistory} /><span>History</span></MdSidebarItems>
+            <MdSidebarItems><FontAwesomeIcon icon={faGift} /><span>My Offer</span></MdSidebarItems>
+            <MdSidebarItems><FontAwesomeIcon icon={faBell} /><span>Notification</span></MdSidebarItems>
+            <MdSidebarItems><FontAwesomeIcon icon={faSignOutAlt} /><span>Logout</span></MdSidebarItems>
           </MdSidebar>
 
           <MdCategoryBar openCatergory={openCatergory}>
