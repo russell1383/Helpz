@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import { store } from "react-notifications-component";
 import {
   OffLabel,
   ProductBox,
@@ -26,8 +26,9 @@ import axios from "axios";
 const Products = ({ header, subheader }) => {
   const history = useHistory();
 
-  const { value, value2 } = useContext(UserContext);
+  const { value, value2,value3 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
+  const [pdInfo, setPdInfo] = value3;
   const [products, setProducts] = useState([]);
 
   const handleAddToCart = (item) => {
@@ -37,6 +38,19 @@ const Products = ({ header, subheader }) => {
     item.totalPrice = item.price;
     item.totalQuantity = item.quantity;
     setAddToCart(newItem);
+    store.addNotification({
+      title: "Product Added to Cart",
+      message: item.name,
+      type: "success",
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 2000,
+        onScreen: true,
+      },
+    });
   };
 
   useEffect(() => {
@@ -58,6 +72,14 @@ const Products = ({ header, subheader }) => {
         newItems[objectIndex] = product;
         setAddToCart(newItems);
       }
+    }
+  };
+
+  const handlePdClick = (productInfo) => {
+    setPdInfo(productInfo);
+
+    if (pdInfo) {
+      history.push(`/category/pd`);
     }
   };
 
@@ -94,7 +116,6 @@ const Products = ({ header, subheader }) => {
     ],
   };
 
-
   return (
     <>
       <ProductContainerWrap>
@@ -115,17 +136,17 @@ const Products = ({ header, subheader }) => {
                 <OffLabel>25% Off</OffLabel>
                 <ProductImg
                   src={`https://mudee.shop/eCommerce/assets/images/products/${product.photo}`}
-                  // onClick={() => history.push(`/category/${product.name}`)}
+                  onClick={() => handlePdClick(product)}
                 ></ProductImg>
                 <ProductInfo
-                // onClick={() => history.push(`/category/${product.name}`)}
+           onClick={() => handlePdClick(product)}
                 >
                   <div>
                     <p>Fresh</p>
                     <h3>
-                      {product.name
-                        && product.name.substring(0, product.name.indexOf(" "))
-                        || "Name"}{" "}
+                      {(product.name &&
+                        product.name.substring(0, product.name.indexOf(" "))) ||
+                        "Name"}{" "}
                     </h3>
                     <p>1kg</p>
                   </div>

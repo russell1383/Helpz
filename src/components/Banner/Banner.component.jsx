@@ -27,48 +27,16 @@ import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 import MenuItems from "../MenuItems/MenuItems.component";
 
 const Banner = () => {
-  const [categories, setCategories] = useState([]);
-  const [categoryItems, setCategoryItems] = useState([]);
-  const [items, setItems] = useState([]);
-  const [productId, setProductId] = useState({});
-  const [open, setOpen] = useState(false);
-
-
-  useEffect(() => {
-    fetch("https://mudee.shop/eCommerce/api/allcategories")
-      .then((res) => res.json())
-      .then((data) => {
-        setCategories(data[0]);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch("https://mudee.shop/eCommerce/api/allcategories")
-      .then((res) => res.json())
-      .then((data) => {
-        setCategoryItems(data[1]);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (productId) {
-      const items = categoryItems.filter(
-        (item) => item.category_id == productId
-      );
-      setItems(items);
-      setOpen(true);
-    }
-  }, [productId]);
 
   return (
     <>
       <BannerContainer>
         <BannerTopPart>
           <Row gutterWidth={6}>
-            <Col xs={2.5} md={1.5} className="p-relative">
+            <Col xs={2.5} md={1.5} className="p-relative overflow-hidden">
               <BannerImg src={bannerImg1} alt="" />
             </Col>
-            <Col xs={7} md={4.5}>
+            <Col xs={7} md={4.5} className="overflow-hidden">
               <BannerImg src={bannerImg2} alt="" />
               <TextAboveBannerImg>
                 <h3>100% NATURAL</h3>
@@ -92,7 +60,7 @@ const Banner = () => {
               </Row>
             </Col>
 
-            <Col xs={2.5} md={1.5}>
+            <Col xs={2.5} md={1.5} className="overflow-hidden">
               <BannerImg src={bannerImg6} alt="" />
             </Col>
           </Row>
@@ -104,10 +72,10 @@ const Banner = () => {
           />
 
           <Row gutterWidth={6} className="custom-d-none">
-            <Col xs={6}>
+            <Col xs={6} className="overflow-hidden">
               <BannerImg src={bannerImg4} />
             </Col>
-            <Col xs={6}>
+            <Col xs={6} className="overflow-hidden">
               <BannerImg src={bannerImg5} />
             </Col>
           </Row>
@@ -127,7 +95,7 @@ const Banner = () => {
                 <CategoriesCard />
               </Sticky>
             </Col>
-            <Col xs={6} md={4.5}>
+            <Col xs={6} md={4.5} className="overflow-hidden">
               <BannerImg src={bannerImg7} className="bannerImg1" alt="" />
               <TextAboveBannerImg>
                 <h3>100% NATURAL</h3>

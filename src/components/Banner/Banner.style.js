@@ -33,6 +33,10 @@ export const BannerImg = styled.img`
   height: 100%;
   width: 100%;
   z-index: 2;
+  transition: all .2s linear;
+  &:hover{
+    transform: scale(1.1);
+  }
 `;
 
 export const CustomBannerImgOne = styled.img`

@@ -55,7 +55,7 @@ const CategoriesCard = ({d}) => {
                   history.push(`/products/category/${category.name}/${category.id}`)
                 }
               >
-                {category.name}
+                {category.name} 
               </p>
             ))}
         </CategoriesCardContainer>

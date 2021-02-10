@@ -1,5 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ReactNotification from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+import 'animate.css/animate.min.css';
 import Home from "./pages/Home/Home.page";
 import { createContext, useState } from "react";
 import Login from "./pages/Login/Login.page";
@@ -30,6 +33,7 @@ function App() {
       }}
     >
       <div className="App">
+        <ReactNotification/>
         <Router>
           <Switch>
             <Route path="/home">

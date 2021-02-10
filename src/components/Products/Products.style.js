@@ -79,6 +79,8 @@ export const ProductBox = styled.div`
   position: relative;
   padding: 3% 3%;
   border: 1px solid lightgrey;
+  box-shadow: rgb(221 221 221) 0px 0px 10px;
+  border-radius: 3px;
   small {
     font-size: 10px;
     text-align: center;
@@ -116,6 +118,7 @@ export const OffLabel = styled.div`
 export const ProductWrap = styled.div`
 display:flex;
 padding-right:3%; 
+margin: 10px 0 10px 0; 
 `
 
 export const ProductImg = styled.img`
@@ -226,6 +229,7 @@ export const ProductButtonContainer = styled.div`
     padding: 4% 1%;
     margin-right: 1px;
     cursor: pointer;
+    border-radius: 3px;
   }
 
   .plus_button {
@@ -236,5 +240,6 @@ export const ProductButtonContainer = styled.div`
     padding: 4% 1%;
     margin-left: 1px;
     cursor: pointer;
+    border-radius: 3px;
   }
 `;

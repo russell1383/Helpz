@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CategoriesCardContainerWrap = styled.div`
   position: relative;
-  `;
+`;
 
 export const CategoriesCardContainer = styled.div`
   width: 100%;
@@ -23,14 +23,21 @@ export const CategoriesCardContainer = styled.div`
     }
   }
 
- 
-
   p {
-    font-size: 14px;
+    font-size: 13px;
     border-bottom: 1px solid #fff;
     padding: 4% 0%;
     margin-top: 5%;
     font-family: "UniNeueRegular";
+    &:hover {
+      transition: 0.3s;
+      padding-left: 1.5vh;
+
+      &::after {
+        content: " »";
+        transition: 0.5s;
+      }
+    }
 
     @media (max-width: 1280px) {
       font-size: 12px;
@@ -51,10 +58,9 @@ export const SubCatergoriesWrap = styled.div`
   width: 200%;
   /* overflow: scroll; */
 
-  
-@media (max-width:768px){
- width:130%;
-}
+  @media (max-width: 768px) {
+    width: 130%;
+  }
 `;
 
 export const SubCategories = styled.div`
@@ -69,22 +75,30 @@ export const SubCategoryItemsContainer = styled.div`
 `;
 
 export const SubCategoryItems = styled.div`
-padding: 5%;
+  padding: 5%;
 
-h4{
-padding: 5% 0;
+  h4 {
+    padding: 5% 0;
+    &:hover {
+      transition: 0.3s;
+      padding-left: 2vh;
+    }
 
-@media (max-width:768px){
-  font-size:12px; 
-}
-}
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
 
-p{
-font-size: 13px;
-padding: 2% 0;
+  p {
+    font-size: 13px;
+    padding: 2% 0;
+    &:hover {
+      transition: 0.3s;
+      padding-left: 2vh;
+    }
 
-@media (max-width:768px){
-  font-size:9px; 
-}
-}
+    @media (max-width: 768px) {
+      font-size: 9px;
+    }
+  }
 `;

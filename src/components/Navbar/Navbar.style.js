@@ -271,7 +271,7 @@ display: none;
 
 @media (max-width: 768px){
   display: block;
-  transform: ${({ sidebarOpen }) => (sidebarOpen ? "translateX(0)" : "translateX(105%)")};
+  transform: ${({ sidebarOpen }) => (sidebarOpen ? "translateX(0)" : "translateX(110%)")};
   position: fixed;
   height: 75vh;
   width: 30vh;
@@ -309,7 +309,7 @@ export const MdCategoryBar = styled.div`
 
   @media (max-width: 768px) {
     display: block;
-    transform: ${({ openCatergory }) => (openCatergory ? "translateX(0)" : "translateX(-110%)")};
+    transform: ${({ openCatergory }) => (openCatergory ? "translateX(0)" : "translateX(-120%)")};
     transition: transform 0.3s ease-in-out;
     position: fixed;
     height: 60vh;

@@ -7,6 +7,7 @@ export const ProductCardContainer = styled.div`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   position: relative;
   overflow: hidden;
+  border-radius: 3px; 
 
   img {
     width: 70%;
@@ -136,6 +137,7 @@ export const CardButtonWrap = styled.div`
     color: #fff;
     border: none;
     outline: none;
+    border-radius: 3px;
   }
 
   .plus {
@@ -146,5 +148,6 @@ export const CardButtonWrap = styled.div`
     color: #fff;
     border: none;
     outline: none;
+    border-radius: 3px;
   }
 `;

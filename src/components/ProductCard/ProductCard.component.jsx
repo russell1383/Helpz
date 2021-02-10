@@ -53,7 +53,7 @@ const ProductCard = ({
             <p>1 kg</p>
           </CartTextWrap>
           <CartTextWrap>
-            <h6>Price</h6>
+            <h6>Price</h6> 
             <h6>
               <del>30 tk</del>
             </h6>

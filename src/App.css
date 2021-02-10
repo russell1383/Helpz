@@ -5,6 +5,7 @@
     position: relative;
     width: 100% ;
     font-family: "Roboto", sans-serif;
+
 }
 .slick-prev, .slick-next{
     display: none !important;
@@ -16,3 +17,20 @@ a:-webkit-any-link{
     text-decoration: none !important;
 }
  
+.notification__item--success{
+    background: #44a72c !important;
+    
+}
+
+.notifications-component {
+    margin-top: 65px !important;
+}
+
+.notification{
+    width: 250px !important;
+}
+
+.overflow-hidden{
+    overflow: hidden ;
+
+}

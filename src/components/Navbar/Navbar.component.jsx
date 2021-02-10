@@ -57,11 +57,11 @@ const Navbar = () => {
 
   useEffect(() => {
     let data = { category_id: 1 };
-    axios
-      .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
-      .then((response) => {
-        setAllProducts(response.data);
-      });
+    // axios
+    //   .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
+    //   .then((response) => {
+    //     setAllProducts(response.data);
+    //   });
   }, []);
 
   useEffect(() => {
@@ -133,7 +133,7 @@ const Navbar = () => {
             </div>
             <h4>৳ {addToCart.reduce((a, b) => a + b.totalPrice, 0)}.0</h4>
             {addToCart.length ? (
-              <ItemsOnCart>{addToCart.length}</ItemsOnCart>
+              <ItemsOnCart className="animate__bounce">{addToCart.length}</ItemsOnCart>
             ) : (
               ""
             )}

@@ -1,8 +1,20 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import History from "../History/History.component";
 import Wishlist from "../Wishlist/Wishlist.component";
 import { MenuItemsContainer, MenuItemsContainerWrap } from "./MenuItems.style";
+import {
+  faBell,
+  faGift,
+  faHistory,
+  faList,
+  faSearch,
+  faShoppingCart,
+  faSignInAlt,
+  faSignOutAlt,
+  faUserCircle,
+} from "@fortawesome/free-solid-svg-icons";
 
 const MenuItems = () => {
   const [openWishlist, setOpenWishlist] = useState(false);
@@ -13,27 +25,53 @@ const MenuItems = () => {
       <MenuItemsContainerWrap>
         <MenuItemsContainer>
           <p>
-            <Link to="/login" style={{ textDecoration: "none", color: "#fff" }}>
-              Login / Signup
+            <Link to="/login">
+              {" "}
+              <FontAwesomeIcon icon={faSignInAlt} />
+              <span>Login / Signup</span>{" "}
             </Link>
           </p>
-          <p>My Account</p>
           <p>
-            <Link to="/view-cart" style={{ textDecoration: "none", color: "#fff" }}>My Cart</Link>
+            <FontAwesomeIcon icon={faUserCircle} />
+            <span>My Account</span>
           </p>
-          <p onClick={() => setOpenWishlist(!openWishlist)}>Wish List</p>
-          <p onClick={()=> setOpenHistory(!openHistory)}>History</p>
-          <p> <Link to="/offer" style={{ textDecoration: "none", color: "#fff" }}>My Offer</Link></p>
-          <p>Notification</p>
-          <p>Logout</p>
+          <p>
+            <Link to="/view-cart">
+              <FontAwesomeIcon icon={faShoppingCart} />
+              <span>My Cart</span>
+            </Link>
+          </p>
+          <p onClick={() => setOpenWishlist(!openWishlist)}>
+            <FontAwesomeIcon icon={faList} />
+            <span>My List</span>
+          </p>
+          <p onClick={() => setOpenHistory(!openHistory)}>
+            <FontAwesomeIcon icon={faHistory} />
+            <span>History</span>
+          </p>
+          <p>
+            {" "}
+            <Link to="/offer">
+              <FontAwesomeIcon icon={faGift} />
+              <span>My Offer</span>
+            </Link>
+          </p>
+          <p>
+            <FontAwesomeIcon icon={faBell} />
+            <span>Notification</span>
+          </p>
+          <p>
+            <FontAwesomeIcon icon={faSignOutAlt} />
+            <span>Logout</span>
+          </p>
         </MenuItemsContainer>
 
         <Wishlist openWishlist={openWishlist} />
-        <History openHistory={openHistory}/>
+        <History openHistory={openHistory} />
 
         {openWishlist && <h1 onClick={() => setOpenWishlist(false)}>✖</h1>}
         {openHistory && <h1 onClick={() => setOpenHistory(false)}>✖</h1>}
-      </MenuItemsContainerWrap>  
+      </MenuItemsContainerWrap>
     </>
   );
 };

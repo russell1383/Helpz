@@ -25,6 +25,7 @@ import leftArrow from "../../assets/icons/left-arrow.png";
 import rightArrow from "../../assets/icons/right-arrow.png";
 import { useParams } from "react-router-dom";
 import { productData } from "../../productData/productData";
+import { store } from "react-notifications-component";
 
 const ProductInfoBanner = () => {
   const { productName } = useParams();
@@ -40,6 +41,19 @@ const ProductInfoBanner = () => {
     item.totalPrice = item.price;
     item.totalQuantity = item.quantity;
     setAddToCart(newItem);
+    store.addNotification({
+      title: "Product Added to Cart",
+      message: item.name,
+      type: "success",
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 2000,
+        onScreen: true,
+      },
+    });
   };
 
   const quantityIncrement = (id) => {
