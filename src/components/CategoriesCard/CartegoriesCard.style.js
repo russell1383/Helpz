@@ -11,7 +11,18 @@ export const CategoriesCardContainer = styled.div`
   padding: 8%;
   cursor: pointer;
   display: flex;
+  z-index:5;
   flex-direction: column;
+  height: 50vh;
+
+  @media (max-width: 1270px) {
+    height: 45vh;
+    }
+
+
+  @media (max-width: 768px) {
+    height: 60vh;
+    }
 
   h3 {
     font-family: "UniNeueRegular";
@@ -40,26 +51,34 @@ export const CategoriesCardContainer = styled.div`
     }
 
     @media (max-width: 1280px) {
-      font-size: 12px;
+      font-size: 10px;
     }
     @media (max-width: 900px) {
+      font-size: 8px;
+    }
+    @media (max-width:768px) {
       font-size: 10px;
     }
   }
 `;
 
 export const SubCatergoriesWrap = styled.div`
-  display: ${({ open }) => (open ? "block" : "none")};
+
+  transition: transform 0.3s ease-in-out;
+  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
+  z-index:1;
   position: absolute;
   top: 0;
   left: 100.5%;
   background: #44a72c;
   height: 100%;
-  width: 200%;
-  /* overflow: scroll; */
+  width: 100%;
+  padding: ${({open})=>open && "5%"};
+  padding: 5%;
+
 
   @media (max-width: 768px) {
-    width: 130%;
+    
   }
 `;
 
@@ -71,7 +90,7 @@ export const SubCategories = styled.div`
 `;
 
 export const SubCategoryItemsContainer = styled.div`
-  width: 50%;
+  /* width: 50%; */
 `;
 
 export const SubCategoryItems = styled.div`
@@ -81,8 +100,16 @@ export const SubCategoryItems = styled.div`
     padding: 5% 0;
     &:hover {
       transition: 0.3s;
-      padding-left: 2vh;
+      padding-left: 1.5vh;
+      transition: 0.3s;
+      padding-left: 1.5vh;
+
+      &::after {
+        content: " »";
+        transition: 0.5s;
+      }
     }
+  
 
     @media (max-width: 768px) {
       font-size: 12px;
@@ -92,13 +119,14 @@ export const SubCategoryItems = styled.div`
   p {
     font-size: 13px;
     padding: 2% 0;
+    margin-left: 5%;
     &:hover {
       transition: 0.3s;
-      padding-left: 2vh;
+      padding-left: 1.5vh;
     }
 
     @media (max-width: 768px) {
-      font-size: 9px;
+      font-size: 10px;
     }
   }
 `;

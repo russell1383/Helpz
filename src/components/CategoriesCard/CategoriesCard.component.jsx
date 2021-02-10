@@ -9,7 +9,7 @@ import {
   SubCatergoriesWrap,
 } from "./CartegoriesCard.style";
 
-const CategoriesCard = ({d}) => {
+const CategoriesCard = ({ d }) => {
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
   const [open, setOpen] = useState(false);
@@ -33,6 +33,8 @@ const CategoriesCard = ({d}) => {
     history.push(`/products/category/${item.id}`);
   };
 
+
+
   return (
     <>
       <CategoriesCardContainerWrap
@@ -51,11 +53,14 @@ const CategoriesCard = ({d}) => {
                   handleGetSubCategories(category);
                 }}
                 onMouseLeave={() => setOpenSub(false)}
-                onClick={() =>
-                  history.push(`/products/category/${category.name}/${category.id}`)
-                }
+                onClick={() => {
+                  window.screen.width >= 768 &&
+                    history.push(
+                      `/products/category/${category.name}/${category.id}`
+                    );
+                }}
               >
-                {category.name} 
+                {category.name}
               </p>
             ))}
         </CategoriesCardContainer>
@@ -68,7 +73,9 @@ const CategoriesCard = ({d}) => {
                   <h4
                     key={item.id}
                     onClick={() =>
-                      history.push(`/products/sub-category/${item.name}/${item.id}`)
+                      history.push(
+                        `/products/sub-category/${item.name}/${item.id}`
+                      )
                     }
                   >
                     {item.name}
@@ -78,7 +85,9 @@ const CategoriesCard = ({d}) => {
                       <p
                         key={pd.id}
                         onClick={() =>
-                          history.push(`/products/child-category/${pd.name}/${pd.id}`)
+                          history.push(
+                            `/products/child-category/${pd.name}/${pd.id}`
+                          )
                         }
                       >
                         {pd.name}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Sticky from "react-stickynode";
 import "./Banner.css";
 import {
@@ -27,6 +27,7 @@ import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 import MenuItems from "../MenuItems/MenuItems.component";
 
 const Banner = () => {
+  const [showText, setShowText] = useState(false);
 
   return (
     <>
@@ -36,9 +37,15 @@ const Banner = () => {
             <Col xs={2.5} md={1.5} className="p-relative overflow-hidden">
               <BannerImg src={bannerImg1} alt="" />
             </Col>
-            <Col xs={7} md={4.5} className="overflow-hidden">
+            <Col
+              xs={7}
+              md={4.5}
+              className="overflow-hidden"
+              onMouseOver={() => setShowText(true)}
+              onMouseLeave={() => setShowText(false)}
+            >
               <BannerImg src={bannerImg2} alt="" />
-              <TextAboveBannerImg>
+              <TextAboveBannerImg showText={showText}>
                 <h3>100% NATURAL</h3>
                 <h1>
                   Fresh Vegetables <br /> And Fruits
@@ -48,14 +55,16 @@ const Banner = () => {
             <Col md={4.5} className="d-none">
               <CustomBannerImgThree src={bannerImg3} alt="" />
               <Row nogutter>
-                <Col md={6}>
-                  <CustomBannerImgFour src={bannerImg4} />
+                <Col md={6} style={{position:"relative"}} className="flip-container">
+                  <CustomBannerImgFour src={bannerImg4} className="front"/>
+                  <CustomBannerImgFour src={bannerImg5} className="back"/>
                 </Col>
-                <Col md={6}>
+                <Col md={6} style={{position:"relative"}} className="flip-container">
                   <CustomBannerImgFourRight
                     src={bannerImg5}
-                    className="left-space"
+                    className="left-space "
                   />
+                 
                 </Col>
               </Row>
             </Col>
@@ -80,8 +89,6 @@ const Banner = () => {
             </Col>
           </Row>
         </BannerTopPart>
-
-        
 
         <BannerBottomPart>
           <Row gutterWidth={6}>

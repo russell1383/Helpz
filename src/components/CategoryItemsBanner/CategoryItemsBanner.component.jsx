@@ -20,6 +20,11 @@ const CategoryItemsBanner = ({ id, name }) => {
   const [loader, setLoader] = useState(true);
   const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     if (id) {
       let data = { category_id: id };
@@ -75,7 +80,8 @@ const CategoryItemsBanner = ({ id, name }) => {
           </Col>
 
           <Col xs={12} md={9}>
-            <CategoryItemsContainer>
+            {
+              loader ? <LoaderGif src={loading}/> :  <CategoryItemsContainer>
               <p>HOME > {name}</p>
               <h2>{name}</h2>
               <CategoryProductsContainer>
@@ -91,6 +97,8 @@ const CategoryItemsBanner = ({ id, name }) => {
               </CategoryProductsContainer>
               <ShowMoreButton>Show More</ShowMoreButton>
             </CategoryItemsContainer>
+            }
+           
           </Col>
 
           <Col md={1.5} className="d-none">

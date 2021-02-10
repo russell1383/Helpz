@@ -50,11 +50,19 @@ export const CustomBannerImgTwo = styled.img`
 export const CustomBannerImgThree = styled.img`
   width: 100%;
   height: 50%;
+  
 `;
 export const CustomBannerImgFour = styled.img`
   height: 109%;
   width: 100%;
   padding-right:1%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	backface-visibility: hidden;
+	overflow: hidden;
+	transition: transform .8s ease;
+
 `;
 export const CustomBannerImgFourRight = styled.img`
   height: 109%;
@@ -81,6 +89,8 @@ export const TextAboveBannerImg = styled.div`
   left: 5%;
   color: #fff;
   z-index: 3;
+  transition: transform 0.3s ease-in-out;
+  transform: ${({ showText }) => (showText ? "translateY(0)" : "translateY(120%)")};
 
   h3 {
     font-size: 30px;

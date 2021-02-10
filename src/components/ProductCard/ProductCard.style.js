@@ -8,7 +8,7 @@ export const ProductCardContainer = styled.div`
   position: relative;
   overflow: hidden;
   border-radius: 3px; 
-
+  cursor: pointer;
   img {
     width: 70%;
     margin: 0 auto;

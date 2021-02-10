@@ -312,65 +312,11 @@ export const MdCategoryBar = styled.div`
     transform: ${({ openCatergory }) => (openCatergory ? "translateX(0)" : "translateX(-120%)")};
     transition: transform 0.3s ease-in-out;
     position: fixed;
-    height: 60vh;
     width: 26vh;
     background: #44a72c;
     z-index: 40;
     position: absolute;
     top: 125px;
-  }
-`;
-
-export const MdSubCategoryBar = styled.div`
-  display: none;
-  @media (max-width: 768px) {
-    display: ${({ open }) => (open ? "block" : "none")};
-    width: 30vh;
-    background: #44a72c;
-    position: absolute;
-    top: 50px;
-    left: 21%;
-    z-index: 41;
-  }
-
-  @media (max-width: 740px) {
-    left: 21.5%;
-  }
-  @media (max-width: 680px) {
-    left: 24%;
-  }
-  @media (max-width: 600px) {
-    left: 26%;
-  }
-  @media (max-width: 570px) {
-    left: 28%;
-  }
-  @media (max-width: 520px) {
-    left: 31.2%;
-  }
-  @media (max-width: 470px) {
-    left: 34.2%;
-  }
-  @media (max-width: 430px) {
-    left: 38%;
-  }
-  @media (max-width: 400px) {
-    left: 40%;
-  }
-  @media (max-width: 400px) {
-    left: 40.5%;
-  }
-  @media (max-width: 370px) {
-    left: 43.5%;
-  }
-  @media (max-width: 350px) {
-    left: 46%;
-  }
-  @media (max-width: 320px) {
-    left: 50%;
-  }
-  @media (max-width: 300px) {
-    left: 54%;
   }
 `;
 

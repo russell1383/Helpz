@@ -4,6 +4,7 @@ export const ProductContainerWrap = styled.div`
   width: 71.5vw;
   margin: 0 auto;
   position: relative;
+  cursor: pointer;
   @media (max-width: 768px) {
     width: 100%;
     padding: 0 3%;

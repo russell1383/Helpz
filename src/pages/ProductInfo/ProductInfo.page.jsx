@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../../components/Footer/Footer.component";
 import FooterBottomSection from "../../components/FooterBottomSection/FooterBottomSection.component";
 import FooterSection from "../../components/FooterSection/FooterSection.component";
@@ -9,6 +9,11 @@ import ProductInfoBanner from "../../components/ProductInfoBanner/ProductInfoBan
 import ProductMoreDetails from "../../components/ProductMoreDetails/ProductMoreDetails.component";
 
 const ProductInfo = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Navbar />

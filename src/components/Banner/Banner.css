@@ -25,3 +25,21 @@
     padding-top: 5px;
   }
 }
+.front, .back {
+	position: absolute;
+	top: 0;
+	left: 0;
+	backface-visibility: hidden;
+	overflow: hidden;
+	transition: transform .8s ease;
+}
+
+.back {
+	transform: rotateY(180deg);
+}
+.flip-container:hover .front {
+	transform: rotateY(-180deg);
+}
+.flip-container:hover .back {
+	transform: rotateY(0deg);
+}

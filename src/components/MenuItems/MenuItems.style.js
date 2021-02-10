@@ -13,11 +13,15 @@ export const MenuItemsContainerWrap = styled.div`
 
 export const MenuItemsContainer = styled.div`
   width: 100%;
-  height: 100%;
   background: #44a72c;
   color: #fff;
   cursor: pointer;
   padding: 13% 0 13% 5%;
+  height: 50vh;
+
+@media (max-width: 1270px) {
+  height: 45vh;
+  }
 
   @media (max-width: 752px) {
     display: none;
