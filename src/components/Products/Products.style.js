@@ -82,6 +82,12 @@ export const ProductBox = styled.div`
   border: 1px solid lightgrey;
   box-shadow: rgb(221 221 221) 0px 0px 10px;
   border-radius: 3px;
+
+  &:hover {
+    box-shadow: 0 11px 11px 0 rgba(0, 0, 0, 0.16);
+    border: 1px solid lightgray;
+  }
+
   small {
     font-size: 10px;
     text-align: center;
@@ -92,8 +98,6 @@ export const ProductBox = styled.div`
       font-size: 8px;
     }
   }
-
- 
 `;
 export const OffLabel = styled.div`
   position: absolute;
@@ -117,10 +121,10 @@ export const OffLabel = styled.div`
 `;
 
 export const ProductWrap = styled.div`
-display:flex;
-padding-right:3%; 
-margin: 10px 0 10px 0; 
-`
+  display: flex;
+  padding: 5% 3% 5% 0;
+  margin: 10px 0 10px 0;
+`;
 
 export const ProductImg = styled.img`
   width: 80%;
@@ -220,17 +224,37 @@ export const TimeBox = styled.div`
 
 export const ProductButtonContainer = styled.div`
   display: flex;
-
+  align-items: center;
   .add_to_cart_button {
     width: 80%;
     background: #44a72c;
     color: #fff;
     border: 0;
     font-family: "UniNeueRegular";
-    padding: 4% 1%;
+    padding: 4% 0;
     margin-right: 1px;
     cursor: pointer;
     border-radius: 3px;
+    transition: background 0.8s;
+    &:hover {
+      background: #4bb530 radial-gradient(circle, transparent 1%, #44a72c 1%)
+        center/15000%;
+    }
+
+    &:active {
+      background-color: #4bb530;
+      background-size: 100%;
+      transition: background 0s;
+    }
+
+    @media (max-width: 768px){
+      font-size: 11px;
+    
+    }
+
+    svg {
+      margin-right: 3%;
+    }
   }
 
   .plus_button {
@@ -242,5 +266,10 @@ export const ProductButtonContainer = styled.div`
     margin-left: 1px;
     cursor: pointer;
     border-radius: 3px;
+
+    @media (max-width: 768px){
+      font-size: 11px;
+  
+    }
   }
 `;

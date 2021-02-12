@@ -30,7 +30,17 @@ import {
 } from "./Navbar.style";
 import logo from "../../assets/logos/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell, faGift, faHistory, faList, faSearch, faShoppingCart, faSignInAlt, faSignOutAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBell,
+  faGift,
+  faHistory,
+  faList,
+  faSearch,
+  faShoppingCart,
+  faSignInAlt,
+  faSignOutAlt,
+  faUserCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import HamburgerIcon from "../../assets/icons/hamburger-icon.png";
 import CatergoryBarIcon from "../../assets/icons/category-icon.png";
 import CartIcon from "../../assets/icons/Cart.png";
@@ -49,29 +59,53 @@ const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [openCatergory, setOpenCatergory] = useState(false);
   const [showSearchSuggest, setShowSearchSuggest] = useState(false);
-  const [allProducts, setAllProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState();
+  const [searchTermNotMatched,setSearchTermNotMatched] = useState(false)
+  const [searchResults, setSearchResults] = useState([]);
   const history = useHistory();
 
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
-  useEffect(() => {
-    let data = { category_id: 1 };
-    // axios
-    //   .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
-    //   .then((response) => {
-    //     setAllProducts(response.data);
-    //   });
-  }, []);
+
+  const handleAddToCart = (item) => {
+    console.log(item);
+    let newItem = [...addToCart, item];
+    item.price = parseInt(item.price);
+    item.quantity = 1;
+    item.totalPrice = item.price;
+    item.totalQuantity = item.quantity;
+    setAddToCart(newItem);
+  };
+
+  const handleQuantity = (id) => {
+    if (addToCart.find((product) => product.id === id)) {
+      const product = addToCart.find((product) => product.id === id);
+      product.totalQuantity = product.totalQuantity + 1;
+      product.totalPrice = product.price * product.totalQuantity;
+
+      if (addToCart.find((item) => item.id === product.id)) {
+        var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
+        var newItems = [...addToCart];
+        newItems[objectIndex] = product;
+        setAddToCart(newItems);
+      }
+    }
+  };
+
 
   useEffect(() => {
-    if (allProducts.length) {
-      let item = allProducts.filter((pd) =>
-        pd.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      console.log(item);
+    let data = {name: searchTerm}
+    if (data.name) {
+      console.log(data)
+      axios
+      .post("https://mudee.shop/eCommerce/api/product/search/frontend", data)
+      .then((response) => {
+        setSearchResults(response.data.slice(0, 5))
+      });
+      
     }
-  }, [searchTerm]);
+
+  },[searchTerm])
 
   const handleToggle = (e) => {
     e.preventDefault();
@@ -101,6 +135,8 @@ const Navbar = () => {
     setShowSearchSuggest(!showSearchSuggest);
   };
 
+  // console.log(searchResults)
+
   return (
     <>
       <NavbarContainerWrap>
@@ -121,9 +157,16 @@ const Navbar = () => {
             </SearchBox>
 
             <SearchSuggestionsContainer open={showSearchSuggest}>
-              <SearchSuggestions />
-              <SearchSuggestions />
-              <SearchSuggestions />
+              {searchResults &&
+                searchResults.map((product) => (
+                  <SearchSuggestions
+                    key={product.key}
+                    productInfo={product}
+                    handleAddToCart={handleAddToCart}
+                    handleQuantity={handleQuantity}
+                  />
+                ))}
+            
             </SearchSuggestionsContainer>
           </SearchBoxWrap>
 
@@ -133,7 +176,9 @@ const Navbar = () => {
             </div>
             <h4>৳ {addToCart.reduce((a, b) => a + b.totalPrice, 0)}.0</h4>
             {addToCart.length ? (
-              <ItemsOnCart className="animate__bounce">{addToCart.length}</ItemsOnCart>
+              <ItemsOnCart >
+                {addToCart.length}
+              </ItemsOnCart>
             ) : (
               ""
             )}
@@ -169,20 +214,44 @@ const Navbar = () => {
             />
           </MdTopHeaderContainer>
 
-          <MdSidebar sidebarOpen={sidebarOpen} onClick={() => history.push("/")}>
-            <Location/>
+          <MdSidebar
+            sidebarOpen={sidebarOpen}
+            onClick={() => history.push("/")}
+          >
+            <Location />
             <MdSidebarItems>
-              <FontAwesomeIcon icon={faSignInAlt} /> 
-                <span>Login / Signup</span> 
+              <FontAwesomeIcon icon={faSignInAlt} />
+              <span>Login / Signup</span>
             </MdSidebarItems>
 
-            <MdSidebarItems><FontAwesomeIcon icon={faUserCircle} /><span>My Account</span></MdSidebarItems>
-            <MdSidebarItems><FontAwesomeIcon icon={faShoppingCart} /><span>My Cart</span></MdSidebarItems>
-            <MdSidebarItems><FontAwesomeIcon icon={faList} /><span>My List</span></MdSidebarItems>
-            <MdSidebarItems><FontAwesomeIcon icon={faHistory} /><span>History</span></MdSidebarItems>
-            <MdSidebarItems><FontAwesomeIcon icon={faGift} /><span>My Offer</span></MdSidebarItems>
-            <MdSidebarItems><FontAwesomeIcon icon={faBell} /><span>Notification</span></MdSidebarItems>
-            <MdSidebarItems><FontAwesomeIcon icon={faSignOutAlt} /><span>Logout</span></MdSidebarItems>
+            <MdSidebarItems>
+              <FontAwesomeIcon icon={faUserCircle} />
+              <span>My Account</span>
+            </MdSidebarItems>
+            <MdSidebarItems>
+              <FontAwesomeIcon icon={faShoppingCart} />
+              <span>My Cart</span>
+            </MdSidebarItems>
+            <MdSidebarItems>
+              <FontAwesomeIcon icon={faList} />
+              <span>My List</span>
+            </MdSidebarItems>
+            <MdSidebarItems>
+              <FontAwesomeIcon icon={faHistory} />
+              <span>History</span>
+            </MdSidebarItems>
+            <MdSidebarItems>
+              <FontAwesomeIcon icon={faGift} />
+              <span>My Offer</span>
+            </MdSidebarItems>
+            <MdSidebarItems>
+              <FontAwesomeIcon icon={faBell} />
+              <span>Notification</span>
+            </MdSidebarItems>
+            <MdSidebarItems>
+              <FontAwesomeIcon icon={faSignOutAlt} />
+              <span>Logout</span>
+            </MdSidebarItems>
           </MdSidebar>
 
           <MdCategoryBar openCatergory={openCatergory}>
@@ -195,15 +264,22 @@ const Navbar = () => {
                 type="text"
                 placeholder="Search Product"
                 onClick={handleShowSearchSuggestions}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
               <div>
                 <FontAwesomeIcon icon={faSearch} />
               </div>
             </MdSearchBox>
             <MdSearchSuggestionsContainer open={showSearchSuggest}>
-              <SearchSuggestions />
-              <SearchSuggestions />
-              <SearchSuggestions />
+            {searchResults &&
+                searchResults.map((product) => (
+                  <SearchSuggestions
+                    key={product.key}
+                    productInfo={product}
+                    handleAddToCart={handleAddToCart}
+                    handleQuantity={handleQuantity}
+                  />
+                ))}
             </MdSearchSuggestionsContainer>
           </MdSearchBoxWrap>
         </MdNavbarContainer>

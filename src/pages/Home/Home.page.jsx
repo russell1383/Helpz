@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AdImage from "../../components/AdImage/AdImage.component.jsx";
 import Banner from "../../components/Banner/Banner.component.jsx";
 import Footer from "../../components/Footer/Footer.component.jsx";
@@ -11,6 +11,11 @@ import Products from "../../components/Products/Products.component.jsx";
 import Testimonials from "../../components/Testimonials/Testimonials.component.jsx";
 
 const Home = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Navbar />

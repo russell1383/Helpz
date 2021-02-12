@@ -48,9 +48,20 @@ export const ProductInfoBox = styled.div`
   }
 `;
 
+export const MaginifiedImgContainer = styled.div`
+ width: 55%;
+ height:100%;
+
+ position:absolute;
+ top: 0;
+ z-index:20;
+ right: 0;
+`
+
 export const ProductInfoBoxImgContainerWrap = styled.div`
   width: 55%;
   height: inherit;
+  position:relative;
 
   @media (max-width: 768px) {
     width: 100%;

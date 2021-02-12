@@ -1,10 +1,10 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import ReactNotification from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
-import 'animate.css/animate.min.css';
-import Home from "./pages/Home/Home.page";
-import { createContext, useState } from "react";
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import "animate.css/animate.min.css";
+// import Home from "./pages/Home/Home.page";
+import { createContext, lazy, Suspense, useState } from "react";
 import Login from "./pages/Login/Login.page";
 import ViewCart from "./pages/ViewCart/ViewCart.page";
 import ProductInfo from "./pages/ProductInfo/ProductInfo.page";
@@ -16,27 +16,32 @@ import SubCategoryItems from "./pages/SubCategoryItems/SubCategoryItems.page";
 import ChildCategoryItems from "./pages/ChildCategoryItems/ChildCategoryItems.page";
 import ProductCard from "./components/ProductCard/ProductCard.component";
 import Invoice from "./pages/Invoice/Invoice";
+import { LoaderGif } from "./components/CategoryItemsBanner/CategoryItemsBanner.style";
+import loading from "./assets/gifs/loader.gif";
+
+const Home = lazy(()=>import("./pages/Home/Home.page"));
 
 export const UserContext = createContext();
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
   const [addToCart, setAddToCart] = useState([]);
-  const [pdInfo,setPdInfo] = useState({}) 
+  const [pdInfo, setPdInfo] = useState({});
 
   return (
     <UserContext.Provider
       value={{
         value: [loggedInUser, setLoggedInUser],
         value2: [addToCart, setAddToCart],
-        value3:[pdInfo,setPdInfo]
+        value3: [pdInfo, setPdInfo],
       }}
     >
       <div className="App">
-        <ReactNotification/>
+        <ReactNotification />
         <Router>
           <Switch>
             <Route path="/home">
+
               <Home />
             </Route>
 
@@ -80,8 +85,10 @@ function App() {
               <Invoice />
             </Route>
 
-            <Route exact path="/">  
-              <Home />
+            <Route exact path="/">
+              <Suspense fallback={<LoaderGif src={loading} />}>
+                <Home />
+              </Suspense>
             </Route>
 
             <Route exact path="*">

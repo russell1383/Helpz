@@ -138,6 +138,25 @@ export const CardButtonWrap = styled.div`
     border: none;
     outline: none;
     border-radius: 3px;
+
+    &:hover {
+      background: #4bb530 radial-gradient(circle, transparent 1%, #44a72c 1%)
+        center/15000%;
+    }
+
+    &:active {
+      background-color: #4bb530;
+      background-size: 100%;
+      transition: background 0s;
+    }
+
+    @media (max-width: 768px){
+      font-size: 11px;
+    }
+
+    svg {
+      margin-right: 3%;
+    }
   }
 
   .plus {
@@ -149,5 +168,9 @@ export const CardButtonWrap = styled.div`
     border: none;
     outline: none;
     border-radius: 3px;
+
+    @media (max-width: 768px){
+      font-size: 11px;
+    }
   }
 `;

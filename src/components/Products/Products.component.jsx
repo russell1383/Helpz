@@ -22,6 +22,8 @@ import { UserContext } from "../../App";
 import { useHistory } from "react-router-dom";
 import { productData } from "../../productData/productData";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const Products = ({ header, subheader }) => {
   const history = useHistory();
@@ -54,10 +56,11 @@ const Products = ({ header, subheader }) => {
   };
 
   useEffect(() => {
-    let data = { category_id: 1 };
+    let data = { category_id: 2 };
+
     axios
       .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
-      .then((response) => setProducts(response.data));
+      .then((response) => setProducts(response.data.slice(0, 30).sort( () => .5 - Math.random() )));
   }, []);
 
   const handleQuantity = (id) => {
@@ -88,21 +91,21 @@ const Products = ({ header, subheader }) => {
     dots: false,
     infinite: true,
     slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToScroll: 1,
     autoplay: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 4,
+          slidesToScroll: 1,
         },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           initialSlide: 2,
         },
       },
@@ -110,7 +113,7 @@ const Products = ({ header, subheader }) => {
         breakpoint: 480,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
         },
       },
     ],
@@ -144,9 +147,7 @@ const Products = ({ header, subheader }) => {
                   <div>
                     <p>Fresh</p>
                     <h3>
-                      {(product.name &&
-                        product.name.substring(0, product.name.indexOf(" "))) ||
-                        "Name"}{" "}
+                    {product.name.split(' ')[0]}
                     </h3>
                     <p>1kg</p>
                   </div>
@@ -181,6 +182,7 @@ const Products = ({ header, subheader }) => {
                     }
                     onClick={() => handleAddToCart(product)}
                   >
+                    <FontAwesomeIcon icon={faShoppingCart}/> 
                     {addToCart.length &&
                     addToCart.find((p) => p.id === product.id)
                       ? "Product Added"

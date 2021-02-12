@@ -1,3 +1,5 @@
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../App";
@@ -49,7 +51,7 @@ const ProductCard = ({
         <CardInfo onClick={handlePdClick}>
           <CartTextWrap>
             <p>Fresh</p>
-            <h3>{productInfo.name.substring(0, productInfo.name.indexOf(" "))}</h3>
+            <h3>{productInfo.name.split(' ')[0]}</h3>
             <p>1 kg</p>
           </CartTextWrap>
           <CartTextWrap>
@@ -86,6 +88,7 @@ const ProductCard = ({
             }
             onClick={() => handleAddToCart(productInfo)}
           >
+             <FontAwesomeIcon icon={faShoppingCart}/> 
             {addToCart.length && addToCart.find((p) => p.id === productInfo.id)
               ? "Product Added"
               : "Add to cart"}

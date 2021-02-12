@@ -61,7 +61,7 @@ const CartProduct = () => {
               src={`https://mudee.shop/eCommerce/assets/images/products/${product.photo}`}
               alt=""
             />
-            <h4>{product.name.substring(0, product.name.indexOf(" "))}</h4>
+            <h4>{product.name.split(' ')[0]}</h4>
             <div>
               <h4>{product.totalQuantity} Kg</h4> 
               <IncrementDecrementBox>

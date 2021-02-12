@@ -4,6 +4,12 @@ export const SearchSuggestionsContentContainer = styled.div`
   display: flex;
   align-items: center;
   background: #fff;
+  cursor: pointer;
+
+  @media (max-width: 450px){
+        padding: 4% 0;
+     }
+
   h4 {
     font-family: "UniNeueRegular";
 
@@ -17,7 +23,7 @@ export const SearchSuggestionsContentContainer = styled.div`
       font-size: 8px;
     }
     @media (max-width: 450px){
-        font-size: 5px 
+        font-size: 7px 
      }
   }
 `;
@@ -25,6 +31,10 @@ export const SearchSuggestionsContentContainer = styled.div`
 export const SearchSuggestImg = styled.img`
   width: 9%;
   padding: 1.2% 2.4%;
+
+  @media (max-width: 450px) {
+      width: 12%;
+    }
 `;
 export const SearchSuggestQuantityBox = styled.div`
   display: flex;
@@ -62,6 +72,7 @@ export const SearchSuggestionsButton = styled.button`
   background: #44a72c;
   margin-right: 5%;
   font-family: "UniNeueRegular";
+  cursor: pointer;
 
   @media (max-width: 1270px) {
     font-size: 10px;
@@ -75,4 +86,6 @@ export const SearchSuggestionsButton = styled.button`
      height: 20px;
      font-size: 5px 
   }
+
+ 
 `;

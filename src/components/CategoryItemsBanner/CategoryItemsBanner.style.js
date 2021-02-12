@@ -40,9 +40,14 @@ export const ShowMoreButton = styled.button`
 `
 
 export const LoaderGif = styled.img`
-width:18%;
+width:25%;
 margin: 0 auto;
 display:block;
-padding:12% 0;
+padding:8% 0;
+
+@media (max-width: 450px){
+    width:70%; 
+    padding-top: 50%; 
+}
 
 `
