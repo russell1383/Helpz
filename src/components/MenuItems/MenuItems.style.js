@@ -2,13 +2,6 @@ import styled from "styled-components";
 
 export const MenuItemsContainerWrap = styled.div`
   position: relative;
-
-  h1 {
-    position: absolute;
-
-    cursor: pointer;
-    display: inline;
-  }
 `;
 
 export const MenuItemsContainer = styled.div`
@@ -19,8 +12,8 @@ export const MenuItemsContainer = styled.div`
   padding: 13% 0 13% 5%;
   height: 50vh;
 
-@media (max-width: 1270px) {
-  height: 45vh;
+  @media (max-width: 1270px) {
+    height: 45vh;
   }
 
   @media (max-width: 752px) {
@@ -30,7 +23,7 @@ export const MenuItemsContainer = styled.div`
   p {
     font-size: 15px;
     font-family: "UniNeueRegular";
-    padding: 0 0 10% 5%;
+    padding: 1% 0 10% 8%;
 
     &:hover {
       transition: 0.3s;

@@ -20,18 +20,18 @@ const ViewCartBanner = () => {
     <>
       <ViewCartBannerContainer>
         <Row nogutter>
-          <Col md={2} className="d-none">
-            <Sticky
-              enabled={true}
-              top={81}
-              bottomBoundary="#payment_option"
-              className="category_card"
-            >
-              <CategoriesCard />
-            </Sticky>
-          </Col>
+        <Col md={1.5} className="d-none">
+              <Sticky
+                enabled={true}
+                top={81}
+                bottomBoundary="#testimonials"
+                className="category_card"
+              >
+                <CategoriesCard />
+              </Sticky>
+            </Col>
 
-          <Col md={8}>
+          <Col xs={12} md={9}>
             <ViewCartContainer>
               <h3>My Cart</h3>
               <ViewCartProductWrap>
@@ -48,7 +48,7 @@ const ViewCartBanner = () => {
             </ViewCartContainer>
           </Col>
 
-          <Col md={2} className="d-none">
+          <Col md={1.5} className="d-none">
             <Sticky enabled={true} top={81} bottomBoundary="#payment_option">
               <MenuItems />
             </Sticky>

@@ -1,14 +1,25 @@
 import styled from "styled-components";
 
 export const WishListContainer = styled.div`
-  display: ${({ openWishlist }) => (openWishlist ? "block" : "none")};
   position: absolute;
   top: 0;
-  height: 100vh;
-
+  right: 0;
+  width: 20vw;
+  height: fit-content;
+  transform: ${({ openWishlist }) =>
+    openWishlist ? "translateX(0)" : "translateX(150%)"};
+  transition: transform 0.3s ease-in-out;
   background-color: #fff;
-  padding-top: 30%;
-  padding-left: 2%;
+  padding: 30% 5%;
+  border: 1px solid lightgray;
+
+  h1 {
+    position: absolute;
+    top: 0;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 1.5vw;
+  }
 `;
 export const WishlistProductContainer = styled.div`
   display: flex;
@@ -17,12 +28,12 @@ export const WishlistProductContainer = styled.div`
   width: 100%;
 
   img {
-    width: 18%;
+    width: 20%;
     display: block;
   }
 
   p {
-    font-size: 12px;
+    font-size: 1vw;
     display: block;
     text-align: center;
   }
@@ -36,13 +47,17 @@ export const WishlistButton = styled.button`
   outline: none;
   height: 4%;
   margin-top: 5%;
+  padding:8px 0;
+  border-radius:3px;
 `;
 export const WishListIncrement = styled.div`
   display: flex;
   flex-direction: column;
-  width: 20px;
+  width: 50px;
+
+
+  
   button {
-    width: 15px;
-    height: 16px;
+    padding:5%;
   }
 `;

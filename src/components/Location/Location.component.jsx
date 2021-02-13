@@ -23,7 +23,7 @@ const Location = () => {
     setAddress(userLocation);
   };
   getLocation();
-  console.log(address);
+
 
   return (
     <MdSidebarItems>

@@ -139,7 +139,7 @@ export const ShoppingCartContainer = styled.div`
   position: fixed;
   top: 75px;
   right: 1.8%;
-  z-index: 50;
+  z-index: 51;
 
   @media (max-width: 768px) {
     display: none;

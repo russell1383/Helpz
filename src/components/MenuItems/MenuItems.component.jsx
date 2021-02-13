@@ -66,11 +66,10 @@ const MenuItems = () => {
           </p>
         </MenuItemsContainer>
 
-        <Wishlist openWishlist={openWishlist} />
-        <History openHistory={openHistory} />
+        <Wishlist wishlist={[openWishlist, setOpenWishlist]} />
+        <History history={[openHistory, setOpenHistory]} />
 
-        {openWishlist && <h1 onClick={() => setOpenWishlist(false)}>✖</h1>}
-        {openHistory && <h1 onClick={() => setOpenHistory(false)}>✖</h1>}
+      
       </MenuItemsContainerWrap>
     </>
   );

@@ -1,28 +1,44 @@
 import styled from "styled-components";
 
 export const HistoryContainer = styled.div`
-  position: absolute;
+  position: fixed; 
   top: 0;
-  height: 100vh;
-  display: ${({ openHistory }) => (openHistory ? "block" : "none")};
+  right: 0;
+  width: 20vw;
+  height:fit-content;
+
+  transform: ${({ openHistory }) =>
+    openHistory ? "translateX(0)" : "translateX(150%)"};
+  transition: transform 0.3s ease-in-out;
   background-color: #fff;
   padding: 30% 5%;
+  border: 1px solid lightgray;
+
+  h1 {
+    position: absolute;
+    top: 0;
+    padding: 5px;
+    cursor: pointer;
+    font-size:1.5vw;
+  }
 `;
 
 export const HistoryContentConatiner = styled.div`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #a4a0a0;
-  padding-bottom: 5%;
-  position: relative;
+  padding-bottom: 10px; 
+  margin-bottom: 30px;  
+  margin-top: 15px;
   img {
-    width: 35%;
+    width: 30%;
+    height: 30%;
   }
 
   .right_side {
-    width: 60%;
+    width: 68%;
     p {
-      font-size: 12px;
+      font-size: 0.8vw;
 
       span {
         font-weight: bold;
@@ -32,7 +48,7 @@ export const HistoryContentConatiner = styled.div`
     }
     span {
       color: #44a72c;
-      font-size: 8px;
+      font-size: 0.6vw;
     }
   }
 `;

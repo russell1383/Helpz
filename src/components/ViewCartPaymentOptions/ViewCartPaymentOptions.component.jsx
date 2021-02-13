@@ -36,6 +36,7 @@ import { useHistory } from "react-router-dom";
 const ViewCartPaymentOptions = () => {
   const { value, value2 } = useContext(UserContext);
   const [loggedInUser, setLoggedInUser] = value;
+  const [num, setNum] = useState("");
   const [addToCart, setAddToCart] = value2;
   const [pickup, setPickup] = useState();
   const [open, setOpen] = useState(false);
@@ -64,6 +65,7 @@ const ViewCartPaymentOptions = () => {
         payment_status: "",
         cupon_code: "",
       };
+      console.log(orderInfo);
       axios
         .post("https://mudee.shop/eCommerce/api/order/store", orderInfo)
         .then((response) => {
@@ -92,6 +94,7 @@ const ViewCartPaymentOptions = () => {
       });
   };
 
+ 
   return (
     <div id="payment_option">
       <ViewCartContainer>
@@ -122,6 +125,7 @@ const ViewCartPaymentOptions = () => {
             open={open}
             close={onCloseModal}
             handleLogin={handleLogin}
+            handleOrderReq={handleOrderReq}
           />
           <MobileBankingImg src={nagad} alt="" onClick={handleOrderReq} />
           <MobileBankingImg src={bkash} alt="" onClick={handleOrderReq} />

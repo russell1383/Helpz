@@ -18,6 +18,17 @@ export const ModalContainer = styled.div`
     text-align: left;
     font-family: "UniNeueRegular";
 
+div{
+  input{
+    height:50px;
+    width:60px;
+
+    @media(max-width:400px){
+      height:45px;
+    width:45px;
+    }
+  }
+}
     @media (max-width: 560px){
         width: 80%;
     }
@@ -69,6 +80,7 @@ export const ModalContainer = styled.div`
     margin: 2% 0;
     font-family: "UniNeueRegular";
     font-weight:400;
+    cursor: pointer;
 
     @media (max-width: 560px){
         margin: 5% 0;
