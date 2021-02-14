@@ -124,6 +124,11 @@ export const ProductWrap = styled.div`
   display: flex;
   padding: 5% 3% 5% 0;
   margin: 10px 0 10px 0;
+
+  &:focus{
+    border: none ;
+      outline: none ;
+  }
 `;
 
 export const ProductImg = styled.img`

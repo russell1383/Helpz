@@ -18,6 +18,7 @@ import ProductCard from "./components/ProductCard/ProductCard.component";
 import Invoice from "./pages/Invoice/Invoice";
 import { LoaderGif } from "./components/CategoryItemsBanner/CategoryItemsBanner.style";
 import loading from "./assets/gifs/loader.gif";
+import SingleProductInfoBannner from "./components/SingleProductInfoBanner/SingleProductInfoBannner.component";
 
 const Home = lazy(()=>import("./pages/Home/Home.page"));
 
@@ -78,7 +79,7 @@ function App() {
             </Route>
 
             <Route path="/test">
-              <ProductCard />
+              <SingleProductInfoBannner/>
             </Route>
 
             <Route path="/invoice">

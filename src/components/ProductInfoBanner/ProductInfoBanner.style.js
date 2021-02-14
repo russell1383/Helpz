@@ -9,7 +9,6 @@ export const ProductBannerContainer = styled.div`
 export const ProductInfoContainer = styled.div`
   width: 62vw;
   margin: 3% auto;
-  
 
   @media (max-width: 768px) {
     padding-top: 50px;
@@ -46,22 +45,30 @@ export const ProductInfoBox = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
   }
+
+  #myPortal {
+    width: 45%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    z-index: 50;
+    right: 0;
+
+    @media (max-width: 768px) {
+      top: 0;
+      left: 0;
+      width: 90%;
+    }
+  }
 `;
 
-export const MaginifiedImgContainer = styled.div`
- width: 55%;
- height:100%;
 
- position:absolute;
- top: 0;
- z-index:20;
- right: 0;
-`
 
 export const ProductInfoBoxImgContainerWrap = styled.div`
   width: 55%;
   height: inherit;
-  position:relative;
+  position: relative;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -72,12 +79,10 @@ export const ProductInfoBoxImgContainer = styled.div`
   border: 1px solid #888888;
   display: flex;
   align-items: center;
-  position:relative;
+  position: relative;
   justify-content: center;
-
-  img {
-    width: 50%;
-  }
+  height: 300px;
+  overflow: hidden;
 `;
 
 export const ProductSubImgContainer = styled.div`
@@ -163,7 +168,7 @@ export const ProductInfoOffLabel = styled.div`
   color: #fff;
   font-size: 14px;
 
-  @media (max-width: 768px){
+  @media (max-width: 768px) {
     display: none;
   }
 `;
@@ -244,44 +249,43 @@ export const RewardContainer = styled.div`
 `;
 
 export const ProductInfoProductContainerWrap = styled.div`
-
-width: 40vw;
-margin: 0 auto;
-
+  width: 40vw;
+  margin: 0 auto;
 `;
 
 // --------------Medium Device content--------------//
 
 export const MdProductInfoOffLabel = styled.div`
-display: none;
+  display: none;
 
-@media (max-width: 768px){
-  display: block;
-  position: absolute;
-  width: 40px;
-  height: 50px;
-  background-color: #44a72c;
-  position: absolute;
-  top: 0;
-  right: 2%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 12px;
-}
-`
-export const MdProductPrice = styled.div`
-display: none;
-
-@media (max-width: 768px){
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  p, .price_tag{
-    text-align: right;
+  @media (max-width: 768px) {
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 50px;
+    background-color: #44a72c;
+    position: absolute;
+    top: 0;
+    right: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 12px;
   }
-}
-`
+`;
+export const MdProductPrice = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    p,
+    .price_tag {
+      text-align: right;
+    }
+  }
+`;

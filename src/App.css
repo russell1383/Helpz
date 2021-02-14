@@ -7,9 +7,11 @@
     font-family: "Roboto", sans-serif;
 
 }
-.slick-prev, .slick-next{
+/* .slick-prev, .slick-next{
     display: none !important;
-  }
+  } */
+
+
 
 a:-webkit-any-link{
     color: #fff;

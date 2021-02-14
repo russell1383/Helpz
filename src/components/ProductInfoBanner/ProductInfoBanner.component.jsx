@@ -26,6 +26,7 @@ import rightArrow from "../../assets/icons/right-arrow.png";
 import { useHistory, useParams } from "react-router-dom";
 import { productData } from "../../productData/productData";
 import { store } from "react-notifications-component";
+import ReactImageMagnify from "react-image-magnify";
 
 const ProductInfoBanner = () => {
   const history = useHistory();
@@ -111,10 +112,27 @@ const ProductInfoBanner = () => {
                 <ProductInfoBox>
                   <ProductInfoBoxImgContainerWrap>
                     <ProductInfoBoxImgContainer>
-                      <img
+                    <ReactImageMagnify
+                      {...{
+                        smallImage: {
+                          alt: "Wristwatch by Ted Baker London",
+                          isFluidWidth: true,
+                          src:
+                            `https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`,
+                        },
+                        largeImage: {
+                          src:
+                            `https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`,
+                          width: 1200,
+                          height: 800,
+                        },
+                        enlargedImagePortalId: "myPortal",
+                      }}
+                    />
+                      {/* <img
                         src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
                         alt=""
-                      />
+                      /> */}
                       <MdProductInfoOffLabel>
                         {" "}
                         25% <br /> Off
@@ -203,13 +221,18 @@ const ProductInfoBanner = () => {
                       25% <br /> Off
                     </ProductInfoOffLabel>
 
-                    <MdProductPrice>
+                    <MdProductPrice> 
                       <p>
                         Price : <del>30Tk</del>
                       </p>
                       <h3 className="price_tag">20Tk</h3>
                     </MdProductPrice>
                   </ProductInfo>
+
+                 
+                  <div id="myPortal"></div>
+               
+
                 </ProductInfoBox>
 
                 <h2>Packeg Offer</h2>
@@ -230,7 +253,7 @@ const ProductInfoBanner = () => {
             </Col>
 
             <Col md={1.5} className="d-none">
-              <Sticky enabled={true} top={81} bottomBoundary="#testimonials">
+              <Sticky enabled={true} top={81}  bottomBoundary="#more-details">
                 <MenuItems />
               </Sticky>
             </Col>
