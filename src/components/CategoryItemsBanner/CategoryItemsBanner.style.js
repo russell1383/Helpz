@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const CategoryItemsContainer = styled.div`
 width:98%;
 margin: 0 auto;
+z-index:10;
 
 p{
     color: #888888;

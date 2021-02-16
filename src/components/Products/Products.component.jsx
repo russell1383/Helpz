@@ -28,7 +28,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 const Products = ({ header, subheader }) => {
   const history = useHistory();
 
-  const { value, value2,value3 } = useContext(UserContext);
+  const { value, value2, value3 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
   const [pdInfo, setPdInfo] = value3;
   const [products, setProducts] = useState([]);
@@ -60,7 +60,9 @@ const Products = ({ header, subheader }) => {
 
     axios
       .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
-      .then((response) => setProducts(response.data.slice(0, 30).sort( () => .5 - Math.random() )));
+      .then((response) =>
+        setProducts(response.data.slice(0, 30).sort(() => 0.5 - Math.random()))
+      );
   }, []);
 
   const handleQuantity = (id) => {
@@ -86,12 +88,30 @@ const Products = ({ header, subheader }) => {
     }
   };
 
+  const LeftArrow = ({ className, style, onClick }) => (
+    <LeftArrowButton
+      style={{ ...style, left: -5, backgroundColor: "#eeeeee" }}
+      onClick={onClick}
+      className={className}
+    ></LeftArrowButton>
+  );
+  const RightArrow = ({ className, style, onClick }) => (
+    <RightArrowButton
+      style={{ ...style, right: -5, backgroundColor: "#eeeeee" }}
+      onClick={onClick}
+      className={className}
+    ></RightArrowButton>
+  );
+
   var settings = {
     focusOnSelect: false,
     dots: false,
     infinite: true,
     slidesToShow: 5,
     slidesToScroll: 1,
+    nextArrow: <RightArrow />,
+    prevArrow: <LeftArrow />,
+    arrows: true,
     autoplay: true,
     responsive: [
       {
@@ -125,12 +145,12 @@ const Products = ({ header, subheader }) => {
         <h2>{header}</h2>
         <p>{subheader}</p>
 
-        <LeftArrowButton>
+        {/* <LeftArrowButton>
           <img src={LeftArrow} alt="" />
         </LeftArrowButton>
         <RightArrowButton>
           <img src={RightArrow} alt="" />
-        </RightArrowButton>
+        </RightArrowButton> */}
 
         <Slider {...settings}>
           {products.map((product, idx) => (
@@ -141,14 +161,10 @@ const Products = ({ header, subheader }) => {
                   src={`https://mudee.shop/eCommerce/assets/images/products/${product.photo}`}
                   onClick={() => handlePdClick(product)}
                 ></ProductImg>
-                <ProductInfo
-           onClick={() => handlePdClick(product)}
-                >
+                <ProductInfo onClick={() => handlePdClick(product)}>
                   <div>
                     <p>Fresh</p>
-                    <h3>
-                    {product.name.split(' ')[0]}
-                    </h3>
+                    <h3>{product.name.split(" ")[0]}</h3>
                     <p>1kg</p>
                   </div>
                   <div>
@@ -182,7 +198,7 @@ const Products = ({ header, subheader }) => {
                     }
                     onClick={() => handleAddToCart(product)}
                   >
-                    <FontAwesomeIcon icon={faShoppingCart}/> 
+                    <FontAwesomeIcon icon={faShoppingCart} />
                     {addToCart.length &&
                     addToCart.find((p) => p.id === product.id)
                       ? "Product Added"

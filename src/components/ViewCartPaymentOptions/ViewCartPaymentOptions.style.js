@@ -55,6 +55,7 @@ export const RedeemButton = styled.button`
   color: #fff;
   border-radius: 5px;
   font-family: "UniNeueRegular";
+  cursor: pointer;
   padding:2% 7%;
   font-size: 15px;
   background: ${(props) =>

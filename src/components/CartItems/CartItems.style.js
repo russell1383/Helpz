@@ -23,7 +23,7 @@ width: 200px;
 margin-left: auto;
 border-radius: 5px;
 margin-top: 5%;
-
+cursor: pointer;
 @media (max-width: 630px){
     font-size: 10px;
     width: 100%;

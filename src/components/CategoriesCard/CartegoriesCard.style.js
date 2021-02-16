@@ -11,7 +11,7 @@ export const CategoriesCardContainer = styled.div`
   padding: 8%;
   cursor: pointer;
   display: flex;
-  z-index:5;
+  z-index:50;
   flex-direction: column;
   height: 50vh;
 
@@ -66,7 +66,7 @@ export const SubCatergoriesWrap = styled.div`
 
   transition: transform 0.3s ease-in-out;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
-  z-index:1;
+  z-index:49;
   position: absolute;
   top: 0;
   left: 100.5%;
