@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Row } from "react-grid-system";
+import Sticky from "react-stickynode";
 import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 import MenuItems from "../MenuItems/MenuItems.component";
 import OfferProductCard from "../OfferProductCard/OfferProductCard.component";
@@ -14,10 +15,17 @@ const OfferBanner = () => {
     <>
       <OfferBannerContainer>
         <Row nogutter>
-          <Col md={2} className="d-none">
-            <CategoriesCard />
+        <Col md={1.5} className="d-none">
+            <Sticky
+              enabled={true}
+              top={81}
+              bottomBoundary="#end-point"
+              className="category_card"
+            >
+              <CategoriesCard />
+            </Sticky>
           </Col>
-          <Col md={8}>
+          <Col xs={12} md={9}>
             <OfferBannerContentContainer>
               <h2>Offers Only For You</h2>
               <OfferBannerContent>
@@ -33,8 +41,10 @@ const OfferBanner = () => {
               </OfferBannerContent>
             </OfferBannerContentContainer>
           </Col>
-          <Col md={2} className="d-none">
-            <MenuItems />
+          <Col md={1.5} className="d-none">
+            <Sticky enabled={true} top={81} bottomBoundary="#end-point">
+              <MenuItems />
+            </Sticky>
           </Col>
         </Row>
       </OfferBannerContainer>

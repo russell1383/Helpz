@@ -9,6 +9,7 @@ const Offer = () => {
     <>
       <Navbar />
       <OfferBanner />
+      <div id="end-point"></div>
       <FooterSection />
       <FooterBottomSection />
       <Footer />
