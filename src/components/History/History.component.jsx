@@ -9,8 +9,6 @@ import img from "../../assets/images/qr.png";
 const History = ({ history }) => {
 const [openHistory, setOpenHistory] = history
   
-  console.log(openHistory)
-  
   return (
     <>
       <HistoryContainer openHistory={openHistory}>

@@ -32,8 +32,7 @@ const CategoryItemsBanner = ({ id, name }) => {
         .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
         .then((response) => {
           setLoader(false);
-          setProducts(response.data[0].product);
-          console.log(response.data[0].product)
+          setProducts(response.data);
         });
     }
   }, [id]);

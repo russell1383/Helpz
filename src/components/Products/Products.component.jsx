@@ -103,7 +103,15 @@ const Products = ({ header, subheader }) => {
     ></RightArrowButton>
   );
 
-  var settings = {
+  const handleCampaignPriceDiscount = (p) => {
+    if (p.campaign && p.campaign.discount_type === "1") {
+      let percentageCalc = (parseInt(p.campaign.offer) / 100) * parseInt(p.price)
+      let offerPrice = parseInt(p.price) - percentageCalc
+      return offerPrice
+    }
+  }
+
+  const settings = {
     focusOnSelect: false,
     dots: false,
     infinite: true,
@@ -139,6 +147,7 @@ const Products = ({ header, subheader }) => {
     ],
   };
 
+
   return (
     <>
       <ProductContainerWrap>
@@ -154,8 +163,9 @@ const Products = ({ header, subheader }) => {
 
         <Slider {...settings}>
           {products.map((product, idx) => (
-            <ProductWrap>
-              <ProductBox key={idx}>
+            <ProductWrap key={idx}>
+           
+              <ProductBox >
                 <OffLabel>25% Off</OffLabel>
                 <ProductImg
                   src={`https://mudee.shop/eCommerce/assets/images/products/${product.photo}`}
@@ -170,9 +180,9 @@ const Products = ({ header, subheader }) => {
                   <div>
                     <h6>Price</h6>
                     <h6>
-                      <del>30 tk</del>
+                      <del>{product.price} tk</del>
                     </h6>
-                    <h5>{product.price} tk</h5>
+                    <h5>{product.campaign ? handleCampaignPriceDiscount(product) : product.price} tk</h5>
                   </div>
                 </ProductInfo>
                 <p>

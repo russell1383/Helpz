@@ -35,8 +35,6 @@ const ProductCard = ({
     }
   };
 
-  console.log(productInfo)
-
   return (
     <>
       <ProductCardContainer>
