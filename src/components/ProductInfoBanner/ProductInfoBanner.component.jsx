@@ -35,12 +35,15 @@ const ProductInfoBanner = () => {
   const { value, value2, value3 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
   const [pdInfo, setPdInfo] = value3;
+  const [zIndex,setZindex] = useState(false)
 
-  const handleAddToCart = (item) => {
+  const handleAddToCart = (item, price) => {
+    console.log(price)
     let newItem = [...addToCart, item];
     item.price = parseInt(item.price);
     item.quantity = 1;
-    item.totalPrice = item.price;
+    item.totalPrice = price ? parseInt(price) : item.price;
+    item.campaignPrice = parseInt(price);
     item.totalQuantity = item.quantity;
     setAddToCart(newItem);
     store.addNotification({
@@ -56,13 +59,15 @@ const ProductInfoBanner = () => {
         onScreen: true,
       },
     });
+    console.log(price) 
   };
 
-  const quantityIncrement = (id) => {
+  const quantityIncrement = (id,price) => {
     if (addToCart.find((item) => item.id === id)) {
       const product = addToCart.find((product) => product.id === id);
       product.totalQuantity = product.totalQuantity + 1;
-      product.totalPrice = product.price * product.totalQuantity;
+      console.log(price)
+      product.totalPrice = price ? parseInt(price) * product.totalQuantity : product.price * product.totalQuantity;
       var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
       var newItems = [...addToCart];
       newItems[objectIndex] = product;
@@ -70,7 +75,7 @@ const ProductInfoBanner = () => {
     }
   };
 
-  const quantityDecrement = (id) => {
+  const quantityDecrement = (id,price) => {
     if (addToCart.find((item) => item.id === id)) {
       const product = addToCart.find((product) => product.id === id);
       if (product.totalQuantity > 1) {
@@ -83,8 +88,29 @@ const ProductInfoBanner = () => {
       }
     }
   };
+// console.log(zIndex)
+const handleCampaignPriceDiscount = (p) => {
+  if (p.campaign) {
+    let currentDate = new Date();
+    let campaignEndDate = Date.parse(p.campaign.end_date);
+    let currenTime = Date.parse(new Date());
+    let campaignEndTime = p.campaign.end_time.split(":");
+    // console.log(campaignEndTime);
+    //  console.log(currenTime)
+    if (p.campaign.discount_type === "1" && currentDate < campaignEndDate) {
+      let percentageCalc =
+        (parseInt(p.campaign.offer) / 100) * parseInt(p.price);
+      let offerPrice = parseInt(p.price) - percentageCalc;
+      return offerPrice;
+    }else {
+      return p.price;
+    }
+  } else {
+    return p.price;
+  }
+};
 
-  console.log(pdInfo);
+console.log(addToCart)
 
   return (
     <>
@@ -111,7 +137,7 @@ const ProductInfoBanner = () => {
 
                 <ProductInfoBox>
                   <ProductInfoBoxImgContainerWrap>
-                    <ProductInfoBoxImgContainer>
+                    <ProductInfoBoxImgContainer onMouseOver={()=>setZindex(true)} onMouseLeave={()=>setZindex(false)}>
                     <ReactImageMagnify
                       {...{
                         smallImage: {
@@ -160,9 +186,11 @@ const ProductInfoBanner = () => {
                     <h3>{pdInfo.name.split(" ")[0]}</h3>
                     <p>1 kg</p>
                     <p className="d-none">
-                      Price : <del>30Tk</del>
+                      Price : <del>{pdInfo.price}Tk</del>
                     </p>
-                    <h3 className="price_tag d-none">{pdInfo.price}Tk</h3>
+                    <h3 className="price_tag d-none">{pdInfo.campaign
+                        ? handleCampaignPriceDiscount(pdInfo)
+                        : pdInfo.price}Tk</h3>
                     <h3>Fresh {pdInfo.name.split(" ")[0]} Offer</h3>
                     <p>
                       Fresh {pdInfo.name.split(" ")[0]}
@@ -185,14 +213,14 @@ const ProductInfoBanner = () => {
                     <ProductOrderButtonsContainer>
                       <div>
                         <div className="quantity_box">
-                          <button onClick={() => quantityIncrement(pdInfo.id)}>
+                          <button onClick={() => quantityIncrement(pdInfo.id,handleCampaignPriceDiscount(product))}>
                             +
                           </button>
                           {pdInfo.totalQuantity
                             ? pdInfo.totalQuantity
                             : pdInfo.quantity}
                           kg
-                          <button onClick={() => quantityDecrement(pdInfo.id)}>
+                          <button onClick={() => quantityDecrement(pdInfo.id,handleCampaignPriceDiscount(product))}>
                             -
                           </button>
                         </div>
@@ -203,7 +231,7 @@ const ProductInfoBanner = () => {
                             addToCart.find((p) => p.id === pdInfo.id) &&
                             true
                           }
-                          onClick={() => handleAddToCart(pdInfo)}
+                          onClick={() => handleAddToCart(pdInfo,handleCampaignPriceDiscount(pdInfo))}
                         >
                           {addToCart.length &&
                           addToCart.find((p) => p.id === pdInfo.id)

@@ -26,9 +26,7 @@ export const CategoriesCardContainer = styled.div`
 
   h3 {
     font-family: "UniNeueRegular";
-    @media (max-width: 1280px) {
-      font-size: 16px;
-    }
+    font-size:16px;
     @media (max-width: 900px) {
       font-size: 13px;
     }
@@ -53,7 +51,7 @@ export const CategoriesCardContainer = styled.div`
     @media (max-width: 1280px) {
       font-size: 10px;
     }
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
       font-size: 8px;
     }
     @media (max-width:768px) {

@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const ProductCardContainer = styled.div`
-  padding: 0.5% 1.5%;
-  width: 19%;
+  padding: 5% 5%;
   background: #ffffff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   position: relative;
@@ -27,12 +26,7 @@ export const ProductCardContainer = styled.div`
     font-family: "UniNeueRegular";
   }
 
-  @media (max-width: 1280px) {
-    width: 24%;
-  }
-  @media (max-width: 1280px) {
-    width: 49%;
-  }
+
 `;
 
 export const CardLabel = styled.div`
@@ -138,6 +132,7 @@ export const CardButtonWrap = styled.div`
     border: none;
     outline: none;
     border-radius: 3px;
+    cursor: pointer;
 
     &:hover {
       background: #4bb530 radial-gradient(circle, transparent 1%, #44a72c 1%)
@@ -168,6 +163,7 @@ export const CardButtonWrap = styled.div`
     border: none;
     outline: none;
     border-radius: 3px;
+    cursor: pointer;
 
     @media (max-width: 768px){
       font-size: 11px;

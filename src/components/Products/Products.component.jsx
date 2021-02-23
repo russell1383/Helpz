@@ -24,6 +24,7 @@ import { productData } from "../../productData/productData";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import ProductCard from "../ProductCard/ProductCard.component";
 
 const Products = ({ header, subheader }) => {
   const history = useHistory();
@@ -32,12 +33,14 @@ const Products = ({ header, subheader }) => {
   const [addToCart, setAddToCart] = value2;
   const [pdInfo, setPdInfo] = value3;
   const [products, setProducts] = useState([]);
+  const [campaignPrice, setCampaignPrice] = useState(null);
 
-  const handleAddToCart = (item) => {
+  const handleAddToCart = (item, price) => {
     let newItem = [...addToCart, item];
     item.price = parseInt(item.price);
     item.quantity = 1;
-    item.totalPrice = item.price;
+    item.totalPrice = price ? parseInt(price) : item.price;
+    item.campaignPrice = parseInt(price);
     item.totalQuantity = item.quantity;
     setAddToCart(newItem);
     store.addNotification({
@@ -65,11 +68,13 @@ const Products = ({ header, subheader }) => {
       );
   }, []);
 
-  const handleQuantity = (id) => {
+  const handleQuantity = (id, price) => {
     if (addToCart.find((product) => product.id === id)) {
       const product = addToCart.find((product) => product.id === id);
       product.totalQuantity = product.totalQuantity + 1;
-      product.totalPrice = product.price * product.totalQuantity;
+      product.totalPrice = price
+        ? parseInt(price) * product.totalQuantity
+        : product.price * product.totalQuantity;
 
       if (addToCart.find((item) => item.id === product.id)) {
         var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
@@ -104,12 +109,25 @@ const Products = ({ header, subheader }) => {
   );
 
   const handleCampaignPriceDiscount = (p) => {
-    if (p.campaign && p.campaign.discount_type === "1") {
-      let percentageCalc = (parseInt(p.campaign.offer) / 100) * parseInt(p.price)
-      let offerPrice = parseInt(p.price) - percentageCalc
-      return offerPrice
+    if (p.campaign) {
+      let currentDate = new Date();
+      let campaignEndDate = Date.parse(p.campaign.end_date);
+      // let currenTime = Date.parse(new Date());
+      // let campaignEndTime = p.campaign.end_time.split(":");
+      // console.log(campaignEndTime);
+      //  console.log(currenTime)
+      if (p.campaign.discount_type === "1" && currentDate < campaignEndDate) {
+        let percentageCalc =
+          (parseInt(p.campaign.offer) / 100) * parseInt(p.price);
+        let offerPrice = parseInt(p.price) - percentageCalc;
+        return offerPrice;
+      }else {
+        return p.price;
+      }
+    } else {
+      return p.price;
     }
-  }
+  };
 
   const settings = {
     focusOnSelect: false,
@@ -147,7 +165,6 @@ const Products = ({ header, subheader }) => {
     ],
   };
 
-
   return (
     <>
       <ProductContainerWrap>
@@ -164,8 +181,8 @@ const Products = ({ header, subheader }) => {
         <Slider {...settings}>
           {products.map((product, idx) => (
             <ProductWrap key={idx}>
-           
-              <ProductBox >
+              <ProductCard productInfo={product}></ProductCard>
+              {/* <ProductBox>
                 <OffLabel>25% Off</OffLabel>
                 <ProductImg
                   src={`https://mudee.shop/eCommerce/assets/images/products/${product.photo}`}
@@ -182,7 +199,11 @@ const Products = ({ header, subheader }) => {
                     <h6>
                       <del>{product.price} tk</del>
                     </h6>
-                    <h5>{product.campaign ? handleCampaignPriceDiscount(product) : product.price} tk</h5>
+                    <h5>
+                     { handleCampaignPriceDiscount(product)}
+                        
+                      tk
+                    </h5>
                   </div>
                 </ProductInfo>
                 <p>
@@ -206,7 +227,12 @@ const Products = ({ header, subheader }) => {
                       addToCart.find((p) => p.id === product.id) &&
                       true
                     }
-                    onClick={() => handleAddToCart(product)}
+                    onClick={() =>
+                      handleAddToCart(
+                        product,
+                        handleCampaignPriceDiscount(product)
+                      )
+                    }
                   >
                     <FontAwesomeIcon icon={faShoppingCart} />
                     {addToCart.length &&
@@ -216,12 +242,17 @@ const Products = ({ header, subheader }) => {
                   </button>
                   <button
                     className="plus_button"
-                    onClick={() => handleQuantity(product.id)}
+                    onClick={() =>
+                      handleQuantity(
+                        product.id,
+                        handleCampaignPriceDiscount(product)
+                      )
+                    }
                   >
                     +
                   </button>
                 </ProductButtonContainer>
-              </ProductBox>
+              </ProductBox> */}
             </ProductWrap>
           ))}
         </Slider>

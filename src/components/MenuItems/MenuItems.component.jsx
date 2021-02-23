@@ -26,7 +26,6 @@ const MenuItems = () => {
         <MenuItemsContainer>
           <p>
             <Link to="/login">
-              {" "}
               <FontAwesomeIcon icon={faSignInAlt} />
               <span>Login / Signup</span>{" "}
             </Link>

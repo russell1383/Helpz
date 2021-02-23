@@ -10,7 +10,7 @@ export const ProductContainerWrap = styled.div`
     padding: 0 3%;
   }
 
-  h2 {
+  /* h2 {
     font-weight: 700;
     margin-top: 4%;
     font-family: "UniNeueRegular";
@@ -41,7 +41,7 @@ export const ProductContainerWrap = styled.div`
         color: #44a72c;
       }
     }
-  }
+  } */
 `;
 
 export const LeftArrowButton = styled.div`
@@ -123,13 +123,15 @@ export const OffLabel = styled.div`
 
 export const ProductWrap = styled.div`
   display: flex;
-  padding: 5% 3% 5% 0;
+  padding: 5% 3% 5% 1%;
   margin: 10px 0 10px 0;
 
   &:focus {
     border: none;
     outline: none;
   }
+
+
 `;
 
 export const ProductImg = styled.img`

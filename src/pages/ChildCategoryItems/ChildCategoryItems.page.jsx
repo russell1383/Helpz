@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import CategoryItemsBanner from "../../components/CategoryItemsBanner/CategoryItemsBanner.component";
+import ChildCategoryItemsContent from "../../components/ChildCategoryItemsContent/ChildCategoryItemsContent.component";
 import Footer from "../../components/Footer/Footer.component";
 import FooterBottomSection from "../../components/FooterBottomSection/FooterBottomSection.component";
 import FooterSection from "../../components/FooterSection/FooterSection.component";
@@ -11,7 +12,7 @@ const ChildCategoryItems = () => {
   return (
     <>
       <Navbar />
-      <CategoryItemsBanner id={childCategoryId} name={childCategoryName} />
+      <ChildCategoryItemsContent id={childCategoryId} name={childCategoryName} />
       <div id="end-point" />
       <FooterSection />
       <FooterBottomSection />

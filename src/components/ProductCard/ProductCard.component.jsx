@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../App";
 import img from "../../assets/images/product-images/product-1.png";
+import { handleAddToCart,handleQuantity } from "../../utils/cartManagement";
 import {
   CardButtonWrap,
   CardInfo,
@@ -17,11 +18,7 @@ import {
   CardLabel,
 } from "./ProductCard.style";
 
-const ProductCard = ({
-  productInfo,
-  handleAddToCart,
-  handleQuantity
-}) => {
+const ProductCard = ({ productInfo }) => {
   const { value, value2, value3 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
   const [pdInfo, setPdInfo] = value3;
@@ -42,18 +39,18 @@ const ProductCard = ({
           20% <br /> off
         </CardLabel>
         <img
-          src={ `https://mudee.shop/eCommerce/assets/images/products/${productInfo.photo}`}
+          src={`https://mudee.shop/eCommerce/assets/images/products/${productInfo.photo}`}
           alt=""
           onClick={handlePdClick}
         />
         <CardInfo onClick={handlePdClick}>
           <CartTextWrap>
             <p>Fresh</p>
-            <h3>{productInfo.name.split(' ')[0]}</h3>
+            <h3>{productInfo.name.split(" ")[0]}</h3>
             <p>1 kg</p>
           </CartTextWrap>
           <CartTextWrap>
-            <h6>Price</h6> 
+            <h6>Price</h6>
             <h6>
               <del>30 tk</del>
             </h6>
@@ -84,14 +81,21 @@ const ProductCard = ({
               addToCart.find((p) => p.id === productInfo.id) &&
               true
             }
-            onClick={() => handleAddToCart(productInfo)}
+            onClick={() =>
+              handleAddToCart(addToCart, setAddToCart, productInfo)
+            }
           >
-             <FontAwesomeIcon icon={faShoppingCart}/> 
+            <FontAwesomeIcon icon={faShoppingCart} />
             {addToCart.length && addToCart.find((p) => p.id === productInfo.id)
               ? "Product Added"
               : "Add to cart"}
           </button>
-          <button className="plus"  onClick={() => handleQuantity(productInfo.id)}>+</button>
+          <button
+            className="plus"
+            onClick={() => handleQuantity(addToCart,setAddToCart,productInfo.id)}
+          >
+            +
+          </button>
         </CardButtonWrap>
       </ProductCardContainer>
     </>

@@ -105,4 +105,4 @@ const CategoriesCard = ({ d }) => {
 
 export default CategoriesCard;
 
-// onMouseOver={() => setSubProduct(item)}
+

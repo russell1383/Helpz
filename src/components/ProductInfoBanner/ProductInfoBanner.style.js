@@ -52,7 +52,7 @@ export const ProductInfoBox = styled.div`
     overflow: hidden;
     position: absolute;
     top: 0;
-    z-index: 50;
+    z-index: 10;
     right: 0;
 
     @media (max-width: 768px) {
@@ -132,7 +132,7 @@ export const ProductSubImgContainer = styled.div`
 export const ProductInfo = styled.div`
   width: 42%;
   position: relative;
-
+z-index:50;
   @media (max-width: 768px) {
     width: 100%;
     margin-top: 5%;

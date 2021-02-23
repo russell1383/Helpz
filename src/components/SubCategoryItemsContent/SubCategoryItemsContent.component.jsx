@@ -37,30 +37,7 @@ const SubCategoryItemsContent = ({ id, name }) => {
     }
   }, [id]);
 
-  const handleAddToCart = (item) => {
-    console.log(item);
-    let newItem = [...addToCart, item];
-    item.price = parseInt(item.price);
-    item.quantity = 1;
-    item.totalPrice = item.price;
-    item.totalQuantity = item.quantity;
-    setAddToCart(newItem);
-  };
 
-  const handleQuantity = (id) => {
-    if (addToCart.find((product) => product.id === id)) {
-      const product = addToCart.find((product) => product.id === id);
-      product.totalQuantity = product.totalQuantity + 1;
-      product.totalPrice = product.price * product.totalQuantity;
-
-      if (addToCart.find((item) => item.id === product.id)) {
-        var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
-        var newItems = [...addToCart];
-        newItems[objectIndex] = product;
-        setAddToCart(newItems);
-      }
-    }
-  };
 
   return (
     <>
@@ -88,10 +65,7 @@ const SubCategoryItemsContent = ({ id, name }) => {
                   {products.map((product) => (
                     <ProductCard
                       key={product.id}
-                      rewardPoint={product.reward_point}
                       productInfo={product}
-                      handleAddToCart={handleAddToCart}
-                      handleQuantity={handleQuantity}
                     />
                   ))}
                 </CategoryProductsContainer>

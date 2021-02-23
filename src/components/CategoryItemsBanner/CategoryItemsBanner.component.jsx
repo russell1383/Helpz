@@ -13,7 +13,7 @@ import {
   LoaderGif,
   ShowMoreButton,
 } from "./CategoryItemsBanner.style";
-import loading from "../../assets/gifs/loader.gif"
+import loading from "../../assets/gifs/loader.gif";
 
 const CategoryItemsBanner = ({ id, name }) => {
   const [products, setProducts] = useState([]);
@@ -37,36 +37,9 @@ const CategoryItemsBanner = ({ id, name }) => {
     }
   }, [id]);
 
-  const handleAddToCart = (item) => {
-    console.log(item)
-    let newItem = [...addToCart, item];
-    item.price = parseInt(item.price);
-    item.quantity = 1;
-    item.totalPrice = item.price;
-    item.totalQuantity = item.quantity;
-    setAddToCart(newItem);
-  };
-
-  const handleQuantity = (id) => {
-    if (addToCart.find((product) => product.id === id)) {
-      const product = addToCart.find((product) => product.id === id);
-      product.totalQuantity = product.totalQuantity + 1;
-      product.totalPrice = product.price * product.totalQuantity;
-
-      if (addToCart.find((item) => item.id === product.id)) {
-        var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
-        var newItems = [...addToCart];
-        newItems[objectIndex] = product;
-        setAddToCart(newItems);
-      }
-    }
-  };
-
   return (
     <>
-      
       <BannerContainer>
-       
         <Row gutterWidth={6}>
           <Col md={1.5} className="d-none">
             <Sticky
@@ -80,25 +53,20 @@ const CategoryItemsBanner = ({ id, name }) => {
           </Col>
 
           <Col xs={12} md={9}>
-            {
-              loader ? <LoaderGif src={loading}/> :  <CategoryItemsContainer>
-              <p>HOME > {name}</p>
-              <h2>{name}</h2>
-              <CategoryProductsContainer>
-                {products.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    rewardPoint={product.reward_point}
-                    productInfo={product}
-                    handleAddToCart={handleAddToCart}
-                    handleQuantity={handleQuantity}
-                  />
-                ))}
-              </CategoryProductsContainer>
-              <ShowMoreButton>Show More</ShowMoreButton>
-            </CategoryItemsContainer>
-            }
-           
+            {loader ? (
+              <LoaderGif src={loading} />
+            ) : (
+              <CategoryItemsContainer>
+                <p>HOME > {name}</p>
+                <h2>{name}</h2>
+                <CategoryProductsContainer>
+                  {products.map((product) => (
+                    <ProductCard key={product.id} productInfo={product} />
+                  ))}
+                </CategoryProductsContainer>
+                <ShowMoreButton>Show More</ShowMoreButton>
+              </CategoryItemsContainer>
+            )}
           </Col>
 
           <Col md={1.5} className="d-none">

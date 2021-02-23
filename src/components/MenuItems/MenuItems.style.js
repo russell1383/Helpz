@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const MenuItemsContainerWrap = styled.div`
   position: relative;
+  overflow: hidden;
 `;
 
 export const MenuItemsContainer = styled.div`
@@ -31,13 +32,13 @@ export const MenuItemsContainer = styled.div`
     }
 
     @media (max-width: 1280px) {
-      font-size: 12px;
-    }
-    @media (max-width: 1000px) {
       font-size: 10px;
     }
-    @media (max-width: 850px) {
+    @media (max-width: 1000px) {
       font-size: 9px;
+    }
+    @media (max-width: 850px) {
+      font-size: 8px;
     }
 
     span {

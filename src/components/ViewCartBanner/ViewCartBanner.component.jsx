@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Col, Row } from "react-grid-system";
 import Sticky from "react-stickynode";
 import { UserContext } from "../../App";
@@ -15,6 +15,11 @@ import {
 const ViewCartBanner = () => {
   const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
+
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
