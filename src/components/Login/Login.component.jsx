@@ -17,12 +17,14 @@ import {
   LoginLogo,
   LoginWithIcons,
 } from "./Login.style";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { UserContext } from "../../App";
 
 const LoginComponent = () => {
   const { register, handleSubmit, watch, errors } = useForm();
-  const history = useHistory();
+  let history = useHistory();
+  let location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
 
   const { value, value2 } = useContext(UserContext);
   const [loggedInUser, setLoggedInUser] = value;
@@ -39,12 +41,11 @@ const LoginComponent = () => {
         } else {
           setLoggedInUser(response.data);
           setError("");
-          history.goBack();
+          history.replace(from);
         }
         e.target.reset();
       });
   };
-
 
   console.log(loggedInUser);
 

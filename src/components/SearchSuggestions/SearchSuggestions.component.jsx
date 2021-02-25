@@ -15,16 +15,11 @@ const SearchSuggestions = ({
   handleQuantity,
 }) => {
   const history = useHistory();
-  const { value, value2, value3 } = useContext(UserContext);
+  const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
-  const [pdInfo, setPdInfo] = value3;
 
   const handlePdClick = () => {
-    setPdInfo(productInfo);
-
-    if (pdInfo) {
-      history.push(`/category/pd`);
-    }
+    history.push(`/product-info/${productInfo.id}`);
   };
 
   const quantityIncrement = (id) => {
@@ -70,7 +65,7 @@ const SearchSuggestions = ({
 
           <SearchSuggestQuantityBox>
             <button>+</button>
-            <h4 >1 Kg</h4>
+            <h4>1 Kg</h4>
             <button>-</button>
           </SearchSuggestQuantityBox>
 

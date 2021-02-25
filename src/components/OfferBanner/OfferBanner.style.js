@@ -36,4 +36,9 @@ export const OfferBannerContent = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+
+  p {
+    padding: 5%;
+    text-align: center;
+  }
 `;

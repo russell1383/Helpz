@@ -12,7 +12,16 @@ import { UserContext } from "../../App";
 import axios from "axios";
 import { OTPform } from "../Login/Login.style";
 
-const LoginModal = ({ open, close, handleLogin, handleOrderReq }) => {
+const LoginModal = ({
+  open,
+  close,
+  handleOrderReq,
+  orderPage,
+  wishListPage,
+  handleAddToWishList,
+  sideBarWishList,
+  handleShowWishList,
+}) => {
   const { register, handleSubmit, watch, errors } = useForm();
   const history = useHistory();
   const { value, value2 } = useContext(UserContext);
@@ -23,6 +32,27 @@ const LoginModal = ({ open, close, handleLogin, handleOrderReq }) => {
   const [num, setNum] = useState("");
   const [proceedOTP, setProceedOTP] = useState(false);
   const [otp, setOtp] = useState(new Array(4).fill(""));
+
+  const handleLogin = (data, e) => {
+    axios
+      .post("https://mudee.shop/eCommerce/api/login", data)
+      .then((response) => {
+        if (response.data.errors) {
+          // setError(response.data.errors[0]);
+        } else {
+          setLoggedInUser(response.data);
+          // setError("");
+          if (orderPage) {
+            handleOrderReq(response.data);
+          } else if (wishListPage) {
+            handleAddToWishList(response.data);
+          } else if (sideBarWishList) {
+            handleShowWishList(response.data);
+          }
+        }
+        e.target.reset();
+      });
+  };
 
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return false;
@@ -41,8 +71,8 @@ const LoginModal = ({ open, close, handleLogin, handleOrderReq }) => {
     axios
       .post("https://mudee.shop/eCommerce/api/register", data, {
         headers: {
-          'accept': 'application/json',
-      },
+          accept: "application/json",
+        },
       })
       .then((response) => {
         if (response.data.errors) {
@@ -56,11 +86,9 @@ const LoginModal = ({ open, close, handleLogin, handleOrderReq }) => {
           setSignup(false);
           setProceedOTP(true);
           e.target.reset();
-         
         }
       });
-  }; 
-
+  };
 
   const handleOtp = (e) => {
     const currentOtp = { otp: otp.join(""), phone: num };
@@ -77,11 +105,15 @@ const LoginModal = ({ open, close, handleLogin, handleOrderReq }) => {
           console.log("Regestered Successfully");
           console.log(response);
           setLoggedInUser(response.data);
-          handleOrderReq(response.data)
           setError("");
           setOtp([...otp.map((v) => "")]);
-          
-         
+          if (orderPage) {
+            handleOrderReq(response.data);
+          } else if (wishListPage) {
+            handleAddToWishList(response.data);
+          } else if (sideBarWishList) {
+            handleShowWishList(response.data);
+          }
         }
       });
   };
@@ -105,14 +137,11 @@ const LoginModal = ({ open, close, handleLogin, handleOrderReq }) => {
     }
   };
 
-
   return (
     <Modal open={open} onClose={close} center closeIcon>
       <ModalContainer>
-        {
-          login &&   <h2>You are not Logged in !</h2>
-        }
-      
+        {login && <h2>You are not Logged in !</h2>}
+
         <LoginModalIconWrap>
           <img src={fbIcon} alt="" />
           <img src={googleIcon} alt="" />
@@ -191,44 +220,43 @@ const LoginModal = ({ open, close, handleLogin, handleOrderReq }) => {
               required
               ref={register}
             />
-             <button type="submit">Procceed With OTP</button>
+            <button type="submit">Procceed With OTP</button>
           </form>
         )}
 
-          {/* --------------Proceed OTP Form-------------- */}
-        {
-          proceedOTP && 
+        {/* --------------Proceed OTP Form-------------- */}
+        {proceedOTP && (
           <OTPform onSubmit={handleSubmit(handleOtp)}>
-             <div>
-                {otp.map((data, index) => {
-                  return (
-                    <input 
-                      className="otp-field"
-                      type="text"
-                      name="otp"
-                      maxLength="1"
-                      key={index}
-                      value={data}
-                      onChange={(e) => handleChange(e.target, index)}
-                      onFocus={(e) => e.target.select()}
-                    />
-                  );
-                })}
-              </div>
-              <p onClick={handleResendOtp}>Resend OTP</p>
-              {error && <small>OTP did not matched! Try again.</small>}
-              <button type="submit">Procceed With OTP</button>
+            <div>
+              {otp.map((data, index) => {
+                return (
+                  <input
+                    className="otp-field"
+                    type="text"
+                    name="otp"
+                    maxLength="1"
+                    key={index}
+                    value={data}
+                    onChange={(e) => handleChange(e.target, index)}
+                    onFocus={(e) => e.target.select()}
+                  />
+                );
+              })}
+            </div>
+            <p onClick={handleResendOtp}>Resend OTP</p>
+            {error && <small>OTP did not matched! Try again.</small>}
+            <button type="submit">Procceed With OTP</button>
           </OTPform>
-}
+        )}
         <h6>
-          If you Don't have Account, 
+          If you Don't have Account,
           <span
             onClick={() => {
               setLogin(false);
               setSignup(true);
             }}
           >
-             SIGN UP
+            SIGN UP
           </span>
         </h6>
       </ModalContainer>

@@ -145,6 +145,7 @@ export const LoginButton = styled.button`
   font-size: 18px;
   font-family: "UniNeueRegular";
   font-weight: bold;
+  cursor: pointer;
 `;
 
 // --------------SIGN UP FORM--------------//
@@ -187,6 +188,7 @@ export const SingupButton = styled.button`
   width: 80%;
   height: 40px;
   margin-top: 5%;
+  cursor: pointer;
 `;
 
 export const OTPform = styled.form`
@@ -206,12 +208,12 @@ export const OTPform = styled.form`
     height: 70px;
   }
 
-  p{
-      color: #44a72c;
-      text-align: left;
-      margin: 4%;
-      font-size: 18px;
-      cursor: pointer;
+  p {
+    color: #44a72c;
+    text-align: left;
+    margin: 4%;
+    font-size: 18px;
+    cursor: pointer;
   }
 
   input {
@@ -225,8 +227,8 @@ export const OTPform = styled.form`
   }
 `;
 
-export const  ResendOTPform = styled.form`
-text-align: left;
+export const ResendOTPform = styled.form`
+  text-align: left;
   width: 50%;
   display: flex;
   align-items: center;
@@ -240,4 +242,4 @@ text-align: left;
   @media (max-width: 768px) {
     width: 80%;
   }
-`
+`;

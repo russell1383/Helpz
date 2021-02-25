@@ -9,6 +9,7 @@ import {
 } from "./CartProduct.style";
 import img from "../../assets/images/product-images/product-1.png";
 import { UserContext } from "../../App";
+import { handleQuantityIncrement,handleQuantityDecrement,handleRemoveItemFromCart } from "../../utils/cartManagement";
 
 const CartProduct = () => {
   const { value, value2 } = useContext(UserContext);
@@ -26,32 +27,6 @@ const CartProduct = () => {
     setAddToCart(remainingProduct);
   };
 
-  const quantityIncrement = (id) => {
-    if (addToCart.find((item) => item.id === id)) {
-      const product = addToCart.find((product) => product.id === id);
-      product.totalQuantity = product.totalQuantity + 1;
-      product.totalPrice = product.price * product.totalQuantity;
-      var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
-      var newItems = [...addToCart];
-      newItems[objectIndex] = product;
-      setAddToCart(newItems);
-    }
-  };
-
-  const quantityDecrement = (id) => {
-    if (addToCart.find((item) => item.id === id)) {
-      const product = addToCart.find((product) => product.id === id);
-      if (product.totalQuantity > 1) {
-        product.totalQuantity = product.totalQuantity - 1;
-        product.totalPrice = product.price * product.totalQuantity;
-        var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
-        var newItems = [...addToCart];
-        newItems[objectIndex] = product;
-        setAddToCart(newItems);
-      }
-    }
-  };
-
   return (
     <div ref={ref}>
       {addToCart.length ? (
@@ -65,13 +40,13 @@ const CartProduct = () => {
             <div>
               <h4>{product.totalQuantity} Kg</h4> 
               <IncrementDecrementBox>
-                <button onClick={() => quantityIncrement(product.id)}>+</button>
+                <button onClick={() => handleQuantityIncrement(addToCart,setAddToCart,product.id)}>+</button>
 
-                <button onClick={() => quantityDecrement(product.id)}>-</button>
+                <button onClick={() => handleQuantityDecrement(addToCart,setAddToCart,product.id)}>-</button>
               </IncrementDecrementBox>
             </div>
             <h4>{product.totalPrice} Tk</h4>
-            <h2 onClick={() => removeItemFromCart(product.id)}>✕</h2>
+            <h2 onClick={() => handleRemoveItemFromCart(addToCart,setAddToCart,product.id)}>✕</h2>
           </ProductRow>
         ))
       ) : (

@@ -19,116 +19,90 @@ import {
   ProductSubImgContainer,
   RewardContainer,
 } from "./ProductInfoBanner.style";
-
+import loading from "../../assets/gifs/loader.gif";
 import img from "../../assets/images/product-images/product-1.png";
 import leftArrow from "../../assets/icons/left-arrow.png";
 import rightArrow from "../../assets/icons/right-arrow.png";
 import { useHistory, useParams } from "react-router-dom";
-import { productData } from "../../productData/productData";
-import { store } from "react-notifications-component";
 import ReactImageMagnify from "react-image-magnify";
+import axios from "axios";
+import { LoaderGif } from "../CategoryItemsBanner/CategoryItemsBanner.style";
+import {
+  handleAddToCart,
+  handleQuantityIncrement,
+  handleQuantityDecrement,
+  handleProductPrice,
+} from "../../utils/cartManagement";
+import LoginModal from "../LoginModal/LoginModal.component";
 
 const ProductInfoBanner = () => {
-  const history = useHistory();
-  const { productName } = useParams();
   const [product, setProduct] = useState({});
-  const { value, value2, value3 } = useContext(UserContext);
+  const { value, value2 } = useContext(UserContext);
+  const [loggedInUser, setLoggedInUser] = value;
   const [addToCart, setAddToCart] = value2;
-  const [pdInfo, setPdInfo] = value3;
-  const [zIndex,setZindex] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [loader, setLoader] = useState(true);
+  const [zIndex, setZindex] = useState(false);
+  const { productId } = useParams();
+  const [wishListPage, setWishListPage] = useState(false);
 
-  const handleAddToCart = (item, price) => {
-    console.log(price)
-    let newItem = [...addToCart, item];
-    item.price = parseInt(item.price);
-    item.quantity = 1;
-    item.totalPrice = price ? parseInt(price) : item.price;
-    item.campaignPrice = parseInt(price);
-    item.totalQuantity = item.quantity;
-    setAddToCart(newItem);
-    store.addNotification({
-      title: "Product Added to Cart",
-      message: item.name,
-      type: "success",
-      insert: "top",
-      container: "top-right",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate__animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 2000,
-        onScreen: true,
-      },
-    });
-    console.log(price) 
-  };
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
 
-  const quantityIncrement = (id,price) => {
-    if (addToCart.find((item) => item.id === id)) {
-      const product = addToCart.find((product) => product.id === id);
-      product.totalQuantity = product.totalQuantity + 1;
-      console.log(price)
-      product.totalPrice = price ? parseInt(price) * product.totalQuantity : product.price * product.totalQuantity;
-      var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
-      var newItems = [...addToCart];
-      newItems[objectIndex] = product;
-      setAddToCart(newItems);
+  useEffect(() => {
+    let data = { product_id: productId };
+    axios
+      .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
+      .then((response) => {
+        setLoader(false);
+        setProduct(response.data[0]);
+      });
+  }, [productId]);
+
+  const handleAddToWishList = (info) => {
+    if (loggedInUser.email || info.email) {
+      let data = {
+        product_id: productId,
+        user_id: loggedInUser.id || info.id,
+      };
+      axios
+        .post("https://mudee.shop/eCommerce/api/wish-list-store", data)
+        .then((response) => {
+          console.log(response);
+        });
+      setOpen(false);
+    } else {
+      setOpen(true);
+      setWishListPage(true);
     }
   };
-
-  const quantityDecrement = (id,price) => {
-    if (addToCart.find((item) => item.id === id)) {
-      const product = addToCart.find((product) => product.id === id);
-      if (product.totalQuantity > 1) {
-        product.totalQuantity = product.totalQuantity - 1;
-        product.totalPrice = product.price * product.totalQuantity;
-        var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
-        var newItems = [...addToCart];
-        newItems[objectIndex] = product;
-        setAddToCart(newItems);
-      }
-    }
-  };
-// console.log(zIndex)
-const handleCampaignPriceDiscount = (p) => {
-  if (p.campaign) {
-    let currentDate = new Date();
-    let campaignEndDate = Date.parse(p.campaign.end_date);
-    let currenTime = Date.parse(new Date());
-    let campaignEndTime = p.campaign.end_time.split(":");
-    // console.log(campaignEndTime);
-    //  console.log(currenTime)
-    if (p.campaign.discount_type === "1" && currentDate < campaignEndDate) {
-      let percentageCalc =
-        (parseInt(p.campaign.offer) / 100) * parseInt(p.price);
-      let offerPrice = parseInt(p.price) - percentageCalc;
-      return offerPrice;
-    }else {
-      return p.price;
-    }
-  } else {
-    return p.price;
-  }
-};
-
-console.log(addToCart)
 
   return (
     <>
-      {pdInfo.name ? (
-        <ProductBannerContainer>
-          <Row nogutter>
-            <Col md={1.5} className="d-none">
-              <Sticky
-                enabled={true}
-                top={81}
-                bottomBoundary="#more-details"
-                className="category_card"
-              >
-                <CategoriesCard />
-              </Sticky>
-            </Col>
+      <ProductBannerContainer>
+        <LoginModal
+          open={open}
+          close={onCloseModal}
+          handleAddToWishList={handleAddToWishList}
+          wishListPage={wishListPage}
+        />
 
-            <Col md={9}>
+        <Row nogutter>
+          <Col md={1.5} className="d-none">
+            <Sticky
+              enabled={true}
+              top={81}
+              bottomBoundary="#more-details"
+              className="category_card"
+            >
+              <CategoriesCard />
+            </Sticky>
+          </Col>
+
+          <Col md={9}>
+            {loader ? (
+              <LoaderGif src={loading} />
+            ) : (
               <ProductInfoContainer>
                 <p className="bread_crumb">
                   HOME > FRUITS & VEGETABLES > FRESH VEGETABLES > POTATO, ONION
@@ -137,30 +111,26 @@ console.log(addToCart)
 
                 <ProductInfoBox>
                   <ProductInfoBoxImgContainerWrap>
-                    <ProductInfoBoxImgContainer onMouseOver={()=>setZindex(true)} onMouseLeave={()=>setZindex(false)}>
-                    <ReactImageMagnify
-                      {...{
-                        smallImage: {
-                          alt: "Wristwatch by Ted Baker London",
-                          isFluidWidth: true,
-                          src:
-                            `https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`,
-                        },
-                        largeImage: {
-                          src:
-                            `https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`,
-                          width: 1200,
-                          height: 800,
-                        },
-                        enlargedImagePortalId: "myPortal",
-                      }}
-                    />
-                      {/* <img
-                        src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
-                        alt=""
-                      /> */}
+                    <ProductInfoBoxImgContainer
+                      onMouseOver={() => setZindex(true)}
+                      onMouseLeave={() => setZindex(false)}
+                    >
+                      <ReactImageMagnify
+                        {...{
+                          smallImage: {
+                            alt: "Wristwatch by Ted Baker London",
+                            isFluidWidth: true,
+                            src: `https://mudee.shop/eCommerce/assets/images/products/${product.photo}`,
+                          },
+                          largeImage: {
+                            src: `https://mudee.shop/eCommerce/assets/images/products/${product.photo}`,
+                            width: 1200,
+                            height: 800,
+                          },
+                          enlargedImagePortalId: "myPortal",
+                        }}
+                      />
                       <MdProductInfoOffLabel>
-                        {" "}
                         25% <br /> Off
                       </MdProductInfoOffLabel>
                     </ProductInfoBoxImgContainer>
@@ -168,7 +138,7 @@ console.log(addToCart)
                     <ProductSubImgContainer>
                       {[1, 2, 3, 4, 5].map((item, idx) => (
                         <img
-                          src={`https://mudee.shop/eCommerce/assets/images/products/${pdInfo.photo}`}
+                          src={`https://mudee.shop/eCommerce/assets/images/products/${product.photo}`}
                           alt=""
                         />
                       ))}
@@ -183,24 +153,25 @@ console.log(addToCart)
                   </ProductInfoBoxImgContainerWrap>
                   <ProductInfo>
                     <p>Fresh</p>
-                    <h3>{pdInfo.name.split(" ")[0]}</h3>
+                    <h3>{product.name}</h3>
                     <p>1 kg</p>
                     <p className="d-none">
-                      Price : <del>{pdInfo.price}Tk</del>
+                      Price : <del>{product.price}Tk</del>
                     </p>
-                    <h3 className="price_tag d-none">{pdInfo.campaign
-                        ? handleCampaignPriceDiscount(pdInfo)
-                        : pdInfo.price}Tk</h3>
-                    <h3>Fresh {pdInfo.name.split(" ")[0]} Offer</h3>
+                    <h3 className="price_tag d-none">
+                      {handleProductPrice(product)}
+                      Tk
+                    </h3>
+                    <h3>Fresh {product.name} Offer</h3>
                     <p>
-                      Fresh {pdInfo.name.split(" ")[0]}
+                      Fresh {product.name}
                       Offer If You buy 5 kg , we will provide 100 Loyalty Reward
                       as gift
                     </p>
 
                     <RewardContainer>
                       <p>Buy This & get reward : </p>
-                      <div>{pdInfo.reward_point}</div>
+                      <div>{product.reward_point}</div>
                     </RewardContainer>
                     <p>Pickup timeing : </p>
                     <ProductInfoPickupTimingBox>
@@ -213,14 +184,30 @@ console.log(addToCart)
                     <ProductOrderButtonsContainer>
                       <div>
                         <div className="quantity_box">
-                          <button onClick={() => quantityIncrement(pdInfo.id,handleCampaignPriceDiscount(product))}>
+                          <button
+                            onClick={() =>
+                              handleQuantityIncrement(
+                                addToCart,
+                                setAddToCart,
+                                product.id
+                              )
+                            }
+                          >
                             +
                           </button>
-                          {pdInfo.totalQuantity
-                            ? pdInfo.totalQuantity
-                            : pdInfo.quantity}
+                          {product.totalQuantity
+                            ? product.totalQuantity
+                            : product.quantity}
                           kg
-                          <button onClick={() => quantityDecrement(pdInfo.id,handleCampaignPriceDiscount(product))}>
+                          <button
+                            onClick={() =>
+                              handleQuantityDecrement(
+                                addToCart,
+                                setAddToCart,
+                                product.id
+                              )
+                            }
+                          >
                             -
                           </button>
                         </div>
@@ -228,20 +215,24 @@ console.log(addToCart)
                         <button
                           disabled={
                             addToCart.length &&
-                            addToCart.find((p) => p.id === pdInfo.id) &&
+                            addToCart.find((p) => p.id === product.id) &&
                             true
                           }
-                          onClick={() => handleAddToCart(pdInfo,handleCampaignPriceDiscount(pdInfo))}
+                          onClick={() =>
+                            handleAddToCart(addToCart, setAddToCart, product)
+                          }
                         >
                           {addToCart.length &&
-                          addToCart.find((p) => p.id === pdInfo.id)
+                          addToCart.find((p) => p.id === product.id)
                             ? "Already on Cart"
                             : "Add to cart"}
                         </button>
                       </div>
                       <div>
                         <button>Order Now</button>
-                        <button>Add to Wish List</button>
+                        <button onClick={handleAddToWishList}>
+                          Add to Wish List
+                        </button>
                       </div>
                     </ProductOrderButtonsContainer>
 
@@ -249,7 +240,7 @@ console.log(addToCart)
                       25% <br /> Off
                     </ProductInfoOffLabel>
 
-                    <MdProductPrice> 
+                    <MdProductPrice>
                       <p>
                         Price : <del>30Tk</del>
                       </p>
@@ -257,10 +248,7 @@ console.log(addToCart)
                     </MdProductPrice>
                   </ProductInfo>
 
-                 
                   <div id="myPortal"></div>
-               
-
                 </ProductInfoBox>
 
                 <h2>Packeg Offer</h2>
@@ -278,18 +266,17 @@ console.log(addToCart)
                   <input type="radio" name="offer" className="circle" />
                 </div>
               </ProductInfoContainer>
-            </Col>
+            )}
+          </Col>
 
-            <Col md={1.5} className="d-none">
-              <Sticky enabled={true} top={81}  bottomBoundary="#more-details">
-                <MenuItems />
-              </Sticky>
-            </Col>
-          </Row>
-        </ProductBannerContainer>
-      ) : (
-        history.push(`/not-found`)
-      )}
+          <Col md={1.5} className="d-none">
+            <Sticky enabled={true} top={81} bottomBoundary="#more-details">
+              <MenuItems />
+            </Sticky>
+          </Col>
+        </Row>
+      </ProductBannerContainer>
+      )
     </>
   );
 };

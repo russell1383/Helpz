@@ -4,7 +4,11 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../App";
 import img from "../../assets/images/product-images/product-1.png";
-import { handleAddToCart,handleQuantity } from "../../utils/cartManagement";
+import {
+  handleAddToCart,
+  handleQuantityIncrement,
+  handleProductPrice
+} from "../../utils/cartManagement";
 import {
   CardButtonWrap,
   CardInfo,
@@ -19,17 +23,12 @@ import {
 } from "./ProductCard.style";
 
 const ProductCard = ({ productInfo }) => {
-  const { value, value2, value3 } = useContext(UserContext);
+  const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
-  const [pdInfo, setPdInfo] = value3;
   const history = useHistory();
 
   const handlePdClick = () => {
-    setPdInfo(productInfo);
-
-    if (pdInfo) {
-      history.push(`/category/pd`);
-    }
+    history.push(`/product-info/${productInfo.id}`);
   };
 
   return (
@@ -52,9 +51,9 @@ const ProductCard = ({ productInfo }) => {
           <CartTextWrap>
             <h6>Price</h6>
             <h6>
-              <del>30 tk</del>
+              <del>{productInfo.price} tk</del>
             </h6>
-            <h5>{productInfo.price} tk</h5>
+            <h5>{handleProductPrice(productInfo)} tk</h5>
           </CartTextWrap>
         </CardInfo>
 
@@ -92,7 +91,9 @@ const ProductCard = ({ productInfo }) => {
           </button>
           <button
             className="plus"
-            onClick={() => handleQuantity(addToCart,setAddToCart,productInfo.id)}
+            onClick={() =>
+              handleQuantityIncrement(addToCart, setAddToCart, productInfo.id)
+            }
           >
             +
           </button>

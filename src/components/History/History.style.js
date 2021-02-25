@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const HistoryContainer = styled.div`
-  position: fixed; 
+  position: fixed;
   top: 0;
   right: 0;
   width: 20vw;
-  height:fit-content;
+  height: fit-content;
 
   transform: ${({ openHistory }) =>
     openHistory ? "translateX(0)" : "translateX(150%)"};
@@ -19,7 +19,7 @@ export const HistoryContainer = styled.div`
     top: 0;
     padding: 5px;
     cursor: pointer;
-    font-size:1.5vw;
+    font-size: 1.5vw;
   }
 `;
 
@@ -27,8 +27,8 @@ export const HistoryContentConatiner = styled.div`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #a4a0a0;
-  padding-bottom: 10px; 
-  margin-bottom: 30px;  
+  padding-bottom: 10px;
+  margin-bottom: 30px;
   margin-top: 15px;
   img {
     width: 30%;

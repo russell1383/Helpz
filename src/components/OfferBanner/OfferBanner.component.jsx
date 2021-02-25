@@ -1,6 +1,8 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "react-grid-system";
 import Sticky from "react-stickynode";
+import { UserContext } from "../../App";
 import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 import MenuItems from "../MenuItems/MenuItems.component";
 import OfferProductCard from "../OfferProductCard/OfferProductCard.component";
@@ -11,11 +13,24 @@ import {
 } from "./OfferBanner.style";
 
 const OfferBanner = () => {
+  const { value, value2 } = useContext(UserContext);
+  const [loggedInUser, setLoggedInUser] = value;
+  const [offerProduct, setOfferProduct] = useState([]);
+
+  useEffect(() => {
+    let data = { user_id: loggedInUser.id };
+    axios
+      .post("https://mudee.shop/eCommerce/api/offer-list-user", data)
+      .then((response) => {
+        setOfferProduct(response.data);
+      });
+  }, []);
+  console.log(offerProduct);
   return (
     <>
       <OfferBannerContainer>
         <Row nogutter>
-        <Col md={1.5} className="d-none">
+          <Col md={1.5} className="d-none">
             <Sticky
               enabled={true}
               top={81}
@@ -29,15 +44,13 @@ const OfferBanner = () => {
             <OfferBannerContentContainer>
               <h2>Offers Only For You</h2>
               <OfferBannerContent>
-                <OfferProductCard />
-                <OfferProductCard />
-                <h2>Special Offers</h2>
-                <OfferProductCard />
-                <OfferProductCard />
-                <OfferProductCard />
-                <OfferProductCard />
-                <OfferProductCard />
-                <OfferProductCard />
+                {offerProduct.length ? (
+                  offerProduct.map((product) => (
+                    <OfferProductCard key={product.id} product={product} />
+                  ))
+                ) : (
+                  <p>Sorry there is no offer for you for now. Stay with us.</p>
+                )}
               </OfferBannerContent>
             </OfferBannerContentContainer>
           </Col>

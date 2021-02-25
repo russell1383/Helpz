@@ -1,9 +1,8 @@
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import "animate.css/animate.min.css";
-// import Home from "./pages/Home/Home.page";
 import { createContext, lazy, Suspense, useState } from "react";
 import Login from "./pages/Login/Login.page";
 import ViewCart from "./pages/ViewCart/ViewCart.page";
@@ -14,27 +13,25 @@ import Signup from "./pages/Signup/Signup.page";
 import CategoryItems from "./pages/CategoryItems/CategoryItems.page";
 import SubCategoryItems from "./pages/SubCategoryItems/SubCategoryItems.page";
 import ChildCategoryItems from "./pages/ChildCategoryItems/ChildCategoryItems.page";
-import ProductCard from "./components/ProductCard/ProductCard.component";
 import Invoice from "./pages/Invoice/Invoice";
 import { LoaderGif } from "./components/CategoryItemsBanner/CategoryItemsBanner.style";
 import loading from "./assets/gifs/loader.gif";
 import SingleProductInfoBannner from "./components/SingleProductInfoBanner/SingleProductInfoBannner.component";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute.component";
 
-const Home = lazy(()=>import("./pages/Home/Home.page"));
+const Home = lazy(() => import("./pages/Home/Home.page"));
 
 export const UserContext = createContext();
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
   const [addToCart, setAddToCart] = useState([]);
-  const [pdInfo, setPdInfo] = useState({});
 
   return (
     <UserContext.Provider
       value={{
         value: [loggedInUser, setLoggedInUser],
         value2: [addToCart, setAddToCart],
-        value3: [pdInfo, setPdInfo],
       }}
     >
       <div className="App">
@@ -42,11 +39,10 @@ function App() {
         <Router>
           <Switch>
             <Route path="/home">
-
               <Home />
             </Route>
 
-            <Route path="/category/:productName">
+            <Route path="/product-info/:productId">
               <ProductInfo />
             </Route>
 
@@ -74,12 +70,12 @@ function App() {
               <ViewCart />
             </Route>
 
-            <Route path="/offer">
+            <PrivateRoute path="/offer">
               <Offer />
-            </Route>
+            </PrivateRoute>
 
             <Route path="/test">
-              <SingleProductInfoBannner/>
+              <SingleProductInfoBannner />
             </Route>
 
             <Route path="/invoice">

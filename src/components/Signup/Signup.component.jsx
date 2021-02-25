@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   LoginContainer,
@@ -23,7 +23,9 @@ const SignupContent = () => {
   const { register, handleSubmit, watch, errors } = useForm();
   const { value, value2 } = useContext(UserContext);
   const [loggedInUser, setLoggedInUser] = value;
-  const history = useHistory();
+  let history = useHistory();
+  let location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
   const [signUp, setSignUp] = useState(true);
   const [proceedOTP, setProceedOTP] = useState(false);
   const [otp, setOtp] = useState(new Array(4).fill(""));
@@ -47,8 +49,8 @@ const SignupContent = () => {
     axios
       .post("https://mudee.shop/eCommerce/api/register", data, {
         headers: {
-          'accept': 'application/json',
-      },
+          accept: "application/json",
+        },
       })
       .then((response) => {
         if (response.data.errors) {
@@ -62,7 +64,6 @@ const SignupContent = () => {
           setSignUp(false);
           setProceedOTP(true);
           e.target.reset();
-         
         }
       });
   };
@@ -84,7 +85,7 @@ const SignupContent = () => {
           setLoggedInUser(response.data);
           setError("");
           setOtp([...otp.map((v) => "")]);
-          history.goBack();
+          history.replace(from);
         }
       });
   };

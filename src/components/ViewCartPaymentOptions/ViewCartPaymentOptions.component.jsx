@@ -39,8 +39,9 @@ const ViewCartPaymentOptions = () => {
   const [num, setNum] = useState("");
   const [addToCart, setAddToCart] = value2;
   const [pickup, setPickup] = useState();
-  const [open, setOpen] = useState(false);
+  const [orderPage, setOrderPage] = useState(false);
   const history = useHistory();
+  const [open, setOpen] = useState(false);
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
@@ -75,40 +76,26 @@ const ViewCartPaymentOptions = () => {
         });
     } else {
       setOpen(true);
+      setOrderPage(true);
     }
   };
 
-  const handleLogin = (data, e) => {
-    axios
-      .post("https://mudee.shop/eCommerce/api/login", data)
-      .then((response) => {
-        if (response.data.errors) {
-          // setError(response.data.errors[0]);
-        } else {
-          setLoggedInUser(response.data);
-          // setError("");
-
-          handleOrderReq(response.data);
-        }
-        e.target.reset();
-      });
-  };
-
- 
   return (
     <div id="payment_option">
       <ViewCartContainer>
         <RedeemButtonWrap>
           <RedeemButton yellow>
-            <FontAwesomeIcon icon={faGift} size="2x"/> <p>Redeem Reward</p> 
+            <FontAwesomeIcon icon={faGift} size="2x" /> <p>Redeem Reward</p>
           </RedeemButton>
 
           <RedeemButton tomato>
-            <FontAwesomeIcon icon={faWallet} size="2x"/><p>Apply Casback</p> 
+            <FontAwesomeIcon icon={faWallet} size="2x" />
+            <p>Apply Casback</p>
           </RedeemButton>
 
           <RedeemButton green>
-            <FontAwesomeIcon icon={faScroll} size="2x"/><p>Apply Voucher</p> 
+            <FontAwesomeIcon icon={faScroll} size="2x" />
+            <p>Apply Voucher</p>
           </RedeemButton>
         </RedeemButtonWrap>
 
@@ -124,8 +111,8 @@ const ViewCartPaymentOptions = () => {
           <LoginModal
             open={open}
             close={onCloseModal}
-            handleLogin={handleLogin}
             handleOrderReq={handleOrderReq}
+            orderPage={orderPage}
           />
           <MobileBankingImg src={nagad} alt="" onClick={handleOrderReq} />
           <MobileBankingImg src={bkash} alt="" onClick={handleOrderReq} />

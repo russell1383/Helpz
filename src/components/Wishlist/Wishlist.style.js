@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const WishListContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   width: 20vw;
@@ -20,13 +20,23 @@ export const WishListContainer = styled.div`
     cursor: pointer;
     font-size: 1.5vw;
   }
+
+  small {
+    text-align: center;
+    display: block;
+    font-size: 10px;
+  }
 `;
+
+export const WishlistProductContainerWrap = styled.div`
+  margin-bottom: 6%;
+`;
+
 export const WishlistProductContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-
   img {
     width: 20%;
     display: block;
@@ -47,17 +57,15 @@ export const WishlistButton = styled.button`
   outline: none;
   height: 4%;
   margin-top: 5%;
-  padding:8px 0;
-  border-radius:3px;
+  padding: 8px 0;
+  border-radius: 3px;
 `;
 export const WishListIncrement = styled.div`
   display: flex;
   flex-direction: column;
   width: 50px;
 
-
-  
   button {
-    padding:5%;
+    padding: 5%;
   }
 `;

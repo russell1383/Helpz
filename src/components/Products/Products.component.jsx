@@ -4,59 +4,23 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { store } from "react-notifications-component";
 import {
-  OffLabel,
-  ProductBox,
-  ProductButtonContainer,
   ProductContainerWrap,
-  ProductImg,
-  ProductInfo,
   LeftArrowButton,
   RightArrowButton,
-  PickupTimigBox,
-  TimeBox,
   ProductWrap,
 } from "./Products.style";
-import LeftArrow from "../../assets/icons/left-arrow.png";
-import RightArrow from "../../assets/icons/right-arrow.png";
 import { UserContext } from "../../App";
 import { useHistory } from "react-router-dom";
-import { productData } from "../../productData/productData";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import ProductCard from "../ProductCard/ProductCard.component";
 
 const Products = ({ header, subheader }) => {
   const history = useHistory();
-
-  const { value, value2, value3 } = useContext(UserContext);
+  const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
-  const [pdInfo, setPdInfo] = value3;
   const [products, setProducts] = useState([]);
   const [campaignPrice, setCampaignPrice] = useState(null);
 
-  const handleAddToCart = (item, price) => {
-    let newItem = [...addToCart, item];
-    item.price = parseInt(item.price);
-    item.quantity = 1;
-    item.totalPrice = price ? parseInt(price) : item.price;
-    item.campaignPrice = parseInt(price);
-    item.totalQuantity = item.quantity;
-    setAddToCart(newItem);
-    store.addNotification({
-      title: "Product Added to Cart",
-      message: item.name,
-      type: "success",
-      insert: "top",
-      container: "top-right",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate__animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 2000,
-        onScreen: true,
-      },
-    });
-  };
 
   useEffect(() => {
     let data = { category_id: 2 };
@@ -67,31 +31,6 @@ const Products = ({ header, subheader }) => {
         setProducts(response.data.slice(0, 30).sort(() => 0.5 - Math.random()))
       );
   }, []);
-
-  const handleQuantity = (id, price) => {
-    if (addToCart.find((product) => product.id === id)) {
-      const product = addToCart.find((product) => product.id === id);
-      product.totalQuantity = product.totalQuantity + 1;
-      product.totalPrice = price
-        ? parseInt(price) * product.totalQuantity
-        : product.price * product.totalQuantity;
-
-      if (addToCart.find((item) => item.id === product.id)) {
-        var objectIndex = addToCart.findIndex((obj) => obj.id === product.id);
-        var newItems = [...addToCart];
-        newItems[objectIndex] = product;
-        setAddToCart(newItems);
-      }
-    }
-  };
-
-  const handlePdClick = (productInfo) => {
-    setPdInfo(productInfo);
-
-    if (pdInfo) {
-      history.push(`/category/pd`);
-    }
-  };
 
   const LeftArrow = ({ className, style, onClick }) => (
     <LeftArrowButton
@@ -111,6 +50,7 @@ const Products = ({ header, subheader }) => {
   const handleCampaignPriceDiscount = (p) => {
     if (p.campaign) {
       let currentDate = new Date();
+      console.log(currentDate)
       let campaignEndDate = Date.parse(p.campaign.end_date);
       // let currenTime = Date.parse(new Date());
       // let campaignEndTime = p.campaign.end_time.split(":");
@@ -170,13 +110,6 @@ const Products = ({ header, subheader }) => {
       <ProductContainerWrap>
         <h2>{header}</h2>
         <p>{subheader}</p>
-
-        {/* <LeftArrowButton>
-          <img src={LeftArrow} alt="" />
-        </LeftArrowButton>
-        <RightArrowButton>
-          <img src={RightArrow} alt="" />
-        </RightArrowButton> */}
 
         <Slider {...settings}>
           {products.map((product, idx) => (

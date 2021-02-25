@@ -217,6 +217,7 @@ export const ProductOrderButtonsContainer = styled.div`
       button {
         height: 30px;
         width: 40px;
+        cursor: pointer;
       }
     }
     button {
@@ -227,6 +228,7 @@ export const ProductOrderButtonsContainer = styled.div`
       margin-bottom: 5%;
       height: 30px;
       font-family: "UniNeueRegular";
+      cursor: pointer;
     }
   }
 `;

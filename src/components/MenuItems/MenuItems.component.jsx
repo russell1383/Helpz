@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import History from "../History/History.component";
 import Wishlist from "../Wishlist/Wishlist.component";
@@ -15,14 +15,46 @@ import {
   faSignOutAlt,
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import LoginModal from "../LoginModal/LoginModal.component";
+import { UserContext } from "../../App";
+import axios from "axios";
 
 const MenuItems = () => {
+  const { value, value2 } = useContext(UserContext);
+  const [loggedInUser, setLoggedInUser] = value;
   const [openWishlist, setOpenWishlist] = useState(false);
   const [openHistory, setOpenHistory] = useState(false);
+  const [open, setOpen] = useState(false);
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
+  const [wishListProducts, setWishListProducts] = useState([]);
+  const [sideBarWishList, setSideBarWishList] = useState(false);
+
+  const handleShowWishList = (info) => {
+    if (loggedInUser.id || info.id) {
+      let data = { user_id: loggedInUser.id || info.id };
+      axios
+        .post("https://mudee.shop/eCommerce/api/wish-list-user", data)
+        .then((response) => {
+          setWishListProducts(response.data);
+          setOpen(false);
+          setOpenWishlist(true);
+        });
+    } else {
+      setOpen(true);
+      setSideBarWishList(true);
+    }
+  };
 
   return (
     <>
       <MenuItemsContainerWrap>
+        <LoginModal
+          open={open}
+          close={onCloseModal}
+          handleShowWishList={handleShowWishList}
+          sideBarWishList={sideBarWishList}
+        />
         <MenuItemsContainer>
           <p>
             <Link to="/login">
@@ -40,7 +72,7 @@ const MenuItems = () => {
               <span>My Cart</span>
             </Link>
           </p>
-          <p onClick={() => setOpenWishlist(!openWishlist)}>
+          <p onClick={handleShowWishList}>
             <FontAwesomeIcon icon={faList} />
             <span>My List</span>
           </p>
@@ -65,10 +97,11 @@ const MenuItems = () => {
           </p>
         </MenuItemsContainer>
 
-        <Wishlist wishlist={[openWishlist, setOpenWishlist]} />
+        <Wishlist
+          wishlist={[openWishlist, setOpenWishlist]}
+          wishListProducts={wishListProducts}
+        />
         <History history={[openHistory, setOpenHistory]} />
-
-      
       </MenuItemsContainerWrap>
     </>
   );

@@ -7,7 +7,7 @@ export const OfferProductCardContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 2%;
-    margin-top: 2%;
+  margin-top: 2%;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -28,8 +28,8 @@ export const OfferProductCardContainer = styled.div`
     img {
       width: 30%;
     }
-    p{
-        font-family: "UniNeueRegular";
+    p {
+      font-family: "UniNeueRegular";
     }
   }
 `;
@@ -98,6 +98,7 @@ export const OfferButtonWrap = styled.div`
     border: none;
     outline: none;
     padding: 2% 0;
+    cursor: pointer;
   }
   .cart_btn {
     width: 85%;
