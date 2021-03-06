@@ -34,24 +34,22 @@ const LoginModal = ({
   const [otp, setOtp] = useState(new Array(4).fill(""));
 
   const handleLogin = (data, e) => {
-    axios
-      .post("https://mudee.shop/eCommerce/api/login", data)
-      .then((response) => {
-        if (response.data.errors) {
-          // setError(response.data.errors[0]);
-        } else {
-          setLoggedInUser(response.data);
-          // setError("");
-          if (orderPage) {
-            handleOrderReq(response.data);
-          } else if (wishListPage) {
-            handleAddToWishList(response.data);
-          } else if (sideBarWishList) {
-            handleShowWishList(response.data);
-          }
+    axios.post("https://mudee.shop/helpz/api/login", data).then((response) => {
+      if (response.data.errors) {
+        // setError(response.data.errors[0]);
+      } else {
+        setLoggedInUser(response.data);
+        // setError("");
+        if (orderPage) {
+          handleOrderReq(response.data);
+        } else if (wishListPage) {
+          handleAddToWishList(response.data);
+        } else if (sideBarWishList) {
+          handleShowWishList(response.data);
         }
-        e.target.reset();
-      });
+      }
+      e.target.reset();
+    });
   };
 
   const handleChange = (element, index) => {
@@ -69,7 +67,7 @@ const LoginModal = ({
     setNum(data.phone);
 
     axios
-      .post("https://mudee.shop/eCommerce/api/register", data, {
+      .post("https://mudee.shop/helpz/api/register", data, {
         headers: {
           accept: "application/json",
         },
@@ -95,7 +93,7 @@ const LoginModal = ({
     console.log(num);
     console.log(currentOtp);
     axios
-      .post("https://mudee.shop/eCommerce/api/register-otp", currentOtp)
+      .post("https://mudee.shop/helpz/api/register-otp", currentOtp)
       .then((response) => {
         if (response.data === "failed") {
           console.log(response.data);
@@ -122,7 +120,7 @@ const LoginModal = ({
     if (num) {
       const phone = { phone: num };
       axios
-        .post("https://mudee.shop/eCommerce/api/resend-otp", phone)
+        .post("https://mudee.shop/helpz/api/resend-otp", phone)
         .then((response) => {
           if (response.data === "failed") {
             console.log("Can not send OTP");

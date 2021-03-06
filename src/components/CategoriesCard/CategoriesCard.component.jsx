@@ -17,7 +17,7 @@ const CategoriesCard = ({ d }) => {
   const history = useHistory();
 
   useEffect(() => {
-    fetch("https://mudee.shop/eCommerce/api/allcategories")
+    fetch("https://mudee.shop/helpz/api/allcategories")
       .then((res) => res.json())
       .then((data) => {
         setCategories(data);
@@ -32,8 +32,6 @@ const CategoriesCard = ({ d }) => {
   const handleCategoryItem = (item) => {
     history.push(`/products/category/${item.id}`);
   };
-
-
 
   return (
     <>
@@ -104,5 +102,3 @@ const CategoriesCard = ({ d }) => {
 };
 
 export default CategoriesCard;
-
-

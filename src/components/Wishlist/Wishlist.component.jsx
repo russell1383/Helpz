@@ -32,7 +32,7 @@ const Wishlist = ({ wishlist, wishListProducts }) => {
             <WishlistProductContainerWrap key={product.id}>
               <WishlistProductContainer>
                 <img
-                  src={`https://mudee.shop/eCommerce/assets/images/products/${product.product.photo}`}
+                  src={`https://mudee.shop/helpz/assets/images/products/${product.product.photo}`}
                   alt=""
                 />
 

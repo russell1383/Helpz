@@ -25,7 +25,7 @@ const OfferProductCard = ({ product }) => {
   useEffect(() => {
     let data = { product_id: product.offers.product_id };
     axios
-      .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
+      .post("https://mudee.shop/helpz/api/product/cat/sub/child", data)
       .then((response) => {
         setLoader(false);
         let data = response.data[0];
@@ -41,12 +41,12 @@ const OfferProductCard = ({ product }) => {
     <>
       <OfferProductCardContainer>
         <img
-          src={`https://mudee.shop/eCommerce/assets/images/offers/${product.offers.photo}`}
+          src={`https://mudee.shop/helpz/assets/images/offers/${product.offers.photo}`}
           alt=""
         />
         <div className="right_side">
           <img
-            src={`https://mudee.shop/eCommerce/assets/images/products/${offerProduct.photo}`}
+            src={`https://mudee.shop/helpz/assets/images/products/${offerProduct.photo}`}
             alt=""
           />
           <OfferProductInfoContainer>

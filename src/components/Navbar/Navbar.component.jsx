@@ -27,6 +27,8 @@ import {
   MdShoppingCartContainer,
   NavLogo,
   ItemsOnCart,
+  SearchLoading,
+  RecentSearchContainer,
 } from "./Navbar.style";
 import logo from "../../assets/logos/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -51,24 +53,24 @@ import { UserContext } from "../../App";
 import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 import axios from "axios";
 import Location from "../Location/Location.component";
-
+import spinner from "../../assets/gifs/loading-spinner.gif";
+import useLocalStorage from "react-use-localstorage";
 const Navbar = () => {
   const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [openCatergory, setOpenCatergory] = useState(false);
   const [showSearchSuggest, setShowSearchSuggest] = useState(false);
-  const [searchTerm, setSearchTerm] = useState();
-  const [searchTermNotMatched,setSearchTermNotMatched] = useState(false)
+  const [searchTerm, setSearchTerm] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
+  const [searchLoader, setSearchLoader] = useState(false);
+  const [storeSearch, setStoreSearch] = useState([]);
+  const [searchNotFound, setSearchNotFound] = useState(false);
   const history = useHistory();
 
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
-
   const handleAddToCart = (item) => {
-    console.log(item);
     let newItem = [...addToCart, item];
     item.price = parseInt(item.price);
     item.quantity = 1;
@@ -92,20 +94,33 @@ const Navbar = () => {
     }
   };
 
-
   useEffect(() => {
-    let data = {name: searchTerm}
+    let data = { name: searchTerm };
     if (data.name) {
-      console.log(data)
+      setSearchLoader(true);
       axios
-      .post("https://mudee.shop/eCommerce/api/product/search/frontend", data)
-      .then((response) => {
-        setSearchResults(response.data.slice(0, 5))
-      });
-      
+        .post("https://mudee.shop/helpz/api/product/search/frontend", data)
+        .then((response) => {
+          if (!response.data.length) {
+            setSearchLoader(false);
+            console.log("Hahahaha");
+            setSearchNotFound(true);
+            setSearchResults([]);
+          } else {
+            setSearchResults(response.data.slice(0, 5));
+            setSearchNotFound(false);
+            setSearchLoader(false);
+          }
+        });
+    } else {
+      setSearchResults([]);
     }
 
-  },[searchTerm])
+    if ("searched" in localStorage) {
+      var stored_datas = JSON.parse(localStorage["searched"]);
+      setStoreSearch(stored_datas.slice(0, 5));
+    }
+  }, [searchTerm]);
 
   const handleToggle = (e) => {
     e.preventDefault();
@@ -135,7 +150,11 @@ const Navbar = () => {
     setShowSearchSuggest(!showSearchSuggest);
   };
 
-  // console.log(searchResults)
+  const handleSearchClick = () => {
+    var datas = [searchTerm, ...storeSearch];
+    localStorage["searched"] = JSON.stringify(datas.slice(0, 5));
+    setStoreSearch(datas);
+  };
 
   return (
     <>
@@ -151,13 +170,15 @@ const Navbar = () => {
                 onClick={handleShowSearchSuggestions}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <div>
+              <div onClick={handleSearchClick}>
                 <FontAwesomeIcon icon={faSearch} size="lg" />
               </div>
             </SearchBox>
 
             <SearchSuggestionsContainer open={showSearchSuggest}>
-              {searchResults &&
+              {searchLoader ? (
+                <SearchLoading src={spinner} alt="" srcset="" />
+              ) : (
                 searchResults.map((product) => (
                   <SearchSuggestions
                     key={product.key}
@@ -165,8 +186,20 @@ const Navbar = () => {
                     handleAddToCart={handleAddToCart}
                     handleQuantity={handleQuantity}
                   />
-                ))}
-            
+                ))
+              )}{" "}
+              {!searchLoader && !searchResults.length && (
+                <RecentSearchContainer>
+                  <p>Recently Searched: </p>
+                  {storeSearch.length
+                    ? storeSearch.slice(0, 5).map((search, idx) => (
+                        <h6 key={idx}>
+                          <FontAwesomeIcon icon={faSearch} /> &nbsp; {search}
+                        </h6>
+                      ))
+                    : ""}
+                </RecentSearchContainer>
+              )}
             </SearchSuggestionsContainer>
           </SearchBoxWrap>
 
@@ -176,9 +209,7 @@ const Navbar = () => {
             </div>
             <h4>৳ {addToCart.reduce((a, b) => a + b.totalPrice, 0)}.0</h4>
             {addToCart.length ? (
-              <ItemsOnCart >
-                {addToCart.length}
-              </ItemsOnCart>
+              <ItemsOnCart>{addToCart.length}</ItemsOnCart>
             ) : (
               ""
             )}
@@ -271,7 +302,9 @@ const Navbar = () => {
               </div>
             </MdSearchBox>
             <MdSearchSuggestionsContainer open={showSearchSuggest}>
-            {searchResults &&
+              {searchLoader ? (
+                <SearchLoading src={spinner} alt="" srcset="" />
+              ) : (
                 searchResults.map((product) => (
                   <SearchSuggestions
                     key={product.key}
@@ -279,7 +312,8 @@ const Navbar = () => {
                     handleAddToCart={handleAddToCart}
                     handleQuantity={handleQuantity}
                   />
-                ))}
+                ))
+              )}
             </MdSearchSuggestionsContainer>
           </MdSearchBoxWrap>
         </MdNavbarContainer>

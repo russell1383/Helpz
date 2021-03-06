@@ -21,12 +21,11 @@ const Products = ({ header, subheader }) => {
   const [products, setProducts] = useState([]);
   const [campaignPrice, setCampaignPrice] = useState(null);
 
-
   useEffect(() => {
     let data = { category_id: 2 };
 
     axios
-      .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
+      .post("https://mudee.shop/helpz/api/product/cat/sub/child", data)
       .then((response) =>
         setProducts(response.data.slice(0, 30).sort(() => 0.5 - Math.random()))
       );
@@ -50,7 +49,7 @@ const Products = ({ header, subheader }) => {
   const handleCampaignPriceDiscount = (p) => {
     if (p.campaign) {
       let currentDate = new Date();
-      console.log(currentDate)
+      console.log(currentDate);
       let campaignEndDate = Date.parse(p.campaign.end_date);
       // let currenTime = Date.parse(new Date());
       // let campaignEndTime = p.campaign.end_time.split(":");
@@ -61,7 +60,7 @@ const Products = ({ header, subheader }) => {
           (parseInt(p.campaign.offer) / 100) * parseInt(p.price);
         let offerPrice = parseInt(p.price) - percentageCalc;
         return offerPrice;
-      }else {
+      } else {
         return p.price;
       }
     } else {
@@ -118,7 +117,7 @@ const Products = ({ header, subheader }) => {
               {/* <ProductBox>
                 <OffLabel>25% Off</OffLabel>
                 <ProductImg
-                  src={`https://mudee.shop/eCommerce/assets/images/products/${product.photo}`}
+                  src={`https://mudee.shop/helpz/assets/images/products/${product.photo}`}
                   onClick={() => handlePdClick(product)}
                 ></ProductImg>
                 <ProductInfo onClick={() => handlePdClick(product)}>

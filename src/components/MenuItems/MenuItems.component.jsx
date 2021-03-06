@@ -34,7 +34,7 @@ const MenuItems = () => {
     if (loggedInUser.id || info.id) {
       let data = { user_id: loggedInUser.id || info.id };
       axios
-        .post("https://mudee.shop/eCommerce/api/wish-list-user", data)
+        .post("https://mudee.shop/helpz/api/wish-list-user", data)
         .then((response) => {
           setWishListProducts(response.data);
           setOpen(false);

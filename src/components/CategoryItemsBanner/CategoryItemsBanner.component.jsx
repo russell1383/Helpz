@@ -29,7 +29,7 @@ const CategoryItemsBanner = ({ id, name }) => {
     if (id) {
       let data = { category_id: id };
       axios
-        .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
+        .post("https://mudee.shop/helpz/api/product/cat/sub/child", data)
         .then((response) => {
           setLoader(false);
           setProducts(response.data);

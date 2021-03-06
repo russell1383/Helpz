@@ -9,7 +9,11 @@ import {
 } from "./CartProduct.style";
 import img from "../../assets/images/product-images/product-1.png";
 import { UserContext } from "../../App";
-import { handleQuantityIncrement,handleQuantityDecrement,handleRemoveItemFromCart } from "../../utils/cartManagement";
+import {
+  handleQuantityIncrement,
+  handleQuantityDecrement,
+  handleRemoveItemFromCart,
+} from "../../utils/cartManagement";
 
 const CartProduct = () => {
   const { value, value2 } = useContext(UserContext);
@@ -33,20 +37,38 @@ const CartProduct = () => {
         addToCart.map((product) => (
           <ProductRow key={product.id}>
             <CartProductImg
-              src={`https://mudee.shop/eCommerce/assets/images/products/${product.photo}`}
+              src={`https://mudee.shop/helpz/assets/images/products/${product.photo}`}
               alt=""
             />
-            <h4>{product.name.split(' ')[0]}</h4>
+            <h4>{product.name.split(" ")[0]}</h4>
             <div>
-              <h4>{product.totalQuantity} Kg</h4> 
+              <h4>{product.totalQuantity} Kg</h4>
               <IncrementDecrementBox>
-                <button onClick={() => handleQuantityIncrement(addToCart,setAddToCart,product.id)}>+</button>
+                <button
+                  onClick={() =>
+                    handleQuantityIncrement(addToCart, setAddToCart, product.id)
+                  }
+                >
+                  +
+                </button>
 
-                <button onClick={() => handleQuantityDecrement(addToCart,setAddToCart,product.id)}>-</button>
+                <button
+                  onClick={() =>
+                    handleQuantityDecrement(addToCart, setAddToCart, product.id)
+                  }
+                >
+                  -
+                </button>
               </IncrementDecrementBox>
             </div>
             <h4>{product.totalPrice} Tk</h4>
-            <h2 onClick={() => handleRemoveItemFromCart(addToCart,setAddToCart,product.id)}>✕</h2>
+            <h2
+              onClick={() =>
+                handleRemoveItemFromCart(addToCart, setAddToCart, product.id)
+              }
+            >
+              ✕
+            </h2>
           </ProductRow>
         ))
       ) : (

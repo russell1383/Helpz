@@ -21,7 +21,7 @@ const ChildCategoryItemsContent = ({ id, name }) => {
   const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
 
-  console.log(id)
+  console.log(id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -31,16 +31,13 @@ const ChildCategoryItemsContent = ({ id, name }) => {
     if (id) {
       let data = { childcategory_id: id };
       axios
-        .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
+        .post("https://mudee.shop/helpz/api/product/cat/sub/child", data)
         .then((response) => {
           setLoader(false);
           setProducts(response.data);
         });
     }
   }, [id]);
-
-
-
 
   return (
     <>
@@ -66,10 +63,7 @@ const ChildCategoryItemsContent = ({ id, name }) => {
                 <h2>{name}</h2>
                 <CategoryProductsContainer>
                   {products.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      productInfo={product}
-                    />
+                    <ProductCard key={product.id} productInfo={product} />
                   ))}
                 </CategoryProductsContainer>
                 <ShowMoreButton>Show More</ShowMoreButton>

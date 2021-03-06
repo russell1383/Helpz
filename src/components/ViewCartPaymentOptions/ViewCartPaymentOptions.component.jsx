@@ -68,7 +68,7 @@ const ViewCartPaymentOptions = () => {
       };
       console.log(orderInfo);
       axios
-        .post("https://mudee.shop/eCommerce/api/order/store", orderInfo)
+        .post("https://mudee.shop/helpz/api/order/store", orderInfo)
         .then((response) => {
           console.log(response);
           setOpen(false);

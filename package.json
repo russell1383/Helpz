@@ -27,6 +27,7 @@
     "react-slick": "^0.27.14",
     "react-stickynode": "^3.0.4",
     "react-to-print": "^2.12.2",
+    "react-use-localstorage": "^3.5.3",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4"

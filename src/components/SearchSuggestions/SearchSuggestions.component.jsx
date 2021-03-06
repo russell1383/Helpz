@@ -48,13 +48,12 @@ const SearchSuggestions = ({
     }
   };
 
-  console.log(productInfo);
   return (
     <>
       {productInfo && (
         <SearchSuggestionsContentContainer>
           <SearchSuggestImg
-            src={`https://mudee.shop/eCommerce/assets/images/products/${productInfo.photo}`}
+            src={`https://mudee.shop/helpz/assets/images/products/${productInfo.photo}`}
             alt=""
             onClick={handlePdClick}
           />

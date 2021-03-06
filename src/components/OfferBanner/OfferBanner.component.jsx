@@ -20,7 +20,7 @@ const OfferBanner = () => {
   useEffect(() => {
     let data = { user_id: loggedInUser.id };
     axios
-      .post("https://mudee.shop/eCommerce/api/offer-list-user", data)
+      .post("https://mudee.shop/helpz/api/offer-list-user", data)
       .then((response) => {
         setOfferProduct(response.data);
       });

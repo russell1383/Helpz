@@ -60,6 +60,7 @@ export const SearchBox = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
   }
 `;
 
@@ -69,7 +70,6 @@ export const SearchSuggestionsContainer = styled.div`
   background: #fff;
   position: fixed;
   top: 57.5px;
-
   z-index: 150;
   border-top: 1px solid lightgrey;
 
@@ -89,6 +89,32 @@ export const SearchSuggestionsContainer = styled.div`
 
   @media (max-width: 768px) {
     display: none;
+  }
+
+  /* img {
+    width: 12%;
+  } */
+`;
+
+export const SearchLoading = styled.img`
+  width: 20%;
+  display: block;
+  padding: 5% 0;
+  margin: 0 auto;
+`;
+
+export const RecentSearchContainer = styled.div`
+  padding: 1% 0 1% 1%;
+
+  p {
+    padding-bottom: 8px;
+  }
+  h6 {
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    cursor: pointer;
   }
 `;
 
@@ -266,22 +292,22 @@ export const MdShoppingCartContainer = styled.div`
 // -----------------Sidebar on Medium Device-----------------//
 
 export const MdSidebar = styled.div`
+  display: none;
 
-display: none;
-
-@media (max-width: 768px){
-  display: block;
-  transform: ${({ sidebarOpen }) => (sidebarOpen ? "translateX(0)" : "translateX(110%)")};
-  position: fixed;
-  height: 75vh;
-  width: 30vh;
-  background: #44A72C;
-  z-index: 40;
-  position:absolute;
-  top: 60%;
-  right: 8px;
-  padding:5% 0 0 5%;
-  transition: transform 0.3s ease-in-out;
+  @media (max-width: 768px) {
+    display: block;
+    transform: ${({ sidebarOpen }) =>
+      sidebarOpen ? "translateX(0)" : "translateX(110%)"};
+    position: fixed;
+    height: 75vh;
+    width: 30vh;
+    background: #44a72c;
+    z-index: 40;
+    position: absolute;
+    top: 60%;
+    right: 8px;
+    padding: 5% 0 0 5%;
+    transition: transform 0.3s ease-in-out;
   }
 `;
 
@@ -296,7 +322,7 @@ export const MdSidebarItems = styled.div`
     padding-left: 10px;
   }
 
-  small{
+  small {
     font-weight: 400;
     padding-left: 10px;
   }
@@ -309,7 +335,8 @@ export const MdCategoryBar = styled.div`
 
   @media (max-width: 768px) {
     display: block;
-    transform: ${({ openCatergory }) => (openCatergory ? "translateX(0)" : "translateX(-120%)")};
+    transform: ${({ openCatergory }) =>
+      openCatergory ? "translateX(0)" : "translateX(-120%)"};
     transition: transform 0.3s ease-in-out;
     position: fixed;
     width: 26vh;

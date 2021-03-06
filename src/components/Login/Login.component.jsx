@@ -33,18 +33,16 @@ const LoginComponent = () => {
   const [error, setError] = useState("");
 
   const handleLogin = (data, e) => {
-    axios
-      .post("https://mudee.shop/eCommerce/api/login", data)
-      .then((response) => {
-        if (response.data.errors) {
-          setError(response.data.errors[0]);
-        } else {
-          setLoggedInUser(response.data);
-          setError("");
-          history.replace(from);
-        }
-        e.target.reset();
-      });
+    axios.post("https://mudee.shop/helpz/api/login", data).then((response) => {
+      if (response.data.errors) {
+        setError(response.data.errors[0]);
+      } else {
+        setLoggedInUser(response.data);
+        setError("");
+        history.replace(from);
+      }
+      e.target.reset();
+    });
   };
 
   console.log(loggedInUser);

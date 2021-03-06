@@ -52,7 +52,7 @@ const ProductInfoBanner = () => {
   useEffect(() => {
     let data = { product_id: productId };
     axios
-      .post("https://mudee.shop/eCommerce/api/product/cat/sub/child", data)
+      .post("https://mudee.shop/helpz/api/product/cat/sub/child", data)
       .then((response) => {
         setLoader(false);
         setProduct(response.data[0]);
@@ -66,7 +66,7 @@ const ProductInfoBanner = () => {
         user_id: loggedInUser.id || info.id,
       };
       axios
-        .post("https://mudee.shop/eCommerce/api/wish-list-store", data)
+        .post("https://mudee.shop/helpz/api/wish-list-store", data)
         .then((response) => {
           console.log(response);
         });
@@ -120,10 +120,10 @@ const ProductInfoBanner = () => {
                           smallImage: {
                             alt: "Wristwatch by Ted Baker London",
                             isFluidWidth: true,
-                            src: `https://mudee.shop/eCommerce/assets/images/products/${product.photo}`,
+                            src: `https://mudee.shop/helpz/assets/images/products/${product.photo}`,
                           },
                           largeImage: {
-                            src: `https://mudee.shop/eCommerce/assets/images/products/${product.photo}`,
+                            src: `https://mudee.shop/helpz/assets/images/products/${product.photo}`,
                             width: 1200,
                             height: 800,
                           },
@@ -138,7 +138,7 @@ const ProductInfoBanner = () => {
                     <ProductSubImgContainer>
                       {[1, 2, 3, 4, 5].map((item, idx) => (
                         <img
-                          src={`https://mudee.shop/eCommerce/assets/images/products/${product.photo}`}
+                          src={`https://mudee.shop/helpz/assets/images/products/${product.photo}`}
                           alt=""
                         />
                       ))}
