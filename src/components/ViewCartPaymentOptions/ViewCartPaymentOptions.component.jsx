@@ -61,7 +61,8 @@ const ViewCartPaymentOptions = () => {
         customer_phone: loggedInUser.phone || info.phone,
         paymentMethod: "Amarpay",
         shipping: "pickup",
-        pickup_location: pickup,
+        warehouse_id: pickup.match(/\d+/g)[0],
+        pickup_location: pickup.match(/[a-zA-Z]+/g)[0],
         ordered_products: [...addToCart],
         pay_amount: addToCart.reduce((a, b) => a + b.totalPrice, 0),
         txnid: "",
@@ -69,13 +70,13 @@ const ViewCartPaymentOptions = () => {
         cupon_code: "",
       };
       console.log(orderInfo);
-      axios
-        .post("https://mudee.shop/helpz/api/order/store", orderInfo)
-        .then((response) => {
-          console.log(response);
-          setOpen(false);
-          history.push("/invoice");
-        });
+      // axios
+      //   .post("https://mudee.shop/helpz/api/order/store", orderInfo)
+      //   .then((response) => {
+      //     console.log(response);
+      //     setOpen(false);
+      //     history.push("/invoice");
+      //   });
     } else {
       setOpen(true);
       setOrderPage(true);
@@ -106,7 +107,10 @@ const ViewCartPaymentOptions = () => {
           <option value="">----Select a pick point----</option>
           {pickupLocations &&
             pickupLocations.map((location) => (
-              <option value={location.location} key={location.id}>
+              <option
+                value={`${location.location} ${location.id}`}
+                key={location.id}
+              >
                 {location.location}
               </option>
             ))}

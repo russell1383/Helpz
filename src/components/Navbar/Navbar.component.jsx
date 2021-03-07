@@ -54,7 +54,6 @@ import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 import axios from "axios";
 import Location from "../Location/Location.component";
 import spinner from "../../assets/gifs/loading-spinner.gif";
-import useLocalStorage from "react-use-localstorage";
 const Navbar = () => {
   const { value, value2 } = useContext(UserContext);
   const [addToCart, setAddToCart] = value2;
