@@ -23,7 +23,7 @@ export const PaymentOptionsRow = styled.div`
 
 export const MobileBankingImg = styled.img`
   width: 13%;
-
+  cursor: pointer;
   @media (max-width: 768px) {
     width: 50%;
     padding: 8%;
@@ -31,7 +31,7 @@ export const MobileBankingImg = styled.img`
 `;
 export const OtherBankingImg = styled.img`
   width: 13%;
-
+  cursor: pointer;
   @media (max-width: 768px) {
     width: 50%;
     padding: 8%;
@@ -50,13 +50,13 @@ export const RedeemButtonWrap = styled.div`
 export const RedeemButton = styled.button`
   width: 32%;
   border: none;
-  display:flex;
+  display: flex;
   align-items: center;
   color: #fff;
   border-radius: 5px;
   font-family: "UniNeueRegular";
   cursor: pointer;
-  padding:2% 7%;
+  padding: 2% 7%;
   font-size: 15px;
   background: ${(props) =>
     props.yellow
@@ -66,33 +66,31 @@ export const RedeemButton = styled.button`
       : props.green &&
         "linear-gradient(315deg, #129021  30%,  #17B020 70% 100%)"};
 
-p{
-  text-align:right;
-  color: #fff;
-  font-size: 15px;
+  p {
+    text-align: right;
+    color: #fff;
+    font-size: 15px;
+
+    @media (max-width: 1050px) {
+      font-size: 12px;
+    }
+  }
+  @media (max-width: 1450px) {
+    padding: 2% 5%;
+  }
+
+  @media (max-width: 1200px) {
+    padding: 2% 4%;
+  }
 
   @media (max-width: 1050px) {
-  font-size: 12px;
+    padding: 2% 3%;
+    font-size: 12px;
   }
-
-}
-@media (max-width: 1450px) {
-  padding:2% 5%;
-  }
-
-@media (max-width: 1200px) {
-  padding:2% 4%;
-  }
-
-@media (max-width: 1050px) {
-  padding:2% 3%;
-  font-size: 12px;
-  }
-
 
   @media (max-width: 768px) {
     width: 100%;
     margin-bottom: 5%;
-    padding:4% 10%;
+    padding: 4% 10%;
   }
 `;

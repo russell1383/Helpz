@@ -7,9 +7,8 @@
   font-family: "Roboto", sans-serif;
 }
 
-body{
-overflow-x: hidden;
-
+body {
+  overflow-x: hidden;
 }
 
 @media (max-width: 560px) {
@@ -37,20 +36,23 @@ a:-webkit-any-link {
 
 .notification__item--success {
   background: #44a72c !important;
+  border: 1px solid lightgray;
 }
 
-.notifications-component {
+/* .notifications-component {
   margin-top: 65px !important;
-}
+}*/
 
 .notification {
   width: 250px !important;
+  margin-top: 65px !important;
 }
 
 .overflow-hidden {
   overflow: hidden;
 }
 
-.sticky-inner-wrapper, .sticky-outer-wrapper {
+.sticky-inner-wrapper,
+.sticky-outer-wrapper {
   z-index: 20 !important;
 }

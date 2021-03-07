@@ -19,6 +19,7 @@ import {
 } from "./Login.style";
 import { useHistory, useLocation } from "react-router-dom";
 import { UserContext } from "../../App";
+import { store } from "react-notifications-component";
 
 const LoginComponent = () => {
   const { register, handleSubmit, watch, errors } = useForm();
@@ -38,7 +39,21 @@ const LoginComponent = () => {
         setError(response.data.errors[0]);
       } else {
         setLoggedInUser(response.data);
+        localStorage["user"] = JSON.stringify(response.data);
         setError("");
+        store.addNotification({
+          title: "Logged in successfully !",
+          message: " ",
+          type: "success",
+          insert: "top",
+          container: "bottom-center",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 1500,
+            // onScreen: true,
+          },
+        });
         history.replace(from);
       }
       e.target.reset();

@@ -1,12 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCoffee,
-  faGift,
-  faPrescriptionBottle,
-  faScroll,
-  faWallet,
-} from "@fortawesome/free-solid-svg-icons";
+import { faGift, faScroll, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { ViewCartContainer } from "../ViewCartBanner/ViewCartBanner.style";
 import nagad from "../../assets/icons/Nagad-Logo 1.png";
 import bkash from "../../assets/icons/Bkash logo.png";
@@ -38,6 +32,7 @@ const ViewCartPaymentOptions = () => {
   const [loggedInUser, setLoggedInUser] = value;
   const [num, setNum] = useState("");
   const [addToCart, setAddToCart] = value2;
+  const [pickupLocations, setPickupLocations] = useState([]);
   const [pickup, setPickup] = useState();
   const [orderPage, setOrderPage] = useState(false);
   const history = useHistory();
@@ -45,12 +40,19 @@ const ViewCartPaymentOptions = () => {
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
+  useEffect(() => {
+    axios
+      .get("https://mudee.shop/helpz/api/pickup/points")
+      .then((response) => setPickupLocations(response.data));
+  }, []);
+
   const handleChange = (e) => {
     console.log(e.target.value);
     setPickup(e.target.value);
   };
 
   const handleOrderReq = (info) => {
+    // console.log(info);
     if (loggedInUser.id || info.id) {
       let orderInfo = {
         user_id: loggedInUser.id || info.id,
@@ -102,7 +104,12 @@ const ViewCartPaymentOptions = () => {
         <h3>Pickup Point :</h3>
         <PickupOptions onChange={handleChange} required>
           <option value="">----Select a pick point----</option>
-          <option value="Dhanmondi Branch">Dhanmondi Branch</option>
+          {pickupLocations &&
+            pickupLocations.map((location) => (
+              <option value={location.location} key={location.id}>
+                {location.location}
+              </option>
+            ))}
         </PickupOptions>
         <h3>Payment Options :</h3>
 

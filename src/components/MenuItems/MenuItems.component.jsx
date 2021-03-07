@@ -18,6 +18,7 @@ import {
 import LoginModal from "../LoginModal/LoginModal.component";
 import { UserContext } from "../../App";
 import axios from "axios";
+import { store } from "react-notifications-component";
 
 const MenuItems = () => {
   const { value, value2 } = useContext(UserContext);
@@ -46,6 +47,24 @@ const MenuItems = () => {
     }
   };
 
+  const handleLogout = () => {
+    setLoggedInUser({});
+    localStorage.removeItem("user");
+    store.addNotification({
+      title: "Logged out successfully !",
+      message: " ",
+      type: "success",
+      insert: "top",
+      container: "bottom-center",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 1500,
+        // onScreen: true,
+      },
+    });
+  };
+
   return (
     <>
       <MenuItemsContainerWrap>
@@ -56,15 +75,18 @@ const MenuItems = () => {
           sideBarWishList={sideBarWishList}
         />
         <MenuItemsContainer>
-          <p>
-            <Link to="/login">
-              <FontAwesomeIcon icon={faSignInAlt} />
-              <span>Login / Signup</span>{" "}
-            </Link>
-          </p>
+          {!loggedInUser.email && (
+            <p>
+              <Link to="/login">
+                <FontAwesomeIcon icon={faSignInAlt} />
+                <span>Login / Signup</span>{" "}
+              </Link>
+            </p>
+          )}
+
           <p>
             <FontAwesomeIcon icon={faUserCircle} />
-            <span>My Account</span>
+            <span>{loggedInUser.name ? loggedInUser.name : "My Account"}</span>
           </p>
           <p>
             <Link to="/view-cart">
@@ -91,10 +113,12 @@ const MenuItems = () => {
             <FontAwesomeIcon icon={faBell} />
             <span>Notification</span>
           </p>
-          <p>
-            <FontAwesomeIcon icon={faSignOutAlt} />
-            <span>Logout</span>
-          </p>
+          {loggedInUser.email && (
+            <p onClick={handleLogout}>
+              <FontAwesomeIcon icon={faSignOutAlt} />
+              <span>Logout</span>
+            </p>
+          )}
         </MenuItemsContainer>
 
         <Wishlist

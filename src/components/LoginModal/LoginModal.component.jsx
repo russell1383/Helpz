@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../../App";
 import axios from "axios";
 import { OTPform } from "../Login/Login.style";
+import { store } from "react-notifications-component";
 
 const LoginModal = ({
   open,
@@ -39,7 +40,21 @@ const LoginModal = ({
         // setError(response.data.errors[0]);
       } else {
         setLoggedInUser(response.data);
+        localStorage["user"] = JSON.stringify(response.data);
         // setError("");
+        store.addNotification({
+          title: "Logged in successfully !",
+          message: " ",
+          type: "success",
+          insert: "top",
+          container: "bottom-center",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 1500,
+            // onScreen: true,
+          },
+        });
         if (orderPage) {
           handleOrderReq(response.data);
         } else if (wishListPage) {
@@ -101,10 +116,24 @@ const LoginModal = ({
           setOtp([...otp.map((v) => "")]);
         } else {
           console.log("Regestered Successfully");
-          console.log(response);
           setLoggedInUser(response.data);
           setError("");
           setOtp([...otp.map((v) => "")]);
+          localStorage["user"] = JSON.stringify(response.data);
+          setProceedOTP(false);
+          store.addNotification({
+            title: "Registered successfully !",
+            message: " ",
+            type: "success",
+            insert: "top",
+            container: "bottom-center",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+              duration: 1500,
+              // onScreen: true,
+            },
+          });
           if (orderPage) {
             handleOrderReq(response.data);
           } else if (wishListPage) {

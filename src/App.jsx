@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import "animate.css/animate.min.css";
-import { createContext, lazy, Suspense, useState } from "react";
+import { createContext, lazy, Suspense, useEffect, useState } from "react";
 import Login from "./pages/Login/Login.page";
 import ViewCart from "./pages/ViewCart/ViewCart.page";
 import ProductInfo from "./pages/ProductInfo/ProductInfo.page";
@@ -27,6 +27,13 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
   const [addToCart, setAddToCart] = useState([]);
 
+  useEffect(() => {
+    if ("user" in localStorage) {
+      var user_data = JSON.parse(localStorage["user"]);
+      setLoggedInUser(user_data);
+    }
+  }, []);
+  console.log(loggedInUser);
   return (
     <UserContext.Provider
       value={{

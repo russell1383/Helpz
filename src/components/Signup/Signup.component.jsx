@@ -18,6 +18,7 @@ import googleIcon from "../../assets/icons/Google.png";
 import fbIcon from "../../assets/icons/facebook.png";
 import axios from "axios";
 import { UserContext } from "../../App";
+import { store } from "react-notifications-component";
 
 const SignupContent = () => {
   const { register, handleSubmit, watch, errors } = useForm();
@@ -70,7 +71,6 @@ const SignupContent = () => {
 
   const handleOtp = (e) => {
     const currentOtp = { otp: otp.join(""), phone: num };
-    console.log(num);
     console.log(currentOtp);
     axios
       .post("https://mudee.shop/helpz/api/register-otp", currentOtp)
@@ -83,8 +83,22 @@ const SignupContent = () => {
           console.log("Regestered Successfully");
           console.log(response);
           setLoggedInUser(response.data);
+          localStorage["user"] = JSON.stringify(response.data);
           setError("");
           setOtp([...otp.map((v) => "")]);
+          store.addNotification({
+            title: "Registered successfully !",
+            message: " ",
+            type: "success",
+            insert: "top",
+            container: "bottom-center",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+              duration: 1500,
+              // onScreen: true,
+            },
+          });
           history.replace(from);
         }
       });
