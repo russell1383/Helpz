@@ -21,6 +21,10 @@ export const HistoryContainer = styled.div`
     cursor: pointer;
     font-size: 1.5vw;
   }
+  small {
+    display: block;
+    text-align: center;
+  }
 `;
 
 export const HistoryContentConatiner = styled.div`
@@ -30,10 +34,6 @@ export const HistoryContentConatiner = styled.div`
   padding-bottom: 10px;
   margin-bottom: 30px;
   margin-top: 15px;
-  img {
-    width: 30%;
-    height: 30%;
-  }
 
   .right_side {
     width: 68%;
@@ -52,6 +52,16 @@ export const HistoryContentConatiner = styled.div`
     }
   }
 `;
+
+export const QrCodeContainer = styled.div`
+  width: 28%;
+  height: 28%;
+  .qr {
+    height: 100%;
+    width: 100%;
+  }
+`;
+
 export const PurchaseDate = styled.div`
   position: absolute;
   top: -25%;

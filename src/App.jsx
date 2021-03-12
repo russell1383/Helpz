@@ -18,6 +18,7 @@ import { LoaderGif } from "./components/CategoryItemsBanner/CategoryItemsBanner.
 import loading from "./assets/gifs/loader.gif";
 import SingleProductInfoBannner from "./components/SingleProductInfoBanner/SingleProductInfoBannner.component";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.component";
+import Account from "./pages/Account/Account.page";
 
 const Home = lazy(() => import("./pages/Home/Home.page"));
 
@@ -83,6 +84,10 @@ function App() {
 
             <Route path="/test">
               <SingleProductInfoBannner />
+            </Route>
+
+            <Route path="/account">
+              <Account />
             </Route>
 
             <Route path="/invoice">

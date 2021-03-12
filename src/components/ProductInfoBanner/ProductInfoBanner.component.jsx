@@ -5,6 +5,7 @@ import CategoriesCard from "../CategoriesCard/CategoriesCard.component";
 import { UserContext } from "../../App";
 import MenuItems from "../MenuItems/MenuItems.component";
 import {
+  MagnifiedImage,
   MdProductInfoOffLabel,
   MdProductPrice,
   ProductBannerContainer,
@@ -248,7 +249,7 @@ const ProductInfoBanner = () => {
                     </MdProductPrice>
                   </ProductInfo>
 
-                  <div id="myPortal"></div>
+                  <MagnifiedImage zIndex={zIndex} id="myPortal" />
                 </ProductInfoBox>
 
                 <h2>Packeg Offer</h2>

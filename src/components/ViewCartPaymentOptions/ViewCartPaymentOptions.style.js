@@ -41,7 +41,7 @@ export const OtherBankingImg = styled.img`
 export const RedeemButtonWrap = styled.div`
   display: flex;
   justify-content: space-between;
-
+  margin: 5% 0 10% 0;
   @media (max-width: 768px) {
     flex-direction: column;
   }

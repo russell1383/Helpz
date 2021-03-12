@@ -6,9 +6,9 @@ export const SearchSuggestionsContentContainer = styled.div`
   background: #fff;
   cursor: pointer;
 
-  @media (max-width: 450px){
-        padding: 4% 0;
-     }
+  @media (max-width: 450px) {
+    padding: 4% 0;
+  }
 
   h4 {
     font-family: "UniNeueRegular";
@@ -22,19 +22,19 @@ export const SearchSuggestionsContentContainer = styled.div`
     @media (max-width: 910px) {
       font-size: 8px;
     }
-    @media (max-width: 450px){
-        font-size: 7px 
-     }
+    @media (max-width: 450px) {
+      font-size: 7px;
+    }
   }
 `;
 
 export const SearchSuggestImg = styled.img`
   width: 9%;
-  padding: 1.2% 2.4%;
+  padding: 1.2% 1.2% 1.2% 0%;
 
   @media (max-width: 450px) {
-      width: 12%;
-    }
+    width: 12%;
+  }
 `;
 export const SearchSuggestQuantityBox = styled.div`
   display: flex;
@@ -54,14 +54,14 @@ export const SearchSuggestQuantityBox = styled.div`
     outline: none;
     background: #44a72c;
 
-    @media (max-width: 600px){
-        height: 20px;
-    width: 25px;
+    @media (max-width: 600px) {
+      height: 20px;
+      width: 25px;
     }
-    @media (max-width: 450px){
-        height: 20px;
-        font-size: 5px 
-     }
+    @media (max-width: 450px) {
+      height: 20px;
+      font-size: 5px;
+    }
   }
 `;
 export const SearchSuggestionsButton = styled.button`
@@ -70,7 +70,6 @@ export const SearchSuggestionsButton = styled.button`
   height: 30px;
   color: #fff;
   background: #44a72c;
-  margin-right: 5%;
   font-family: "UniNeueRegular";
   cursor: pointer;
 
@@ -82,10 +81,8 @@ export const SearchSuggestionsButton = styled.button`
     font-size: 8px;
   }
 
-  @media (max-width: 450px){
-     height: 20px;
-     font-size: 5px 
+  @media (max-width: 450px) {
+    height: 20px;
+    font-size: 5px;
   }
-
- 
 `;

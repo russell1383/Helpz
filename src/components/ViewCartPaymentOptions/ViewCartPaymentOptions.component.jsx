@@ -70,13 +70,13 @@ const ViewCartPaymentOptions = () => {
         cupon_code: "",
       };
       console.log(orderInfo);
-      // axios
-      //   .post("https://mudee.shop/helpz/api/order/store", orderInfo)
-      //   .then((response) => {
-      //     console.log(response);
-      //     setOpen(false);
-      //     history.push("/invoice");
-      //   });
+      axios
+        .post("https://mudee.shop/helpz/api/order/store", orderInfo)
+        .then((response) => {
+          console.log(response);
+          setOpen(false);
+          history.push("/invoice");
+        });
     } else {
       setOpen(true);
       setOrderPage(true);
@@ -86,6 +86,20 @@ const ViewCartPaymentOptions = () => {
   return (
     <div id="payment_option">
       <ViewCartContainer>
+        <h3>Pickup Point :</h3>
+        <PickupOptions onChange={handleChange} required>
+          <option value="">----Select a pick point----</option>
+          {pickupLocations &&
+            pickupLocations.map((location) => (
+              <option
+                value={`${location.location} ${location.id}`}
+                key={location.id}
+              >
+                {location.location}
+              </option>
+            ))}
+        </PickupOptions>
+
         <RedeemButtonWrap>
           <RedeemButton yellow>
             <FontAwesomeIcon icon={faGift} size="2x" /> <p>Redeem Reward</p>
@@ -102,19 +116,6 @@ const ViewCartPaymentOptions = () => {
           </RedeemButton>
         </RedeemButtonWrap>
 
-        <h3>Pickup Point :</h3>
-        <PickupOptions onChange={handleChange} required>
-          <option value="">----Select a pick point----</option>
-          {pickupLocations &&
-            pickupLocations.map((location) => (
-              <option
-                value={`${location.location} ${location.id}`}
-                key={location.id}
-              >
-                {location.location}
-              </option>
-            ))}
-        </PickupOptions>
         <h3>Payment Options :</h3>
 
         <h3>Mobile Banking :</h3>

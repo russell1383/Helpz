@@ -68,7 +68,9 @@ export const SearchSuggestionsContainer = styled.div`
   display: ${({ open }) => (open ? "block" : "none")};
   width: 58.4%;
   background: #fff;
+  border: 1px solid lightgray;
   position: fixed;
+  padding: 0 1% 1% 1%;
   top: 57.5px;
   z-index: 150;
   border-top: 1px solid lightgrey;
@@ -104,7 +106,7 @@ export const SearchLoading = styled.img`
 `;
 
 export const RecentSearchContainer = styled.div`
-  padding: 1% 0 1% 1%;
+  padding: 1% 0 0 0;
 
   p {
     padding-bottom: 8px;
@@ -273,6 +275,7 @@ export const MdSearchSuggestionsContainer = styled.div`
     background: #fff;
     position: fixed;
     z-index: 40;
+    padding: 0 2%;
     border-top: 1px solid lightgrey;
   }
 `;

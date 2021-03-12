@@ -30,6 +30,8 @@ const MenuItems = () => {
   const onCloseModal = () => setOpen(false);
   const [wishListProducts, setWishListProducts] = useState([]);
   const [sideBarWishList, setSideBarWishList] = useState(false);
+  const [sideBarHistory, setSideBarHistory] = useState(false);
+  const [orderHistory, setOrderHistory] = useState([]);
 
   const handleShowWishList = (info) => {
     if (loggedInUser.id || info.id) {
@@ -44,6 +46,22 @@ const MenuItems = () => {
     } else {
       setOpen(true);
       setSideBarWishList(true);
+    }
+  };
+
+  const handleShowHistory = (info) => {
+    if (loggedInUser.id || info.id) {
+      let data = { user_id: loggedInUser.id || info.id };
+      axios
+        .post("https://mudee.shop/helpz/api/order-list-user", data)
+        .then((response) => {
+          setOrderHistory(response.data);
+          setOpen(false);
+          setOpenHistory(true);
+        });
+    } else {
+      setOpen(true);
+      setSideBarHistory(true);
     }
   };
 
@@ -73,6 +91,8 @@ const MenuItems = () => {
           close={onCloseModal}
           handleShowWishList={handleShowWishList}
           sideBarWishList={sideBarWishList}
+          handleShowHistory={handleShowHistory}
+          sideBarHistory={sideBarHistory}
         />
         <MenuItemsContainer>
           {!loggedInUser.email && (
@@ -98,7 +118,7 @@ const MenuItems = () => {
             <FontAwesomeIcon icon={faList} />
             <span>My List</span>
           </p>
-          <p onClick={() => setOpenHistory(!openHistory)}>
+          <p onClick={handleShowHistory}>
             <FontAwesomeIcon icon={faHistory} />
             <span>History</span>
           </p>
@@ -125,7 +145,10 @@ const MenuItems = () => {
           wishlist={[openWishlist, setOpenWishlist]}
           wishListProducts={wishListProducts}
         />
-        <History history={[openHistory, setOpenHistory]} />
+        <History
+          history={[openHistory, setOpenHistory]}
+          orderHistory={orderHistory}
+        />
       </MenuItemsContainerWrap>
     </>
   );

@@ -41,18 +41,19 @@ export const ProductInfoBox = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 4% 0;
+  z-index: 1;
 
   @media (max-width: 768px) {
     flex-direction: column;
   }
 
-  #myPortal {
+  /* #myPortal {
     width: 45%;
     height: 100%;
     overflow: hidden;
     position: absolute;
     top: 0;
-    z-index: 10;
+  
     right: 0;
 
     @media (max-width: 768px) {
@@ -60,10 +61,25 @@ export const ProductInfoBox = styled.div`
       left: 0;
       width: 90%;
     }
-  }
+  } */
 `;
 
+export const MagnifiedImage = styled.div`
+  width: 45%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  display: ${({ zIndex }) => (zIndex ? "block" : "none")};
+  z-index: 50;
+  right: 0;
 
+  @media (max-width: 768px) {
+    top: 0;
+    left: 0;
+    width: 90%;
+  }
+`;
 
 export const ProductInfoBoxImgContainerWrap = styled.div`
   width: 55%;
@@ -132,7 +148,7 @@ export const ProductSubImgContainer = styled.div`
 export const ProductInfo = styled.div`
   width: 42%;
   position: relative;
-z-index:50;
+  z-index: 50;
   @media (max-width: 768px) {
     width: 100%;
     margin-top: 5%;

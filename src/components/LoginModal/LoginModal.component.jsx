@@ -21,7 +21,9 @@ const LoginModal = ({
   wishListPage,
   handleAddToWishList,
   sideBarWishList,
+  sideBarHistory,
   handleShowWishList,
+  handleShowHistory,
 }) => {
   const { register, handleSubmit, watch, errors } = useForm();
   const history = useHistory();
@@ -61,6 +63,8 @@ const LoginModal = ({
           handleAddToWishList(response.data);
         } else if (sideBarWishList) {
           handleShowWishList(response.data);
+        } else if (sideBarHistory) {
+          handleShowHistory(response.data);
         }
       }
       e.target.reset();
@@ -140,6 +144,8 @@ const LoginModal = ({
             handleAddToWishList(response.data);
           } else if (sideBarWishList) {
             handleShowWishList(response.data);
+          } else if (sideBarHistory) {
+            handleShowHistory(response.data);
           }
         }
       });
