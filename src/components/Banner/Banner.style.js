@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 export const BannerContainer = styled.div`
   position: relative;
-  width: 100vw;
+  width: 96vw;
   margin: 0 auto;
   font-family: "Roboto", sans-serif;
   box-sizing: border-box !important;
   padding-top: 80px;
-  overflow-x: hidden;
+
   @media (max-width: 768px) {
     padding-top: 140px;
     width: 100vw;
@@ -59,13 +59,13 @@ export const CustomBannerImgFour = styled.img`
   transition: transform 0.8s ease;
 `;
 export const CustomBannerImgFourRight = styled.img`
-  height: 100%;
+  height: 109%;
   width: 100%;
   padding-left: 1%;
 `;
 
 export const CustomBannerImgFive = styled.img`
-  width: 100%;
+  width: 96vw;
   margin: 0 auto;
   padding: 1% 0.8% 1% 0;
 

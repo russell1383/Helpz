@@ -45,6 +45,8 @@ const Banner = () => {
     fetchData();
   }, []);
 
+  // https://mudee.shop/helpz/assets/images/banners/161408474707c71adf-ef0e-4d08-8fc6-084c1dd3ccf6.jpg
+  // console.log(bannerImgs[0].photo);
   return (
     <>
       {loader ? (
@@ -52,7 +54,7 @@ const Banner = () => {
       ) : (
         <BannerContainer>
           <BannerTopPart>
-            <Row>
+            <Row gutterWidth={6}>
               <Col xs={2.5} md={1.5} className="p-relative overflow-hidden">
                 <BannerImg
                   src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[0].photo}`}
@@ -82,7 +84,7 @@ const Banner = () => {
                   src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[2].photo}`}
                   alt=""
                 />
-                <Row>
+                <Row nogutter>
                   <Col
                     md={6}
                     style={{ position: "relative" }}
@@ -124,7 +126,7 @@ const Banner = () => {
               className="custom-d-none"
             />
 
-            <Row className="custom-d-none">
+            <Row gutterWidth={6} className="custom-d-none">
               <Col xs={6} className="overflow-hidden">
                 <BannerImg
                   src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[3].photo}`}
@@ -139,7 +141,7 @@ const Banner = () => {
           </BannerTopPart>
 
           <BannerBottomPart>
-            <Row>
+            <Row gutterWidth={6}>
               <Col md={1.5} className="d-none">
                 <Sticky
                   enabled={true}
