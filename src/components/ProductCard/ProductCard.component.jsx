@@ -8,6 +8,7 @@ import {
   handleAddToCart,
   handleQuantityIncrement,
   handleProductPrice,
+  handleQuantityDecrement,
 } from "../../utils/cartManagement";
 import {
   CardButtonWrap,
@@ -73,30 +74,51 @@ const ProductCard = ({ productInfo }) => {
 
         <CardFooterText>Express Delivery: Today 2:00PM - 4:00PM</CardFooterText>
         <CardButtonWrap>
-          <button
-            className="addToCart"
-            disabled={
-              addToCart.length &&
-              addToCart.find((p) => p.id === productInfo.id) &&
-              true
-            }
-            onClick={() =>
-              handleAddToCart(addToCart, setAddToCart, productInfo)
-            }
-          >
-            <FontAwesomeIcon icon={faShoppingCart} />
-            {addToCart.length && addToCart.find((p) => p.id === productInfo.id)
-              ? "Product Added"
-              : "Add to cart"}
-          </button>
-          <button
-            className="plus"
-            onClick={() =>
-              handleQuantityIncrement(addToCart, setAddToCart, productInfo.id)
-            }
-          >
-            +
-          </button>
+          {addToCart.length &&
+          addToCart.find((p) => p.id === productInfo.id) ? (
+            <div>
+              <button
+                className="minus"
+                onClick={() =>
+                  handleQuantityDecrement(
+                    addToCart,
+                    setAddToCart,
+                    productInfo.id
+                  )
+                }
+              >
+                -
+              </button>
+              <p>{productInfo.totalQuantity} kg</p>
+              <button
+                className="plus"
+                onClick={() =>
+                  handleQuantityIncrement(
+                    addToCart,
+                    setAddToCart,
+                    productInfo.id
+                  )
+                }
+              >
+                +
+              </button>
+            </div>
+          ) : (
+            <button
+              className="addToCart"
+              disabled={
+                addToCart.length &&
+                addToCart.find((p) => p.id === productInfo.id) &&
+                true
+              }
+              onClick={() =>
+                handleAddToCart(addToCart, setAddToCart, productInfo)
+              }
+            >
+              <FontAwesomeIcon icon={faShoppingCart} />
+              &nbsp; Add to cart
+            </button>
+          )}
         </CardButtonWrap>
       </ProductCardContainer>
     </>

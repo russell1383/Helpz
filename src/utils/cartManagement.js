@@ -27,11 +27,6 @@ export const handleAddToCart = (addToCart, setAddToCart, item) => {
   });
 };
 
-export const handleRemoveItemFromCart = (addToCart, setAddToCart, id) => {
-  const remainingProduct = addToCart.filter((item) => item.id !== id);
-  setAddToCart(remainingProduct);
-};
-
 export const handleQuantityIncrement = (addToCart, setAddToCart, id) => {
   if (addToCart.find((product) => product.id === id)) {
     const product = addToCart.find((product) => product.id === id);
@@ -65,6 +60,8 @@ export const handleQuantityDecrement = (addToCart, setAddToCart, id) => {
       var newItems = [...addToCart];
       newItems[objectIndex] = product;
       setAddToCart(newItems);
+    } else {
+      handleRemoveItemFromCart(addToCart, setAddToCart, id);
     }
   }
 };
@@ -128,4 +125,9 @@ export const CampaignPriceCalc = (product) => {
   let offerPrice = parseInt(product.price) - percentageCalc;
   product.campaignPrice = offerPrice;
   return offerPrice;
+};
+
+export const handleRemoveItemFromCart = (addToCart, setAddToCart, id) => {
+  const remainingProduct = addToCart.filter((item) => item.id !== id);
+  setAddToCart(remainingProduct);
 };

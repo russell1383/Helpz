@@ -78,6 +78,15 @@ const ProductInfoBanner = () => {
     }
   };
 
+  const showQuantity = (pId) => {
+    const pd = addToCart.find((p) => p.id === product.id);
+    if (pd) {
+      return pd.totalQuantity;
+    } else {
+      return 1;
+    }
+  };
+
   return (
     <>
       <ProductBannerContainer>
@@ -187,21 +196,6 @@ const ProductInfoBanner = () => {
                         <div className="quantity_box">
                           <button
                             onClick={() =>
-                              handleQuantityIncrement(
-                                addToCart,
-                                setAddToCart,
-                                product.id
-                              )
-                            }
-                          >
-                            +
-                          </button>
-                          {product.totalQuantity
-                            ? product.totalQuantity
-                            : product.quantity}
-                          kg
-                          <button
-                            onClick={() =>
                               handleQuantityDecrement(
                                 addToCart,
                                 setAddToCart,
@@ -210,6 +204,19 @@ const ProductInfoBanner = () => {
                             }
                           >
                             -
+                          </button>
+                          {showQuantity()}
+                          kg
+                          <button
+                            onClick={() =>
+                              handleQuantityIncrement(
+                                addToCart,
+                                setAddToCart,
+                                product.id
+                              )
+                            }
+                          >
+                            +
                           </button>
                         </div>
 

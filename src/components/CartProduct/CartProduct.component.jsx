@@ -26,11 +26,6 @@ const CartProduct = () => {
 
   const ref = useDetectClickOutside({ onTriggered: closeToggle });
 
-  const removeItemFromCart = (id) => {
-    const remainingProduct = addToCart.filter((item) => item.id !== id);
-    setAddToCart(remainingProduct);
-  };
-
   return (
     <div ref={ref}>
       {addToCart.length ? (

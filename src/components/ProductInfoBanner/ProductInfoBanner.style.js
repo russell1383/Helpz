@@ -73,7 +73,8 @@ export const MagnifiedImage = styled.div`
   display: ${({ zIndex }) => (zIndex ? "block" : "none")};
   z-index: 50;
   right: 0;
-
+  background-color: #fff;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   @media (max-width: 768px) {
     top: 0;
     left: 0;

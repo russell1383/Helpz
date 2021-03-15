@@ -6,7 +6,7 @@ export const ProductCardContainer = styled.div`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   position: relative;
   overflow: hidden;
-  border-radius: 3px; 
+  border-radius: 3px;
   cursor: pointer;
   img {
     width: 70%;
@@ -25,8 +25,6 @@ export const ProductCardContainer = styled.div`
   h6 {
     font-family: "UniNeueRegular";
   }
-
-
 `;
 
 export const CardLabel = styled.div`
@@ -122,9 +120,10 @@ export const CardButtonWrap = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
-
+  padding-top: 8px;
   .addToCart {
-    width: 80%;
+    width: 100%;
+    /* width: 80%; */
     padding: 3% 1%;
     font-family: "UniNeueRegular";
     background: #44a72c;
@@ -145,7 +144,7 @@ export const CardButtonWrap = styled.div`
       transition: background 0s;
     }
 
-    @media (max-width: 768px){
+    @media (max-width: 768px) {
       font-size: 11px;
     }
 
@@ -154,19 +153,23 @@ export const CardButtonWrap = styled.div`
     }
   }
 
-  .plus {
-    width: 18%;
-    padding: 3% 1%;
-    font-family: "UniNeueRegular";
-    background: #44a72c;
-    color: #fff;
-    border: none;
-    outline: none;
-    border-radius: 3px;
-    cursor: pointer;
-
-    @media (max-width: 768px){
-      font-size: 11px;
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      text-align: center;
+    }
+    button {
+      padding: 3% 1%;
+      width: 50px;
+      font-family: "UniNeueRegular";
+      background: #44a72c;
+      color: #fff;
+      border: none;
+      outline: none;
+      border-radius: 3px;
+      cursor: pointer;
     }
   }
 `;
