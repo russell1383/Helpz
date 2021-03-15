@@ -17,6 +17,13 @@ body {
     display: none !important;
   }
 }
+@media(max-widht: 768px){
+  .sticky-inner-wrapper,
+.sticky-outer-wrapper {
+ display: none !important;
+}
+}
+
 /* .slick-prev, .slick-next{
     display: none !important;
   } */

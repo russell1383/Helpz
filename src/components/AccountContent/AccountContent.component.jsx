@@ -38,9 +38,7 @@ const AccountContent = () => {
               disabled={!updateUserPhone ? "disabled" : ""}
             />
             {updateUserPhone ? (
-              <>
-                <UpdateButton>Update</UpdateButton>
-              </>
+              <UpdateButton>Update</UpdateButton>
             ) : (
               <img
                 src={editIcon}

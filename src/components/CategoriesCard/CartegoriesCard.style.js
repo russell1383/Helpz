@@ -11,22 +11,21 @@ export const CategoriesCardContainer = styled.div`
   padding: 8%;
   cursor: pointer;
   display: flex;
-  z-index:50;
+  z-index: 50;
   flex-direction: column;
   height: 50vh;
 
   @media (max-width: 1270px) {
     height: 45vh;
-    }
-
+  }
 
   @media (max-width: 768px) {
     height: 60vh;
-    }
+  }
 
   h3 {
     font-family: "UniNeueRegular";
-    font-size:16px;
+    font-size: 16px;
     @media (max-width: 900px) {
       font-size: 13px;
     }
@@ -54,29 +53,26 @@ export const CategoriesCardContainer = styled.div`
     @media (max-width: 1000px) {
       font-size: 8px;
     }
-    @media (max-width:768px) {
+    @media (max-width: 768px) {
       font-size: 10px;
     }
   }
 `;
 
 export const SubCatergoriesWrap = styled.div`
-
   transition: transform 0.3s ease-in-out;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
-  z-index:49;
+  z-index: 49;
   position: absolute;
   top: 0;
   left: 100.5%;
   background: #44a72c;
   height: 100%;
   width: 100%;
-  padding: ${({open})=>open && "5%"};
+  padding: ${({ open }) => open && "5%"};
   padding: 5%;
 
-
   @media (max-width: 768px) {
-    
   }
 `;
 
@@ -107,7 +103,6 @@ export const SubCategoryItems = styled.div`
         transition: 0.5s;
       }
     }
-  
 
     @media (max-width: 768px) {
       font-size: 12px;

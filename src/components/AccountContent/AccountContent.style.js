@@ -23,11 +23,14 @@ export const AccountCover = styled.div`
 
 export const DpContainer = styled.div`
   /* background-color: red; */
-  width: 180px;
-  height: 180px;
+  width: 10vw;
   position: absolute;
   top: 10%;
-  left: 2%;
+  left: 3%;
+
+  @media (max-width: 768px) {
+  }
+
   .dp {
     width: 100%;
   }
@@ -58,6 +61,7 @@ export const UserInfoContainer = styled.div`
   justify-content: space-between;
   height: 50px;
   width: 40%;
+  margin-bottom: 10px;
   img {
     width: 24px;
     cursor: pointer;
@@ -68,6 +72,7 @@ export const UpdateButton = styled.button`
   width: 80px;
   height: 40px;
   font-size: 15px;
+
   cursor: pointer;
   padding: 5px;
   border: none;
@@ -78,7 +83,6 @@ export const UpdateButton = styled.button`
 `;
 
 export const UserInfoInput = styled.input`
-  box-sizing: border-box;
   background: transparent;
   padding: 5px 0 5px 10px;
   outline: none;
@@ -88,7 +92,6 @@ export const UserInfoInput = styled.input`
   font-family: "UniNeueRegular";
   font-size: ${(props) => (props.black ? "16px" : "18px")};
   border-radius: 4px;
-  margin-bottom: 10px;
   color: ${(props) => (props.black ? "black" : "#fff")};
 
   &[type="text"]:disabled,
