@@ -17,7 +17,7 @@ const CategoriesCard = ({ d }) => {
   const history = useHistory();
 
   useEffect(() => {
-    fetch("https://mudee.shop/helpz/api/allcategories")
+    fetch("https://helpz.ecmanager.live/api/allcategories")
       .then((res) => res.json())
       .then((data) => {
         setCategories(data);

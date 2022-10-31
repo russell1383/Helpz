@@ -34,7 +34,7 @@ const LoginComponent = () => {
   const [error, setError] = useState("");
 
   const handleLogin = (data, e) => {
-    axios.post("https://mudee.shop/helpz/api/login", data).then((response) => {
+    axios.post("https://helpz.ecmanager.live/api/login", data).then((response) => {
       if (response.data.errors) {
         setError(response.data.errors[0]);
       } else {

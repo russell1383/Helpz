@@ -98,7 +98,7 @@ const Navbar = () => {
     if (data.name) {
       setSearchLoader(true);
       axios
-        .post("https://mudee.shop/helpz/api/product/search/frontend", data)
+        .post("https://helpz.ecmanager.live/api/product/search/frontend", data)
         .then((response) => {
           if (!response.data.length) {
             setSearchLoader(false);

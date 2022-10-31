@@ -36,7 +36,7 @@ const Banner = () => {
 
   useState(() => {
     async function fetchData() {
-      let response = await axios("https://mudee.shop/helpz/api/banner");
+      let response = await axios("https://helpz.ecmanager.live/api/banner");
       let imgs = await response.data;
       setBannerImgs(imgs);
       setLoader(false);
@@ -45,7 +45,7 @@ const Banner = () => {
     fetchData();
   }, []);
 
-  // https://mudee.shop/helpz/assets/images/banners/161408474707c71adf-ef0e-4d08-8fc6-084c1dd3ccf6.jpg
+  // https://helpz.ecmanager.live/assets/images/banners/161408474707c71adf-ef0e-4d08-8fc6-084c1dd3ccf6.jpg
   // console.log(bannerImgs[0].photo);
   return (
     <>
@@ -57,7 +57,7 @@ const Banner = () => {
             <Row gutterWidth={6}>
               <Col xs={2.5} md={1.5} className="p-relative overflow-hidden">
                 <BannerImg
-                  src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[0].photo}`}
+                  src={`https://helpz.ecmanager.live/assets/images/banners/${bannerImgs[0].photo}`}
                   alt=""
                 />
               </Col>
@@ -69,7 +69,7 @@ const Banner = () => {
                 onMouseLeave={() => setShowText(false)}
               >
                 <BannerImg
-                  src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[1].photo}`}
+                  src={`https://helpz.ecmanager.live/assets/images/banners/${bannerImgs[1].photo}`}
                   alt=""
                 />
                 <TextAboveBannerImg showText={showText}>
@@ -81,7 +81,7 @@ const Banner = () => {
               </Col>
               <Col md={4.5} className="d-none">
                 <CustomBannerImgThree
-                  src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[2].photo}`}
+                  src={`https://helpz.ecmanager.live/assets/images/banners/${bannerImgs[2].photo}`}
                   alt=""
                 />
                 <Row nogutter>
@@ -91,11 +91,11 @@ const Banner = () => {
                     className="flip-container"
                   >
                     <CustomBannerImgFour
-                      src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[3].photo}`}
+                      src={`https://helpz.ecmanager.live/assets/images/banners/${bannerImgs[3].photo}`}
                       className="front"
                     />
                     <CustomBannerImgFour
-                      src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[4].photo}`}
+                      src={`https://helpz.ecmanager.live/assets/images/banners/${bannerImgs[4].photo}`}
                       className="back"
                     />
                   </Col>
@@ -105,7 +105,7 @@ const Banner = () => {
                     className="flip-container"
                   >
                     <CustomBannerImgFourRight
-                      src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[4].photo}`}
+                      src={`https://helpz.ecmanager.live/assets/images/banners/${bannerImgs[4].photo}`}
                       className="left-space "
                     />
                   </Col>
@@ -114,7 +114,7 @@ const Banner = () => {
 
               <Col xs={2.5} md={1.5} className="overflow-hidden">
                 <BannerImg
-                  src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[5].photo}`}
+                  src={`https://helpz.ecmanager.live/assets/images/banners/${bannerImgs[5].photo}`}
                   alt=""
                 />
               </Col>
@@ -129,12 +129,12 @@ const Banner = () => {
             <Row gutterWidth={6} className="custom-d-none">
               <Col xs={6} className="overflow-hidden">
                 <BannerImg
-                  src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[3].photo}`}
+                  src={`https://helpz.ecmanager.live/assets/images/banners/${bannerImgs[3].photo}`}
                 />
               </Col>
               <Col xs={6} className="overflow-hidden">
                 <BannerImg
-                  src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[4].photo}`}
+                  src={`https://helpz.ecmanager.live/assets/images/banners/${bannerImgs[4].photo}`}
                 />
               </Col>
             </Row>
@@ -154,7 +154,7 @@ const Banner = () => {
               </Col>
               <Col xs={6} md={4.5} className="overflow-hidden">
                 <BannerImg
-                  src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[6].photo}`}
+                  src={`https://helpz.ecmanager.live/assets/images/banners/${bannerImgs[6].photo}`}
                   className="bannerImg1"
                   alt=""
                 />
@@ -167,12 +167,12 @@ const Banner = () => {
               </Col>
               <Col xs={6} md={4.5}>
                 <CustomBannerImgTwo
-                  src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[7].photo}`}
+                  src={`https://helpz.ecmanager.live/assets/images/banners/${bannerImgs[7].photo}`}
                   className="bannerImg1"
                   alt=""
                 />
                 <CustomBannerImgTwo
-                  src={`https://mudee.shop/helpz/assets/images/banners/${bannerImgs[8].photo}`}
+                  src={`https://helpz.ecmanager.live/assets/images/banners/${bannerImgs[8].photo}`}
                   className="bannerImg1"
                   alt=""
                 />

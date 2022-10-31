@@ -39,7 +39,7 @@ const ProductCard = ({ productInfo }) => {
           20% <br /> off
         </CardLabel>
         <img
-          src={`https://mudee.shop/helpz/assets/images/products/${productInfo.photo}`}
+          src={`https://helpz.ecmanager.live/assets/images/products/${productInfo.photo}`}
           alt=""
           onClick={handlePdClick}
         />

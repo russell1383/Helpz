@@ -53,7 +53,7 @@ const SearchSuggestions = ({
       {productInfo && (
         <SearchSuggestionsContentContainer>
           <SearchSuggestImg
-            src={`https://mudee.shop/helpz/assets/images/products/${productInfo.photo}`}
+            src={`https://helpz.ecmanager.live/assets/images/products/${productInfo.photo}`}
             alt=""
             onClick={handlePdClick}
           />

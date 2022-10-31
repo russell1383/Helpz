@@ -37,7 +37,7 @@ const LoginModal = ({
   const [otp, setOtp] = useState(new Array(4).fill(""));
 
   const handleLogin = (data, e) => {
-    axios.post("https://mudee.shop/helpz/api/login", data).then((response) => {
+    axios.post("https://helpz.ecmanager.live/api/login", data).then((response) => {
       if (response.data.errors) {
         // setError(response.data.errors[0]);
       } else {
@@ -86,7 +86,7 @@ const LoginModal = ({
     setNum(data.phone);
 
     axios
-      .post("https://mudee.shop/helpz/api/register", data, {
+      .post("https://helpz.ecmanager.live/api/register", data, {
         headers: {
           accept: "application/json",
         },
@@ -112,7 +112,7 @@ const LoginModal = ({
     console.log(num);
     console.log(currentOtp);
     axios
-      .post("https://mudee.shop/helpz/api/register-otp", currentOtp)
+      .post("https://helpz.ecmanager.live/api/register-otp", currentOtp)
       .then((response) => {
         if (response.data === "failed") {
           console.log(response.data);
@@ -155,7 +155,7 @@ const LoginModal = ({
     if (num) {
       const phone = { phone: num };
       axios
-        .post("https://mudee.shop/helpz/api/resend-otp", phone)
+        .post("https://helpz.ecmanager.live/api/resend-otp", phone)
         .then((response) => {
           if (response.data === "failed") {
             console.log("Can not send OTP");

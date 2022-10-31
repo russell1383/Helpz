@@ -37,7 +37,7 @@ const MenuItems = () => {
     if (loggedInUser.id || info.id) {
       let data = { user_id: loggedInUser.id || info.id };
       axios
-        .post("https://mudee.shop/helpz/api/wish-list-user", data)
+        .post("https://helpz.ecmanager.live/api/wish-list-user", data)
         .then((response) => {
           setWishListProducts(response.data);
           setOpen(false);
@@ -53,7 +53,7 @@ const MenuItems = () => {
     if (loggedInUser.id || info.id) {
       let data = { user_id: loggedInUser.id || info.id };
       axios
-        .post("https://mudee.shop/helpz/api/order-list-user", data)
+        .post("https://helpz.ecmanager.live/api/order-list-user", data)
         .then((response) => {
           setOrderHistory(response.data);
           setOpen(false);

@@ -42,7 +42,7 @@ const ViewCartPaymentOptions = () => {
 
   useEffect(() => {
     axios
-      .get("https://mudee.shop/helpz/api/pickup/points")
+      .get("https://helpz.ecmanager.live/api/pickup/points")
       .then((response) => setPickupLocations(response.data));
   }, []);
 
@@ -71,7 +71,7 @@ const ViewCartPaymentOptions = () => {
       };
       console.log(orderInfo);
       axios
-        .post("https://mudee.shop/helpz/api/order/store", orderInfo)
+        .post("https://helpz.ecmanager.live/api/order/store", orderInfo)
         .then((response) => {
           console.log(response);
           setOpen(false);

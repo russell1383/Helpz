@@ -32,7 +32,7 @@ const CartProduct = () => {
         addToCart.map((product) => (
           <ProductRow key={product.id}>
             <CartProductImg
-              src={`https://mudee.shop/helpz/assets/images/products/${product.photo}`}
+              src={`https://helpz.ecmanager.live/assets/images/products/${product.photo}`}
               alt=""
             />
             <h4>{product.name.split(" ")[0]}</h4>

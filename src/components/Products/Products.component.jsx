@@ -25,7 +25,7 @@ const Products = ({ header, subheader }) => {
     let data = { category_id: 2 };
 
     axios
-      .post("https://mudee.shop/helpz/api/product/cat/sub/child", data)
+      .post("https://helpz.ecmanager.live/api/product/cat/sub/child", data)
       .then((response) =>
         setProducts(response.data.slice(0, 30).sort(() => 0.5 - Math.random()))
       );
@@ -117,7 +117,7 @@ const Products = ({ header, subheader }) => {
               {/* <ProductBox>
                 <OffLabel>25% Off</OffLabel>
                 <ProductImg
-                  src={`https://mudee.shop/helpz/assets/images/products/${product.photo}`}
+                  src={`https://helpz.ecmanager.live/assets/images/products/${product.photo}`}
                   onClick={() => handlePdClick(product)}
                 ></ProductImg>
                 <ProductInfo onClick={() => handlePdClick(product)}>

@@ -31,7 +31,7 @@ const ChildCategoryItemsContent = ({ id, name }) => {
     if (id) {
       let data = { childcategory_id: id };
       axios
-        .post("https://mudee.shop/helpz/api/product/cat/sub/child", data)
+        .post("https://helpz.ecmanager.live/api/product/cat/sub/child", data)
         .then((response) => {
           setLoader(false);
           setProducts(response.data);
